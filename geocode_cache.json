@@ -1,0 +1,2746 @@
+{
+  "A Coruña, Spain": {
+    "lat": 43.3466447,
+    "lon": -8.4127029
+  },
+  "Aabyhoj, Denmark": {
+    "lat": 56.1540663,
+    "lon": 10.1523107
+  },
+  "Aachen, Germany": {
+    "lat": 50.776351,
+    "lon": 6.083862
+  },
+  "Aalborg, Denmark": {
+    "lat": 57.0462626,
+    "lon": 9.9215263
+  },
+  "Aarhus N, Denmark": {
+    "lat": 56.2237693,
+    "lon": 10.1238136
+  },
+  "Aarhus V, Denmark": {
+    "lat": 56.1670905,
+    "lon": 10.2026177
+  },
+  "Aarhus, Denmark": {
+    "lat": 56.1496278,
+    "lon": 10.2134046
+  },
+  "Abcoude, The Netherlands": {
+    "lat": 52.0575512,
+    "lon": 4.2718727
+  },
+  "Aberdeen, Scotland": {
+    "lat": 57.1482429,
+    "lon": -2.0928095
+  },
+  "Aeugst Am Albis, Switzerland": {
+    "lat": 47.2679489,
+    "lon": 8.4863301
+  },
+  "Aix-En-Provence, France": {
+    "lat": 43.5298424,
+    "lon": 5.4474738
+  },
+  "Akademija, Lithuania": {
+    "lat": 54.7021466,
+    "lon": 25.31299
+  },
+  "Albi, France": {
+    "lat": 43.9277552,
+    "lon": 2.147899
+  },
+  "Alcobendas, Spain": {
+    "lat": 40.5400082,
+    "lon": -3.6358494
+  },
+  "Alfafar, Spain": {
+    "lat": 39.4200749,
+    "lon": -0.3891355
+  },
+  "Almeria, Spain": {
+    "lat": 36.8685739,
+    "lon": -2.3120282
+  },
+  "Amerongen, The Netherlands": {
+    "lat": 52.0044253,
+    "lon": 5.4621494
+  },
+  "Amersfoort, The Netherlands": {
+    "lat": 52.1928326,
+    "lon": 5.4212862
+  },
+  "Amstelveen, The Netherlands": {
+    "lat": 52.2991284,
+    "lon": 4.8618135
+  },
+  "Amsterdam, The Netherlands": {
+    "lat": 52.3701984,
+    "lon": 4.892168
+  },
+  "Angouleme, France": {
+    "lat": 45.6484505,
+    "lon": 0.1561947
+  },
+  "Ankara, Turkiye": {
+    "lat": 39.9207759,
+    "lon": 32.8540497
+  },
+  "Antony, France": {
+    "lat": 48.753613,
+    "lon": 2.2958034
+  },
+  "Antrim, United Kingdom": {
+    "lat": 54.8647255,
+    "lon": -6.1436379
+  },
+  "Antwerp, Belgium": {
+    "lat": 51.2477367,
+    "lon": 4.776576
+  },
+  "Antwerpen, Belgium": {
+    "lat": 51.2211097,
+    "lon": 4.3997081
+  },
+  "Anyksciai, Lithuania": {
+    "lat": 55.5349516,
+    "lon": 25.0424158
+  },
+  "Apfelbaumstrasse 50, Switzerland": {
+    "lat": 47.4075821,
+    "lon": 8.5568618
+  },
+  "Aprilia, Italy": {
+    "lat": 41.5942016,
+    "lon": 12.6485765
+  },
+  "Aras De Los Olmos, Spain": {
+    "lat": 39.9242294,
+    "lon": -1.1332322
+  },
+  "Ardon, Switzerland": {
+    "lat": 46.2104977,
+    "lon": 7.2576107
+  },
+  "Aris, France": {
+    "lat": 43.1479542,
+    "lon": -0.2036008
+  },
+  "Arztgasse, Austria": {
+    "lat": 47.7467493,
+    "lon": 16.2416564
+  },
+  "Asker, Norway": {
+    "lat": 59.6812603,
+    "lon": 10.474836
+  },
+  "Asnières Sur Seine, France": {
+    "lat": 48.9105948,
+    "lon": 2.2890454
+  },
+  "Assen, The Netherlands": {
+    "lat": 53.0176236,
+    "lon": 6.5287051
+  },
+  "Athens, Greece": {
+    "lat": 37.9755648,
+    "lon": 23.7348324
+  },
+  "Avenue Des Hauts Grigneux À Bihorel, France": {
+    "lat": 49.4671251,
+    "lon": 1.1362795
+  },
+  "Avenue Leon Jouhaux, France": {
+    "lat": 50.6370334,
+    "lon": 3.035116
+  },
+  "Avignon, France": {
+    "lat": 43.9492493,
+    "lon": 4.8059012
+  },
+  "Avrillé, France": {
+    "lat": 47.5045657,
+    "lon": -0.5956539
+  },
+  "Bages, France": {
+    "lat": 43.1236647,
+    "lon": 2.9924502
+  },
+  "Bagnolet, France": {
+    "lat": 48.8688199,
+    "lon": 2.4173658
+  },
+  "Ballerup, Denmark": {
+    "lat": 55.7303589,
+    "lon": 12.3612313
+  },
+  "Ballymount, Ireland": {
+    "lat": 53.0584052,
+    "lon": -6.7760583
+  },
+  "Balzan, Malta": {
+    "lat": 35.8986113,
+    "lon": 14.4510172
+  },
+  "Barcelona, Spain": {
+    "lat": 41.3825802,
+    "lon": 2.177073
+  },
+  "Bari, Italy": {
+    "lat": 41.1257843,
+    "lon": 16.8620293
+  },
+  "Basel, Switzerland": {
+    "lat": 47.5581077,
+    "lon": 7.5878261
+  },
+  "Bassano Del Grappa, Italy": {
+    "lat": 45.7726007,
+    "lon": 11.7206547
+  },
+  "Bath, United Kingdom": {
+    "lat": 51.3813864,
+    "lon": -2.3596963
+  },
+  "Bedford, United Kingdom": {
+    "lat": 52.1363806,
+    "lon": -0.4675041
+  },
+  "Begles, France": {
+    "lat": 44.8074559,
+    "lon": -0.5488542
+  },
+  "Belfast, United Kingdom": {
+    "lat": 54.596391,
+    "lon": -5.9301829
+  },
+  "Belgium, Belgium": {
+    "lat": 50.6402809,
+    "lon": 4.6667145
+  },
+  "Belgrade, Serbia": {
+    "lat": 44.8178131,
+    "lon": 20.4568974
+  },
+  "Bellaterra, Spain": {
+    "lat": 41.5040164,
+    "lon": 2.0859223
+  },
+  "Belval, Luxembourg": {
+    "lat": 49.5036259,
+    "lon": 5.9487155
+  },
+  "Bergen, Norway": {
+    "lat": 60.3943055,
+    "lon": 5.3259192
+  },
+  "Berlin, Germany": {
+    "lat": 52.5173885,
+    "lon": 13.3951309
+  },
+  "Bern, Switzerland": {
+    "lat": 46.9484742,
+    "lon": 7.4521749
+  },
+  "Bernau, Germany": {
+    "lat": 52.6755472,
+    "lon": 13.5916719
+  },
+  "Bialystok, Poland": {
+    "lat": 53.127505,
+    "lon": 23.1470509
+  },
+  "Biarritz, France": {
+    "lat": 43.4832523,
+    "lon": -1.5592776
+  },
+  "Bielefeld, Germany": {
+    "lat": 52.0191005,
+    "lon": 8.531007
+  },
+  "Bilbao, Spain": {
+    "lat": 43.2630018,
+    "lon": -2.9350039
+  },
+  "Bilthoven, The Netherlands": {
+    "lat": 52.1186518,
+    "lon": 5.1890807
+  },
+  "Bingham, United Kingdom": {
+    "lat": 52.9515683,
+    "lon": -0.9522445
+  },
+  "Birkerød, Denmark": {
+    "lat": 55.8403369,
+    "lon": 12.4287796
+  },
+  "Birmingham, United Kingdom": {
+    "lat": 52.4948994,
+    "lon": -1.8518439
+  },
+  "Bishops Stortford, United Kingdom": {
+    "lat": 51.8676279,
+    "lon": 0.1631961
+  },
+  "Blackburn, United Kingdom": {
+    "lat": 53.749326,
+    "lon": -2.4840566
+  },
+  "Bney Brak, Israel": {
+    "lat": 32.1034956,
+    "lon": 34.836116
+  },
+  "Bochum, Germany": {
+    "lat": 51.4818111,
+    "lon": 7.2196635
+  },
+  "Bois-Guillaume, France": {
+    "lat": 49.4704819,
+    "lon": 1.1199476
+  },
+  "Bologna, Italy": {
+    "lat": 44.4938203,
+    "lon": 11.3426327
+  },
+  "Bonn, Germany": {
+    "lat": 50.7352621,
+    "lon": 7.1024635
+  },
+  "Bordeaux, France": {
+    "lat": 44.841225,
+    "lon": -0.5800364
+  },
+  "Borgo San Dalmazzo, Italy": {
+    "lat": 44.3269526,
+    "lon": 7.4695328
+  },
+  "Borlänge, Sweden": {
+    "lat": 60.4856426,
+    "lon": 15.4234561
+  },
+  "Bottmingen, Switzerland": {
+    "lat": 47.5234501,
+    "lon": 7.5748727
+  },
+  "Boulogne Billancourt, France": {
+    "lat": 48.8356649,
+    "lon": 2.240206
+  },
+  "Boulogne-Billancourt, France": {
+    "lat": 48.8356649,
+    "lon": 2.240206
+  },
+  "Bournemouth, United Kingdom": {
+    "lat": 50.7201514,
+    "lon": -1.8799118
+  },
+  "Brabrand, Denmark": {
+    "lat": 56.1565872,
+    "lon": 10.1056465
+  },
+  "Bradford On Avon, United Kingdom": {
+    "lat": 51.346715,
+    "lon": -2.2504329
+  },
+  "Brahegatan 10, Sweden": {
+    "lat": 59.3372452,
+    "lon": 18.0757496
+  },
+  "Bratislava, Slovakia": {
+    "lat": 48.1359085,
+    "lon": 17.1597441
+  },
+  "Braunschweig, Germany": {
+    "lat": 52.2646577,
+    "lon": 10.5236066
+  },
+  "Breda, The Netherlands": {
+    "lat": 51.58936,
+    "lon": 4.7729399
+  },
+  "Bremen, Germany": {
+    "lat": 53.0758196,
+    "lon": 8.8071646
+  },
+  "Bridgend, United Kingdom": {
+    "lat": 51.5049859,
+    "lon": -3.5756674
+  },
+  "Bristol, United Kingdom": {
+    "lat": 51.4538022,
+    "lon": -2.5972985
+  },
+  "Brno, Czech Republic": {
+    "lat": 49.2052271,
+    "lon": 16.6021742
+  },
+  "Brugge, Belgium": {
+    "lat": 51.2085526,
+    "lon": 3.226772
+  },
+  "Brussel, Belgium": {
+    "lat": 50.8387951,
+    "lon": 4.3753041
+  },
+  "Brussels, Belgium": {
+    "lat": 50.8387951,
+    "lon": 4.3753041
+  },
+  "Bruxelles, Belgium": {
+    "lat": 50.8467372,
+    "lon": 4.352493
+  },
+  "Bucharest, Romania": {
+    "lat": 44.4361414,
+    "lon": 26.102684
+  },
+  "Buckhurst Hill, United Kingdom": {
+    "lat": 51.6268617,
+    "lon": 0.0415283
+  },
+  "Budapest, Hungary": {
+    "lat": 47.481849,
+    "lon": 19.1449053
+  },
+  "Budel, The Netherlands": {
+    "lat": 52.0749456,
+    "lon": 4.2696802
+  },
+  "Bulgaria, Bulgaria": {
+    "lat": 42.6073975,
+    "lon": 25.4856617
+  },
+  "Bunnik, The Netherlands": {
+    "lat": 52.0638376,
+    "lon": 5.1906169
+  },
+  "Busto Arsizio, Italy": {
+    "lat": 45.611932,
+    "lon": 8.8518269
+  },
+  "Båstad, Sweden": {
+    "lat": 56.4268963,
+    "lon": 12.8608789
+  },
+  "C/ Almogavers, 165, Spain": {
+    "lat": 41.3995038,
+    "lon": 2.1931459
+  },
+  "Calgary, Canada": {
+    "lat": 51.0456064,
+    "lon": -114.057541
+  },
+  "Calle De Juan De Mariana 15, Spain": {
+    "lat": 40.3983689,
+    "lon": -3.6862639
+  },
+  "Calle Lluis Domenech I Muntaner, 6, Spain": {
+    "lat": 41.0824533,
+    "lon": 1.1228459
+  },
+  "Calle Princesa 25, Spain": {
+    "lat": 40.3469854,
+    "lon": -3.8328167
+  },
+  "Cambridge, United Kingdom": {
+    "lat": 52.2055314,
+    "lon": 0.1186637
+  },
+  "Cangas, Spain": {
+    "lat": 43.3136138,
+    "lon": -5.0658503
+  },
+  "Cannes, France": {
+    "lat": 43.5515198,
+    "lon": 7.0134418
+  },
+  "Caparica, Portugal": {
+    "lat": 38.5980703,
+    "lon": -9.2072359
+  },
+  "Cape Town, South Africa": {
+    "lat": -33.9288301,
+    "lon": 18.4172197
+  },
+  "Capellen, Luxembourg": {
+    "lat": 49.6350041,
+    "lon": 5.973325
+  },
+  "Cardiff, United Kingdom": {
+    "lat": 51.4816546,
+    "lon": -3.1791934
+  },
+  "Carouge, Switzerland": {
+    "lat": 46.1846691,
+    "lon": 6.1396839
+  },
+  "Carrer De Oristà 165, Spain": {
+    "lat": 41.4674061,
+    "lon": 2.1809706
+  },
+  "Cartagena, Spain": {
+    "lat": 37.6155018,
+    "lon": -0.987511
+  },
+  "Cascais, Portugal": {
+    "lat": 38.6968919,
+    "lon": -9.4204495
+  },
+  "Caserta, Italy": {
+    "lat": 41.2035193,
+    "lon": 14.1168624
+  },
+  "Champs-Sur-Marne, France": {
+    "lat": 48.8526892,
+    "lon": 2.6027219
+  },
+  "Charecroft Road, United Kingdom": {
+    "lat": 51.5028816,
+    "lon": -0.2188702
+  },
+  "Chavannes-Près-Renens, Switzerland": {
+    "lat": 46.5285212,
+    "lon": 6.5726698
+  },
+  "Chavanod, France": {
+    "lat": 45.8842342,
+    "lon": 6.0525071
+  },
+  "Chemin De Favreuse, France": {
+    "lat": 48.7434841,
+    "lon": 2.1884241
+  },
+  "Chemnitz, Germany": {
+    "lat": 50.8323531,
+    "lon": 12.918914
+  },
+  "Chennai, India": {
+    "lat": 13.0836939,
+    "lon": 80.270186
+  },
+  "Chiasso, Switzerland": {
+    "lat": 45.8355209,
+    "lon": 9.0290169
+  },
+  "Chisinau, Moldova": {
+    "lat": 47.0245117,
+    "lon": 28.8322923
+  },
+  "Cittadella, Italy": {
+    "lat": 45.6487941,
+    "lon": 11.7835801
+  },
+  "Clermont Ferrand, France": {
+    "lat": 45.7774551,
+    "lon": 3.0819427
+  },
+  "Clonakilty, Ireland": {
+    "lat": 51.6232159,
+    "lon": -8.8914072
+  },
+  "Cluj-Napoca, Romania": {
+    "lat": 46.769379,
+    "lon": 23.5899542
+  },
+  "Collegno, Italy": {
+    "lat": 45.0775473,
+    "lon": 7.5724262
+  },
+  "Cologne, Germany": {
+    "lat": 50.938361,
+    "lon": 6.959974
+  },
+  "Como, Italy": {
+    "lat": 45.9395857,
+    "lon": 9.1493609
+  },
+  "Copenhagen K, Denmark": {
+    "lat": 55.6867243,
+    "lon": 12.5700724
+  },
+  "Copenhagen V, Denmark": {
+    "lat": 43.893439,
+    "lon": -75.673828
+  },
+  "Copenhagen, Denmark": {
+    "lat": 55.6867243,
+    "lon": 12.5700724
+  },
+  "Cordoba, Spain": {
+    "lat": 37.8845813,
+    "lon": -4.7760138
+  },
+  "Courbevoie, France": {
+    "lat": 48.8953328,
+    "lon": 2.2561602
+  },
+  "Creteil, France": {
+    "lat": 48.7771486,
+    "lon": 2.4530731
+  },
+  "Córdoba, Spain": {
+    "lat": 37.8845813,
+    "lon": -4.7760138
+  },
+  "Dachsen, Switzerland": {
+    "lat": 47.6661896,
+    "lon": 8.6150532
+  },
+  "Dalvagen 14, Sweden": {
+    "lat": 58.6307961,
+    "lon": 16.7939269
+  },
+  "Danderyd, Sweden": {
+    "lat": 59.4043647,
+    "lon": 18.0358505
+  },
+  "Daverio, Italy": {
+    "lat": 45.7784026,
+    "lon": 8.7718279
+  },
+  "Delft, The Netherlands": {
+    "lat": 52.0016196,
+    "lon": 4.3680178
+  },
+  "Den Haag, The Netherlands": {
+    "lat": 52.0749456,
+    "lon": 4.2696802
+  },
+  "Deurne, Belgium": {
+    "lat": 51.20849,
+    "lon": 4.4719297
+  },
+  "Deventer, The Netherlands": {
+    "lat": 52.2535255,
+    "lon": 6.1595748
+  },
+  "Diest, Belgium": {
+    "lat": 50.9844318,
+    "lon": 5.0504341
+  },
+  "Dijon, France": {
+    "lat": 47.3215806,
+    "lon": 5.0414701
+  },
+  "Dnipro, Ukraine": {
+    "lat": 48.4680221,
+    "lon": 35.0417711
+  },
+  "Dortmund, Germany": {
+    "lat": 51.5142273,
+    "lon": 7.4652789
+  },
+  "Douarnenez, France": {
+    "lat": 48.0944459,
+    "lon": -4.3311243
+  },
+  "Drammen, Norway": {
+    "lat": 59.6964936,
+    "lon": 10.175642
+  },
+  "Dreieich, Germany": {
+    "lat": 50.011974,
+    "lon": 8.7123912
+  },
+  "Dresden, Germany": {
+    "lat": 51.0493286,
+    "lon": 13.7381437
+  },
+  "Driebergen-Rijsenburg, The Netherlands": {
+    "lat": 52.0559829,
+    "lon": 5.276128
+  },
+  "Dublin, Ireland": {
+    "lat": 53.3493795,
+    "lon": -6.2605593
+  },
+  "Dudelange, Luxembourg": {
+    "lat": 49.4799132,
+    "lon": 6.0893963
+  },
+  "Dusseldorf, Germany": {
+    "lat": 51.2254018,
+    "lon": 6.7763137
+  },
+  "Duxford, United Kingdom": {
+    "lat": 52.0947808,
+    "lon": 0.1583392
+  },
+  "Düsseldorf, Germany": {
+    "lat": 51.2254018,
+    "lon": 6.7763137
+  },
+  "Ebenhausen-Schäftlarn, Germany": {
+    "lat": 47.9787164,
+    "lon": 11.4537042
+  },
+  "Ecublens Vd, Switzerland": {
+    "lat": 46.5258,
+    "lon": 6.5621137
+  },
+  "Ecublens, Switzerland": {
+    "lat": 46.5258,
+    "lon": 6.5621137
+  },
+  "Ede, The Netherlands": {
+    "lat": 52.0464521,
+    "lon": 5.6711652
+  },
+  "Edinburgh, United Kingdom": {
+    "lat": 55.9533456,
+    "lon": -3.1883749
+  },
+  "Edvard Griegs Vei 1, Norway": {
+    "lat": 59.8106361,
+    "lon": 10.7964423
+  },
+  "Egtved, Denmark": {
+    "lat": 55.6157026,
+    "lon": 9.3092296
+  },
+  "Eindhoven, The Netherlands": {
+    "lat": 51.4105222,
+    "lon": 5.457494
+  },
+  "Eivissa, Spain": {
+    "lat": 38.9743901,
+    "lon": 1.4197463
+  },
+  "El Puerto De Santa Maria, Spain": {
+    "lat": 36.6004006,
+    "lon": -6.2252702
+  },
+  "Elche, Spain": {
+    "lat": 38.2653307,
+    "lon": -0.6988391
+  },
+  "Emmen, The Netherlands": {
+    "lat": 52.7862581,
+    "lon": 6.8940871
+  },
+  "Enköping, Sweden": {
+    "lat": 59.6356115,
+    "lon": 17.077856
+  },
+  "Esch-Sur-Alzette, Luxembourg": {
+    "lat": 49.4959628,
+    "lon": 5.9850306
+  },
+  "Eskilstrup, Denmark": {
+    "lat": 54.8568436,
+    "lon": 11.8840358
+  },
+  "España, Spain": {
+    "lat": 39.3260685,
+    "lon": -4.8379791
+  },
+  "Espoo, Finland": {
+    "lat": 60.2049651,
+    "lon": 24.6559808
+  },
+  "Essen, Germany": {
+    "lat": 51.4582235,
+    "lon": 7.0158171
+  },
+  "Eugendorf, Austria": {
+    "lat": 47.8671332,
+    "lon": 13.1231841
+  },
+  "Evreux, France": {
+    "lat": 49.0268903,
+    "lon": 1.1510164
+  },
+  "Evry-Courcouronnes, France": {
+    "lat": 48.629966,
+    "lon": 2.4381816
+  },
+  "Falköping, Sweden": {
+    "lat": 58.1695083,
+    "lon": 13.5542412
+  },
+  "Finland, Finland": {
+    "lat": 63.2467777,
+    "lon": 25.9209164
+  },
+  "Firenze, Italy": {
+    "lat": 43.7697955,
+    "lon": 11.2556404
+  },
+  "Fislisbach Ag, Switzerland": {
+    "lat": 47.4369631,
+    "lon": 8.2899457
+  },
+  "Floor 4, Sector 2, Romania": {
+    "lat": 28.6063158,
+    "lon": 77.432198
+  },
+  "Florence, Italy": {
+    "lat": 43.7697955,
+    "lon": 11.2556404
+  },
+  "Fontaine, France": {
+    "lat": 50.304712,
+    "lon": 2.0641039
+  },
+  "Fontainebleau, France": {
+    "lat": 48.4049375,
+    "lon": 2.7015872
+  },
+  "Fontenay Sous Bois, France": {
+    "lat": 48.8490721,
+    "lon": 2.4749347
+  },
+  "Fontenay-Sous-Bois, France": {
+    "lat": 48.8490721,
+    "lon": 2.4749347
+  },
+  "Framtidsvägen 12 B, Sweden": {
+    "lat": 56.7045881,
+    "lon": 16.339638
+  },
+  "Frankfurt Am Main, Germany": {
+    "lat": 50.1106444,
+    "lon": 8.6820917
+  },
+  "Frankfurt, Germany": {
+    "lat": 50.1106444,
+    "lon": 8.6820917
+  },
+  "Frederiksberg C, Denmark": {
+    "lat": 55.678016,
+    "lon": 12.5326186
+  },
+  "Frederiksberg, Denmark": {
+    "lat": 55.678016,
+    "lon": 12.5326186
+  },
+  "Fredrikstad, Norway": {
+    "lat": 59.1862013,
+    "lon": 10.8680241
+  },
+  "Freiburg Im Breisgau, Germany": {
+    "lat": 47.9960901,
+    "lon": 7.8494005
+  },
+  "Fuengirola, Spain": {
+    "lat": 36.5388398,
+    "lon": -4.6233974
+  },
+  "Funchal - Madeira, Portugal": {
+    "lat": 32.6496497,
+    "lon": -16.9086783
+  },
+  "Fürth, Germany": {
+    "lat": 49.4885711,
+    "lon": 10.9587203
+  },
+  "Galten, Denmark": {
+    "lat": 56.154066,
+    "lon": 9.9098817
+  },
+  "Galway, Ireland": {
+    "lat": 53.2744122,
+    "lon": -9.0490601
+  },
+  "Garbagnate Milanese, Italy": {
+    "lat": 45.5772279,
+    "lon": 9.080023
+  },
+  "Gdansk, Poland": {
+    "lat": 54.3482907,
+    "lon": 18.6540233
+  },
+  "Gdynia, Poland": {
+    "lat": 54.5233304,
+    "lon": 18.6040279
+  },
+  "Gelida, Spain": {
+    "lat": 41.4324961,
+    "lon": 1.8614458
+  },
+  "Geneva, Switzerland": {
+    "lat": 46.2017559,
+    "lon": 6.1466014
+  },
+  "Genk, Belgium": {
+    "lat": 50.9667627,
+    "lon": 5.4833953
+  },
+  "Genova, Italy": {
+    "lat": 44.40726,
+    "lon": 8.9338624
+  },
+  "Gent, Belgium": {
+    "lat": 51.0538286,
+    "lon": 3.7250121
+  },
+  "Gentofte, Denmark": {
+    "lat": 55.7535946,
+    "lon": 12.541436
+  },
+  "Genève, Switzerland": {
+    "lat": 46.2017559,
+    "lon": 6.1466014
+  },
+  "Germering, Germany": {
+    "lat": 48.1373576,
+    "lon": 11.3614338
+  },
+  "Ghent, Belgium": {
+    "lat": 51.0538286,
+    "lon": 3.7250121
+  },
+  "Gien, France": {
+    "lat": 47.6918575,
+    "lon": 2.6313889
+  },
+  "Gignac-La-Nerthe, France": {
+    "lat": 43.3887665,
+    "lon": 5.2329106
+  },
+  "Gijon, Spain": {
+    "lat": 43.5449422,
+    "lon": -5.66275
+  },
+  "Gijón, Spain": {
+    "lat": 43.5449422,
+    "lon": -5.66275
+  },
+  "Girona, Spain": {
+    "lat": 41.9793006,
+    "lon": 2.8199439
+  },
+  "Glasgow, Scotland": {
+    "lat": 55.861155,
+    "lon": -4.2501687
+  },
+  "Glasgow, United Kingdom": {
+    "lat": 55.861155,
+    "lon": -4.2501687
+  },
+  "Gmunden, Austria": {
+    "lat": 47.9185855,
+    "lon": 13.8003048
+  },
+  "Godalming, United Kingdom": {
+    "lat": 51.1855806,
+    "lon": -0.6126567
+  },
+  "Gothenburg, Sweden": {
+    "lat": 57.7072326,
+    "lon": 11.9670171
+  },
+  "Granada, Spain": {
+    "lat": 37.1734995,
+    "lon": -3.5995337
+  },
+  "Graz, Austria": {
+    "lat": 47.0708678,
+    "lon": 15.4382786
+  },
+  "Grenoble, France": {
+    "lat": 45.1875602,
+    "lon": 5.7357819
+  },
+  "Groningen, The Netherlands": {
+    "lat": 53.1974568,
+    "lon": 6.5225217
+  },
+  "Gruenwald, Germany": {
+    "lat": 48.0486558,
+    "lon": 11.5300727
+  },
+  "Guildford, United Kingdom": {
+    "lat": 51.2356068,
+    "lon": -0.5732063
+  },
+  "Göteborg, Sweden": {
+    "lat": 57.7072326,
+    "lon": 11.9670171
+  },
+  "Haarlem, The Netherlands": {
+    "lat": 52.3849077,
+    "lon": 4.6654359
+  },
+  "Hallein, Austria": {
+    "lat": 47.6821521,
+    "lon": 13.0956313
+  },
+  "Hamburg, Germany": {
+    "lat": 53.5501721,
+    "lon": 10.0013165
+  },
+  "Handen, Sweden": {
+    "lat": 59.1676451,
+    "lon": 18.1409008
+  },
+  "Haslev, Denmark": {
+    "lat": 55.3271115,
+    "lon": 11.9567297
+  },
+  "Hasselt, Belgium": {
+    "lat": 50.9303735,
+    "lon": 5.3378043
+  },
+  "Hastveda, Sweden": {
+    "lat": 56.2806143,
+    "lon": 13.9490904
+  },
+  "Hattingen, Germany": {
+    "lat": 51.4007175,
+    "lon": 7.1862486
+  },
+  "Hedensted, Denmark": {
+    "lat": 55.7705233,
+    "lon": 9.6994255
+  },
+  "Heerenveen, The Netherlands": {
+    "lat": 52.9605696,
+    "lon": 5.9247298
+  },
+  "Heggedal, Norway": {
+    "lat": 59.7872163,
+    "lon": 10.4370443
+  },
+  "Helsinki, Finland": {
+    "lat": 60.1666204,
+    "lon": 24.9435408
+  },
+  "Hemel Hempstead, United Kingdom": {
+    "lat": 51.7511784,
+    "lon": -0.472528
+  },
+  "Herengracht 162, The Netherlands": {
+    "lat": 52.3744066,
+    "lon": 4.887185
+  },
+  "Herlev, Denmark": {
+    "lat": 55.7248173,
+    "lon": 12.4377222
+  },
+  "Herouville Saint Clair, France": {
+    "lat": 49.2031097,
+    "lon": -0.3353513
+  },
+  "Herzogsdorf, Austria": {
+    "lat": 48.4310651,
+    "lon": 14.113488
+  },
+  "Hillerød, Denmark": {
+    "lat": 55.9285735,
+    "lon": 12.3063909
+  },
+  "Hilversum, The Netherlands": {
+    "lat": 52.2124485,
+    "lon": 5.1460384
+  },
+  "Hohenzell, Austria": {
+    "lat": 48.1928265,
+    "lon": 13.5431306
+  },
+  "Holstebro, Denmark": {
+    "lat": 56.3590324,
+    "lon": 8.6159188
+  },
+  "Hong Kong, Hong Kong SAR": {
+    "lat": 22.2788197,
+    "lon": 114.1783402
+  },
+  "Hoofddorp, The Netherlands": {
+    "lat": 52.2909045,
+    "lon": 4.6592809
+  },
+  "Hospitalet De Llobregat, Spain": {
+    "lat": 41.3595118,
+    "lon": 2.0996318
+  },
+  "Hull, United Kingdom": {
+    "lat": 53.7435722,
+    "lon": -0.3394758
+  },
+  "Hämeenlinna, Finland": {
+    "lat": 60.9966192,
+    "lon": 24.465141
+  },
+  "Hässleholm, Sweden": {
+    "lat": 56.157986,
+    "lon": 13.7653328
+  },
+  "Høvik, Norway": {
+    "lat": 59.9009344,
+    "lon": 10.5821874
+  },
+  "Hünstetten, Germany": {
+    "lat": 50.24816,
+    "lon": 8.18621
+  },
+  "Iasi, Romania": {
+    "lat": 47.1615598,
+    "lon": 27.5837814
+  },
+  "Iași, Romania": {
+    "lat": 47.1615598,
+    "lon": 27.5837814
+  },
+  "Illkirch Graffenstaden, France": {
+    "lat": 48.5299117,
+    "lon": 7.7113254
+  },
+  "Innsbruck, Austria": {
+    "lat": 47.2654296,
+    "lon": 11.3927685
+  },
+  "Inverness, United Kingdom": {
+    "lat": 57.4790124,
+    "lon": -4.225739
+  },
+  "Irpin', Ukraine": {
+    "lat": 50.5206777,
+    "lon": 30.2448725
+  },
+  "Issy-Les-Moulineaux, France": {
+    "lat": 48.8250508,
+    "lon": 2.273457
+  },
+  "Istanbul, Turkiye": {
+    "lat": 41.006381,
+    "lon": 28.9758715
+  },
+  "Ivrea, Italy": {
+    "lat": 45.451803,
+    "lon": 7.8932496
+  },
+  "Ivry Sur Seine, France": {
+    "lat": 48.8122302,
+    "lon": 2.3872525
+  },
+  "Ivry-Sur-Seine, France": {
+    "lat": 48.8122302,
+    "lon": 2.3872525
+  },
+  "Ixelles, Belgium": {
+    "lat": 50.8331141,
+    "lon": 4.3668279
+  },
+  "Izegem, Belgium": {
+    "lat": 50.9137743,
+    "lon": 3.2091066
+  },
+  "Jabbeke, Belgium": {
+    "lat": 51.1823049,
+    "lon": 3.0934604
+  },
+  "Järvenpää, Finland": {
+    "lat": 60.4710813,
+    "lon": 25.0876113
+  },
+  "Järvevana Tee 9, Estonia": {
+    "lat": 59.4030494,
+    "lon": 24.7342328
+  },
+  "Jönköping, Sweden": {
+    "lat": 57.7825634,
+    "lon": 14.165719
+  },
+  "Kallithea, Greece": {
+    "lat": 37.9402774,
+    "lon": 23.6923904
+  },
+  "Karlshamn, Sweden": {
+    "lat": 56.1701723,
+    "lon": 14.8631279
+  },
+  "Karlsruhe, Germany": {
+    "lat": 49.0068705,
+    "lon": 8.4034195
+  },
+  "Karmsund, Norway": {
+    "lat": 59.3755479,
+    "lon": 5.2963763
+  },
+  "Katerini, Greece": {
+    "lat": 40.2713616,
+    "lon": 22.5087618
+  },
+  "Kaunas, Lithuania": {
+    "lat": 54.8982139,
+    "lon": 23.9044817
+  },
+  "Kenya, Kenya": {
+    "lat": 1.4419683,
+    "lon": 38.4313975
+  },
+  "Kerava, Finland": {
+    "lat": 60.4032242,
+    "lon": 25.1011768
+  },
+  "Kgs Lyngby, Denmark": {
+    "lat": 55.7718649,
+    "lon": 12.5051413
+  },
+  "Kharkiv, Ukraine": {
+    "lat": 49.9923181,
+    "lon": 36.2310146
+  },
+  "Kidd Road Farm Kidd Road, United Kingdom": {
+    "lat": 51.3676184,
+    "lon": -1.9721254
+  },
+  "Kielce, Poland": {
+    "lat": 50.8540285,
+    "lon": 20.6099157
+  },
+  "Kiev, Ukraine": {
+    "lat": 50.178595,
+    "lon": 30.4924884
+  },
+  "Killarney, Ireland": {
+    "lat": 52.0595746,
+    "lon": -9.505322
+  },
+  "Killorglin, Ireland": {
+    "lat": 52.1061973,
+    "lon": -9.7867881
+  },
+  "Kimberley, United Kingdom": {
+    "lat": 52.9980159,
+    "lon": -1.2595297
+  },
+  "Kirchheim, Germany": {
+    "lat": 49.6560775,
+    "lon": 9.8585464
+  },
+  "Kista, Sweden": {
+    "lat": 59.4031236,
+    "lon": 17.9424221
+  },
+  "Klagenfurt Am Wörthersee, Austria": {
+    "lat": 46.6087926,
+    "lon": 14.2774359
+  },
+  "Kobarid, Slovenia": {
+    "lat": 46.2455462,
+    "lon": 13.57917
+  },
+  "Koblenz, Germany": {
+    "lat": 50.3533278,
+    "lon": 7.5943951
+  },
+  "Kongens Lyngby, Denmark": {
+    "lat": 55.7718649,
+    "lon": 12.5051413
+  },
+  "Konstanz, Germany": {
+    "lat": 47.659216,
+    "lon": 9.1750718
+  },
+  "Kontich, Belgium": {
+    "lat": 51.1353297,
+    "lon": 4.4454784
+  },
+  "Kontiolahti, Finland": {
+    "lat": 62.766667,
+    "lon": 29.85
+  },
+  "Korolev, Russia": {
+    "lat": 55.9190049,
+    "lon": 37.8150443
+  },
+  "Kortrijk, Belgium": {
+    "lat": 50.8178422,
+    "lon": 3.2782582
+  },
+  "Kotor, Montenegro": {
+    "lat": 42.4249205,
+    "lon": 18.7713332
+  },
+  "Kočevje, Slovenia": {
+    "lat": 45.6307761,
+    "lon": 14.8681495
+  },
+  "Kraków, Poland": {
+    "lat": 50.0619474,
+    "lon": 19.9368564
+  },
+  "Kristianstad, Sweden": {
+    "lat": 56.0293778,
+    "lon": 14.1566859
+  },
+  "Kw Eindhoven, The Netherlands": {
+    "lat": 51.4167627,
+    "lon": 5.4900361
+  },
+  "Kyiv, Ukraine": {
+    "lat": 50.4500336,
+    "lon": 30.5241361
+  },
+  "Köln, Germany": {
+    "lat": 50.938361,
+    "lon": 6.959974
+  },
+  "København K, Denmark": {
+    "lat": 55.6867243,
+    "lon": 12.5700724
+  },
+  "København, Denmark": {
+    "lat": 55.6867243,
+    "lon": 12.5700724
+  },
+  "La Chapelle-Sur-Erdre, France": {
+    "lat": 47.2996846,
+    "lon": -1.5518632
+  },
+  "La Chevroliere, France": {
+    "lat": 47.0936557,
+    "lon": -1.6117844
+  },
+  "La Courneuve, France": {
+    "lat": 48.9267236,
+    "lon": 2.3896123
+  },
+  "La Rochelle, France": {
+    "lat": 46.159732,
+    "lon": -1.1515951
+  },
+  "La Tour De Peilz, Switzerland": {
+    "lat": 46.4537524,
+    "lon": 6.8569063
+  },
+  "Labenne, France": {
+    "lat": 43.5977,
+    "lon": -1.42811
+  },
+  "Lahti, Finland": {
+    "lat": 60.982628,
+    "lon": 25.6613418
+  },
+  "Lampertheim, Germany": {
+    "lat": 49.6239449,
+    "lon": 8.4093474
+  },
+  "Lannion, France": {
+    "lat": 48.7322183,
+    "lon": -3.4587994
+  },
+  "Larnaca, Greece": {
+    "lat": 36.8041945,
+    "lon": 22.8393399
+  },
+  "Las Rozas De Madrid, Spain": {
+    "lat": 40.4933095,
+    "lon": -3.8758396
+  },
+  "Lausanne, Switzerland": {
+    "lat": 46.5218269,
+    "lon": 6.6327025
+  },
+  "Le Pecq, France": {
+    "lat": 48.8972505,
+    "lon": 2.1066273
+  },
+  "Le Vesinet, France": {
+    "lat": 48.894254,
+    "lon": 2.1347291
+  },
+  "Le Village By Ca, France": {
+    "lat": 43.5937819,
+    "lon": 1.4481893
+  },
+  "Ledegem, Belgium": {
+    "lat": 50.8689412,
+    "lon": 3.1174705
+  },
+  "Leeds, United Kingdom": {
+    "lat": 53.7974185,
+    "lon": -1.5437941
+  },
+  "Leenakuja 2, Finland": {
+    "lat": 37.5711853,
+    "lon": 126.9780093
+  },
+  "Leganés, Spain": {
+    "lat": 40.3281942,
+    "lon": -3.76527
+  },
+  "Legnano, Italy": {
+    "lat": 45.5946464,
+    "lon": 8.9181625
+  },
+  "Leiden, The Netherlands": {
+    "lat": 52.1700673,
+    "lon": 4.4876769
+  },
+  "Leipzig, Germany": {
+    "lat": 51.3406321,
+    "lon": 12.3747329
+  },
+  "Lerchenfeldstrasse 3, Switzerland": {
+    "lat": 47.4121901,
+    "lon": 9.3410372
+  },
+  "Les Loges-En-Josas, France": {
+    "lat": 48.7645251,
+    "lon": 2.1396015
+  },
+  "Les Ulis, France": {
+    "lat": 48.681708,
+    "lon": 2.1701573
+  },
+  "Leusden, Belgium": {
+    "lat": 51.2190927,
+    "lon": 3.2343371
+  },
+  "Leuven, Belgium": {
+    "lat": 50.879202,
+    "lon": 4.7011675
+  },
+  "Levallois Perret, France": {
+    "lat": 48.892956,
+    "lon": 2.2881683
+  },
+  "Levallois-Perret, France": {
+    "lat": 48.892956,
+    "lon": 2.2881683
+  },
+  "Lezennes, France": {
+    "lat": 50.6146341,
+    "lon": 3.1165338
+  },
+  "Libourne, France": {
+    "lat": 44.9133742,
+    "lon": -0.2427217
+  },
+  "Lidingö, Sweden": {
+    "lat": 59.3643382,
+    "lon": 18.1317263
+  },
+  "Liechtensteinstraße 111-115, Austria": {
+    "lat": 48.2284121,
+    "lon": 16.3559374
+  },
+  "Lieshout, The Netherlands": {
+    "lat": 51.4378922,
+    "lon": 5.4798502
+  },
+  "Lille, France": {
+    "lat": 50.6365654,
+    "lon": 3.0635282
+  },
+  "Limassol, Cyprus": {
+    "lat": 34.6852901,
+    "lon": 33.0332657
+  },
+  "Limoges, France": {
+    "lat": 45.8354243,
+    "lon": 1.2644847
+  },
+  "Linköping, Sweden": {
+    "lat": 58.4098135,
+    "lon": 15.6245252
+  },
+  "Linnaosa, Estonia": {
+    "lat": 59.3701798,
+    "lon": 27.5665988
+  },
+  "Linz, Austria": {
+    "lat": 48.3059078,
+    "lon": 14.286198
+  },
+  "Lisboa, Portugal": {
+    "lat": 38.7077507,
+    "lon": -9.1365919
+  },
+  "Lisbon, Portugal": {
+    "lat": 38.7077507,
+    "lon": -9.1365919
+  },
+  "Liverpool, United Kingdom": {
+    "lat": 53.3933411,
+    "lon": -2.9166389
+  },
+  "Liège, Belgium": {
+    "lat": 50.6450944,
+    "lon": 5.5736112
+  },
+  "Ljubljana, Slovenia": {
+    "lat": 46.0500268,
+    "lon": 14.5069289
+  },
+  "Lleida, Spain": {
+    "lat": 41.6147605,
+    "lon": 0.6267842
+  },
+  "Logroño, Spain": {
+    "lat": 42.4661196,
+    "lon": -2.4396676
+  },
+  "Lokeren, Belgium": {
+    "lat": 51.1044488,
+    "lon": 3.9898689
+  },
+  "Lomazzo, Italy": {
+    "lat": 45.6917739,
+    "lon": 9.0330073
+  },
+  "Lommel, Belgium": {
+    "lat": 51.2305657,
+    "lon": 5.3076895
+  },
+  "London, United Kingdom": {
+    "lat": 51.5074456,
+    "lon": -0.1277653
+  },
+  "Losser, The Netherlands": {
+    "lat": 52.300289,
+    "lon": 6.9881043
+  },
+  "Louvain-La-Neuve, Belgium": {
+    "lat": 50.6740673,
+    "lon": 4.6138095
+  },
+  "Lublin, Poland": {
+    "lat": 51.2181945,
+    "lon": 22.5546776
+  },
+  "Lugo, Italy": {
+    "lat": 44.4765987,
+    "lon": 11.89807
+  },
+  "Luleå, Sweden": {
+    "lat": 65.5831187,
+    "lon": 22.1459535
+  },
+  "Lummen, Belgium": {
+    "lat": 51.0028177,
+    "lon": 5.1977226
+  },
+  "Lund, Sweden": {
+    "lat": 55.7029296,
+    "lon": 13.1929449
+  },
+  "Luxembourg, Luxembourg": {
+    "lat": 49.6112768,
+    "lon": 6.129799
+  },
+  "Lviv, Ukraine": {
+    "lat": 49.841952,
+    "lon": 24.0315921
+  },
+  "Lymington, United Kingdom": {
+    "lat": 50.7583753,
+    "lon": -1.5426885
+  },
+  "Lyon, France": {
+    "lat": 45.7578137,
+    "lon": 4.8320114
+  },
+  "Lüneburg, Germany": {
+    "lat": 53.248706,
+    "lon": 10.407855
+  },
+  "Maarssen, The Netherlands": {
+    "lat": 52.1354545,
+    "lon": 5.0305535
+  },
+  "Maasdam, The Netherlands": {
+    "lat": 51.7954048,
+    "lon": 4.5556144
+  },
+  "Madeira, Portugal": {
+    "lat": 32.7517501,
+    "lon": -16.9817487
+  },
+  "Madrid, Spain": {
+    "lat": 40.416782,
+    "lon": -3.703507
+  },
+  "Makole, Slovenia": {
+    "lat": 46.3169639,
+    "lon": 15.6668625
+  },
+  "Malaga, Spain": {
+    "lat": 36.7647913,
+    "lon": -4.4422005
+  },
+  "Malmö, Sweden": {
+    "lat": 55.6052931,
+    "lon": 13.0001566
+  },
+  "Manchester, United Kingdom": {
+    "lat": 53.4794892,
+    "lon": -2.2451148
+  },
+  "Manning, Austria": {
+    "lat": 48.0712688,
+    "lon": 13.6628459
+  },
+  "Marcq En Baroeul, France": {
+    "lat": 50.6767018,
+    "lon": 3.1043032
+  },
+  "Marseille, France": {
+    "lat": 43.2963986,
+    "lon": 5.3777888
+  },
+  "Meaux, France": {
+    "lat": 48.9582708,
+    "lon": 2.8773541
+  },
+  "Medborgarplatsen 25, Sweden": {
+    "lat": 59.3155604,
+    "lon": 18.0710795
+  },
+  "Melhus, Norway": {
+    "lat": 63.1814333,
+    "lon": 10.3081345
+  },
+  "Mendrisio, Switzerland": {
+    "lat": 45.8709661,
+    "lon": 8.9875293
+  },
+  "Meylan, France": {
+    "lat": 45.2097372,
+    "lon": 5.778361
+  },
+  "Mierlo, The Netherlands": {
+    "lat": 51.4749905,
+    "lon": 5.6364803
+  },
+  "Mikkeli, Finland": {
+    "lat": 61.6877823,
+    "lon": 27.2731918
+  },
+  "Milan, Italy": {
+    "lat": 45.4641943,
+    "lon": 9.1896346
+  },
+  "Milano, Italy": {
+    "lat": 45.4641943,
+    "lon": 9.1896346
+  },
+  "Minsk, Belarus": {
+    "lat": 53.9024716,
+    "lon": 27.5618225
+  },
+  "Modena, Italy": {
+    "lat": 44.5384728,
+    "lon": 10.9359609
+  },
+  "Mollet Del Valles, Spain": {
+    "lat": 41.5393484,
+    "lon": 2.2130934
+  },
+  "Monaco, Monaco": {
+    "lat": 43.7323492,
+    "lon": 7.4276832
+  },
+  "Mont-Saint-Aignan, France": {
+    "lat": 49.4679,
+    "lon": 1.0813
+  },
+  "Montauroux, France": {
+    "lat": 43.617944,
+    "lon": 6.765164
+  },
+  "Monthey, Switzerland": {
+    "lat": 46.252844,
+    "lon": 6.9478263
+  },
+  "Montpellier, France": {
+    "lat": 43.6112422,
+    "lon": 3.8767337
+  },
+  "Montreuil, France": {
+    "lat": 50.4756934,
+    "lon": 1.7726816
+  },
+  "Montrouge, France": {
+    "lat": 48.8188544,
+    "lon": 2.3194375
+  },
+  "Monza, Italy": {
+    "lat": 45.5844865,
+    "lon": 9.2749057
+  },
+  "Morières-Lès-Avignon, France": {
+    "lat": 43.9424927,
+    "lon": 4.9047597
+  },
+  "Moscow, Russia": {
+    "lat": 55.625578,
+    "lon": 37.6063916
+  },
+  "Mougins, France": {
+    "lat": 43.6008898,
+    "lon": 6.9963543
+  },
+  "Moutiers-Sur-Le-Lay, France": {
+    "lat": 46.5557134,
+    "lon": -1.1575982
+  },
+  "Munich, Germany": {
+    "lat": 48.1371079,
+    "lon": 11.5753822
+  },
+  "Murcia, Spain": {
+    "lat": 37.9923795,
+    "lon": -1.1305431
+  },
+  "Málaga, Spain": {
+    "lat": 36.7647913,
+    "lon": -4.4422005
+  },
+  "Märstetten, Switzerland": {
+    "lat": 47.5926085,
+    "lon": 9.0677996
+  },
+  "Móstoles, Spain": {
+    "lat": 40.3238525,
+    "lon": -3.8649214
+  },
+  "München, Germany": {
+    "lat": 48.1371079,
+    "lon": 11.5753822
+  },
+  "Münster, Germany": {
+    "lat": 51.9625101,
+    "lon": 7.6251879
+  },
+  "Nacka, Sweden": {
+    "lat": 59.3099477,
+    "lon": 18.1677049
+  },
+  "Nad Královskou Oborou 33, Czech Republic": {
+    "lat": 50.1029371,
+    "lon": 14.4181513
+  },
+  "Nailloux, France": {
+    "lat": 43.3558921,
+    "lon": 1.6233628
+  },
+  "Nannasvej 16, Denmark": {
+    "lat": 56.154452,
+    "lon": 10.178603
+  },
+  "Nantes, France": {
+    "lat": 47.2186371,
+    "lon": -1.5541362
+  },
+  "Napoli, Italy": {
+    "lat": 40.8358846,
+    "lon": 14.2487679
+  },
+  "Neritz, Germany": {
+    "lat": 53.7849373,
+    "lon": 10.2844731
+  },
+  "Netherlands, The Netherlands": {
+    "lat": 52.0749456,
+    "lon": 4.2696802
+  },
+  "Neu Isenburg, Germany": {
+    "lat": 50.0464196,
+    "lon": 8.6717748
+  },
+  "Neu-Ulm, Germany": {
+    "lat": 48.3953489,
+    "lon": 10.0005211
+  },
+  "Neuchatel, Switzerland": {
+    "lat": 46.9895828,
+    "lon": 6.9292641
+  },
+  "Neuilly Sur Seine, France": {
+    "lat": 48.884683,
+    "lon": 2.2695658
+  },
+  "Neuilly-Sur-Seine, France": {
+    "lat": 48.884683,
+    "lon": 2.2695658
+  },
+  "Neukirchen, Germany": {
+    "lat": 54.8687122,
+    "lon": 8.7339915
+  },
+  "New York, United States": {
+    "lat": 40.7127281,
+    "lon": -74.0060152
+  },
+  "Newcastle Upon Tyne, United Kingdom": {
+    "lat": 54.9738474,
+    "lon": -1.6131572
+  },
+  "Newcastle, United Kingdom": {
+    "lat": 54.9738474,
+    "lon": -1.6131572
+  },
+  "Nibe, Denmark": {
+    "lat": 56.9823812,
+    "lon": 9.6428712
+  },
+  "Nijkerk, The Netherlands": {
+    "lat": 52.223602,
+    "lon": 5.486217
+  },
+  "Nijlen, Belgium": {
+    "lat": 51.1611887,
+    "lon": 4.6709517
+  },
+  "Nijmegen, The Netherlands": {
+    "lat": 51.8460684,
+    "lon": 5.8706981
+  },
+  "Niort, France": {
+    "lat": 46.3239233,
+    "lon": -0.4646064
+  },
+  "Nivelles, Belgium": {
+    "lat": 50.5976885,
+    "lon": 4.3235854
+  },
+  "Noain, Spain": {
+    "lat": 42.7711444,
+    "lon": -1.6456215
+  },
+  "Nogent Sur Marne, France": {
+    "lat": 48.8387639,
+    "lon": 2.4916592
+  },
+  "Nogent-Sur-Marne, France": {
+    "lat": 48.8387639,
+    "lon": 2.4916592
+  },
+  "Normadie, France": {
+    "lat": 49.0677708,
+    "lon": 0.3138532
+  },
+  "Norrköping, Sweden": {
+    "lat": 58.5909124,
+    "lon": 16.1903511
+  },
+  "Norwich, United Kingdom": {
+    "lat": 52.6285576,
+    "lon": 1.2923954
+  },
+  "Noyers Saint Martin, France": {
+    "lat": 49.5520222,
+    "lon": 2.262525
+  },
+  "Nuenen, The Netherlands": {
+    "lat": 51.4743021,
+    "lon": 5.5490439
+  },
+  "Oberanven, Luxembourg": {
+    "lat": 49.6573221,
+    "lon": 6.2447955
+  },
+  "Odense C, Denmark": {
+    "lat": 55.3987262,
+    "lon": 10.390772
+  },
+  "Odense, Denmark": {
+    "lat": 55.3997225,
+    "lon": 10.3852104
+  },
+  "Odesa, Ukraine": {
+    "lat": 46.4843023,
+    "lon": 30.7322878
+  },
+  "Odessa, Ukraine": {
+    "lat": 46.4843023,
+    "lon": 30.7322878
+  },
+  "Olsene, Belgium": {
+    "lat": 50.9357958,
+    "lon": 3.4651619
+  },
+  "Oostende, Belgium": {
+    "lat": 51.2258565,
+    "lon": 2.919496
+  },
+  "Orange, France": {
+    "lat": 44.1371311,
+    "lon": 4.8078783
+  },
+  "Orvault, France": {
+    "lat": 47.2711217,
+    "lon": -1.623206
+  },
+  "Oslo, Norway": {
+    "lat": 59.9067935,
+    "lon": 10.7610162
+  },
+  "Osnabrück, Germany": {
+    "lat": 52.2719595,
+    "lon": 8.047635
+  },
+  "Oulu, Finland": {
+    "lat": 65.0117914,
+    "lon": 25.4701973
+  },
+  "Overijse, Belgium": {
+    "lat": 50.7701622,
+    "lon": 4.5351806
+  },
+  "Oxford, United Kingdom": {
+    "lat": 51.7520131,
+    "lon": -1.2578499
+  },
+  "Paderborn, Germany": {
+    "lat": 51.7177044,
+    "lon": 8.752653
+  },
+  "Palermo, Italy": {
+    "lat": 38.1112268,
+    "lon": 13.3524434
+  },
+  "Pamplona, Spain": {
+    "lat": 42.815686,
+    "lon": -1.6522353
+  },
+  "Paris, France": {
+    "lat": 48.8534951,
+    "lon": 2.3483915
+  },
+  "Paseo De La Chopera 14, Spain": {
+    "lat": 40.3920606,
+    "lon": -3.6978319
+  },
+  "Paterna, Spain": {
+    "lat": 39.5039227,
+    "lon": -0.4421014
+  },
+  "Pescara, Italy": {
+    "lat": 42.3097631,
+    "lon": 13.9579989
+  },
+  "Peterborough, United Kingdom": {
+    "lat": 52.5725769,
+    "lon": -0.2427336
+  },
+  "Petit-Lancy, Switzerland": {
+    "lat": 46.1899458,
+    "lon": 6.1190366
+  },
+  "Pfäffikon, Switzerland": {
+    "lat": 47.4030581,
+    "lon": 8.7956599
+  },
+  "Plentzia, Spain": {
+    "lat": 43.4051753,
+    "lon": -2.9478553
+  },
+  "Plymouth, United Kingdom": {
+    "lat": 50.3714122,
+    "lon": -4.1424451
+  },
+  "Pollargatan 16, Sweden": {
+    "lat": 59.3102165,
+    "lon": 18.1037473
+  },
+  "Pordenone, Italy": {
+    "lat": 45.9562503,
+    "lon": 12.6597197
+  },
+  "Porto, Portugal": {
+    "lat": 41.1502195,
+    "lon": -8.6103497
+  },
+  "Potsdam, Germany": {
+    "lat": 52.4009309,
+    "lon": 13.0591397
+  },
+  "Poznan, Poland": {
+    "lat": 52.4082663,
+    "lon": 16.9335199
+  },
+  "Pozuelo De Alarcón, Spain": {
+    "lat": 40.4346528,
+    "lon": -3.814834
+  },
+  "Pozuelo de Alarcon, Spain": {
+    "lat": 40.4346528,
+    "lon": -3.814834
+  },
+  "Prague, Czech Republic": {
+    "lat": 50.0864234,
+    "lon": 14.4156772
+  },
+  "Preverenges, Switzerland": {
+    "lat": 46.5183844,
+    "lon": 6.5267369
+  },
+  "Puch Bei Hallein, Austria": {
+    "lat": 47.716852,
+    "lon": 13.0904526
+  },
+  "Purmerend, The Netherlands": {
+    "lat": 52.5149386,
+    "lon": 4.9911794
+  },
+  "Pérols, France": {
+    "lat": 43.5586003,
+    "lon": 3.9502006
+  },
+  "Raithby, United Kingdom": {
+    "lat": 53.1839138,
+    "lon": 0.0529871
+  },
+  "Ramsau Im Zillertal, Austria": {
+    "lat": 47.204666,
+    "lon": 11.8737046
+  },
+  "Reading, United Kingdom": {
+    "lat": 51.4564242,
+    "lon": -0.9700664
+  },
+  "Regensburg, Germany": {
+    "lat": 49.0195333,
+    "lon": 12.0974869
+  },
+  "Reims, France": {
+    "lat": 49.2577886,
+    "lon": 4.031926
+  },
+  "Rennes, France": {
+    "lat": 48.1113387,
+    "lon": -1.6800198
+  },
+  "Reykjavik, Iceland": {
+    "lat": 64.145981,
+    "lon": -21.9422367
+  },
+  "Rieti, Italy": {
+    "lat": 42.4147364,
+    "lon": 12.8858881
+  },
+  "Riga, Latvia": {
+    "lat": 56.9493977,
+    "lon": 24.1051846
+  },
+  "Roermond, The Netherlands": {
+    "lat": 51.1836851,
+    "lon": 5.9959778
+  },
+  "Roma, Italy": {
+    "lat": 41.8933203,
+    "lon": 12.4829321
+  },
+  "Rome, Italy": {
+    "lat": 41.8933203,
+    "lon": 12.4829321
+  },
+  "Rommerskirchen, Germany": {
+    "lat": 51.0333007,
+    "lon": 6.683337
+  },
+  "Roskilde, Denmark": {
+    "lat": 55.6433478,
+    "lon": 12.0819247
+  },
+  "Rotterdam, The Netherlands": {
+    "lat": 51.9563359,
+    "lon": 4.4397319
+  },
+  "Rovereto, Italy": {
+    "lat": 45.886548,
+    "lon": 11.0452369
+  },
+  "Rubí, Spain": {
+    "lat": 41.4936194,
+    "lon": 2.0319476
+  },
+  "Rudolfstetten, Switzerland": {
+    "lat": 47.3694687,
+    "lon": 8.3793999
+  },
+  "Rueil Malmaison, France": {
+    "lat": 48.87778,
+    "lon": 2.1802832
+  },
+  "Rueil-Malmaison, France": {
+    "lat": 48.87778,
+    "lon": 2.1802832
+  },
+  "Runeberginkatu 14-16, Finland": {
+    "lat": 60.1715974,
+    "lon": 24.9229883
+  },
+  "Rusko, Finland": {
+    "lat": 61.4519534,
+    "lon": 23.887769
+  },
+  "Rzeszów, Poland": {
+    "lat": 50.013319,
+    "lon": 22.0161677
+  },
+  "S Hertogenbosch, The Netherlands": {
+    "lat": 51.6986827,
+    "lon": 5.296718
+  },
+  "S-'Hertogenbosch, The Netherlands": {
+    "lat": 51.6986827,
+    "lon": 5.296718
+  },
+  "Saarbrücken, Germany": {
+    "lat": 49.234362,
+    "lon": 6.996379
+  },
+  "Saint Mande, France": {
+    "lat": 46.0246916,
+    "lon": -0.3031149
+  },
+  "Saint Ouen, France": {
+    "lat": 50.03683,
+    "lon": 2.1223737
+  },
+  "Saint-Cloud, France": {
+    "lat": 48.8437412,
+    "lon": 2.219344
+  },
+  "Saint-Germain-En-Laye, France": {
+    "lat": 48.8990413,
+    "lon": 2.0942792
+  },
+  "Saint-Maur-Des-Fosses, France": {
+    "lat": 48.8033057,
+    "lon": 2.4853015
+  },
+  "Saint-Ouen, France": {
+    "lat": 50.03683,
+    "lon": 2.1223737
+  },
+  "Salamanca, Spain": {
+    "lat": 40.9651572,
+    "lon": -5.6640182
+  },
+  "Salvan, Switzerland": {
+    "lat": 46.1219825,
+    "lon": 7.0208326
+  },
+  "Salzburg, Austria": {
+    "lat": 47.7981346,
+    "lon": 13.0464806
+  },
+  "San Martino Di Lota, France": {
+    "lat": 42.7363431,
+    "lon": 9.4377499
+  },
+  "San Sebastian, Spain": {
+    "lat": 43.3224219,
+    "lon": -1.9838889
+  },
+  "Sandnes, Norway": {
+    "lat": 58.9831321,
+    "lon": 6.394641
+  },
+  "Sant Boi de Llobregat, Spain": {
+    "lat": 41.3241016,
+    "lon": 2.0511278
+  },
+  "Sant Cugat Del Valles, Spain": {
+    "lat": 41.4707933,
+    "lon": 2.0848815
+  },
+  "Sant Cugat Del Vallès, Spain": {
+    "lat": 41.4707933,
+    "lon": 2.0848815
+  },
+  "Sant Cugat, Spain": {
+    "lat": 41.4707933,
+    "lon": 2.0848815
+  },
+  "Sant Feliu De Llobregat, Spain": {
+    "lat": 41.3812851,
+    "lon": 2.0446381
+  },
+  "Santa Cruz De La Palma. Tenerife. Islas Canarias, Spain": {
+    "lat": 28.6819928,
+    "lon": -17.7653825
+  },
+  "Santa Cruz De Tenerife, Spain": {
+    "lat": 28.467178,
+    "lon": -16.2507843
+  },
+  "Santander, Spain": {
+    "lat": 43.4618932,
+    "lon": -3.8100255
+  },
+  "Santiago de la Ribera, Spain": {
+    "lat": 37.7928886,
+    "lon": -0.8139479
+  },
+  "Sarpsborg, Norway": {
+    "lat": 59.254955,
+    "lon": 11.2297811
+  },
+  "Sceaux, France": {
+    "lat": 47.5147285,
+    "lon": 4.0218449
+  },
+  "Schlieren, Switzerland": {
+    "lat": 47.3965147,
+    "lon": 8.4444861
+  },
+  "Scorzè, Italy": {
+    "lat": 45.5801006,
+    "lon": 12.117145
+  },
+  "Seinäjoki, Finland": {
+    "lat": 62.790666,
+    "lon": 22.8397378
+  },
+  "Sempeter Pri Novi Gorici, Slovenia": {
+    "lat": 45.919334,
+    "lon": 13.6570193
+  },
+  "Sevilla, Spain": {
+    "lat": 37.3886303,
+    "lon": -5.9953403
+  },
+  "Seville, Spain": {
+    "lat": 37.3886303,
+    "lon": -5.9953403
+  },
+  "Singapore, Singapore": {
+    "lat": 1.357107,
+    "lon": 103.8194992
+  },
+  "Singel 542, The Netherlands": {
+    "lat": 52.36659,
+    "lon": 4.8925289
+  },
+  "Sint-Niklaas, Belgium": {
+    "lat": 51.1646685,
+    "lon": 4.1395124
+  },
+  "Sitges, Spain": {
+    "lat": 41.2353596,
+    "lon": 1.8114102
+  },
+  "Sittingbourne, United Kingdom": {
+    "lat": 51.3397366,
+    "lon": 0.7342319
+  },
+  "Skattetorpsvägen, Sweden": {
+    "lat": 59.9092945,
+    "lon": 17.7350064
+  },
+  "Skellefteå, Sweden": {
+    "lat": 64.7520185,
+    "lon": 20.959339
+  },
+  "Slovakia, Slovakia": {
+    "lat": 48.7411522,
+    "lon": 19.4528646
+  },
+  "Sofia, Bulgaria": {
+    "lat": 42.6977028,
+    "lon": 23.3217359
+  },
+  "Sola Kommune, Norway": {
+    "lat": 58.8972966,
+    "lon": 5.6449762
+  },
+  "Solna, Sweden": {
+    "lat": 59.366667,
+    "lon": 18.016667
+  },
+  "Spånga, Sweden": {
+    "lat": 59.3836259,
+    "lon": 17.8981821
+  },
+  "St Fons, France": {
+    "lat": 43.9073193,
+    "lon": 4.2066593
+  },
+  "St. 23 Serpnia, 71, Ukraine": {
+    "lat": 50.5960425,
+    "lon": 29.796655
+  },
+  "St. Gallen, Switzerland": {
+    "lat": 47.425618,
+    "lon": 9.3762397
+  },
+  "Starnberg, Germany": {
+    "lat": 47.9986851,
+    "lon": 11.3410791
+  },
+  "Stockerau, Austria": {
+    "lat": 48.3846124,
+    "lon": 16.2076303
+  },
+  "Stockholm, Sweden": {
+    "lat": 59.3251172,
+    "lon": 18.0710935
+  },
+  "Stocksund, Sweden": {
+    "lat": 59.3845769,
+    "lon": 18.0571915
+  },
+  "Stowmarket, United Kingdom": {
+    "lat": 52.1878147,
+    "lon": 0.9973428
+  },
+  "Strasbourg, France": {
+    "lat": 48.584614,
+    "lon": 7.7507127
+  },
+  "Stuttgart, Germany": {
+    "lat": 48.7784485,
+    "lon": 9.1800132
+  },
+  "Sundsvall, Sweden": {
+    "lat": 62.3907552,
+    "lon": 17.3071024
+  },
+  "Suresnes, France": {
+    "lat": 48.8709053,
+    "lon": 2.2255727
+  },
+  "Surrey Technology Park, United Kingdom": {
+    "lat": 51.3679004,
+    "lon": -0.3995757
+  },
+  "Svendborg, Denmark": {
+    "lat": 55.0636625,
+    "lon": 10.6084725
+  },
+  "Sverige, Sweden": {
+    "lat": 59.6749712,
+    "lon": 14.5208584
+  },
+  "Swansea, United Kingdom": {
+    "lat": 51.6195955,
+    "lon": -3.9459248
+  },
+  "Sydney, Australia": {
+    "lat": -33.8698439,
+    "lon": 151.2082848
+  },
+  "Szeged, Hungary": {
+    "lat": 46.2546312,
+    "lon": 20.1486016
+  },
+  "Tallin, Estonia": {
+    "lat": 59.437242,
+    "lon": 24.7572693
+  },
+  "Tallinn, Estonia": {
+    "lat": 59.437242,
+    "lon": 24.7572693
+  },
+  "Talli̇n, Estonia": {
+    "lat": 59.437242,
+    "lon": 24.7572693
+  },
+  "Tampere, Finland": {
+    "lat": 61.4977988,
+    "lon": 23.7616335
+  },
+  "Tartu, Estonia": {
+    "lat": 58.3779528,
+    "lon": 26.7290023
+  },
+  "Teleportboulevard 130, The Netherlands": {
+    "lat": 52.3875071,
+    "lon": 4.8417939
+  },
+  "Telford, United Kingdom": {
+    "lat": 52.6780532,
+    "lon": -2.4514219
+  },
+  "Terracina, Italy": {
+    "lat": 41.2871196,
+    "lon": 13.2492009
+  },
+  "Terranova Da Sibari, Italy": {
+    "lat": 39.656901,
+    "lon": 16.339491
+  },
+  "Terrassa - Barcelona, Spain": {
+    "lat": 41.5629623,
+    "lon": 2.0100492
+  },
+  "Terrassa, Spain": {
+    "lat": 41.5629623,
+    "lon": 2.0100492
+  },
+  "The Hague, The Netherlands": {
+    "lat": 52.0749456,
+    "lon": 4.2696802
+  },
+  "Thessaloniki, Greece": {
+    "lat": 40.6403167,
+    "lon": 22.9352716
+  },
+  "Torino, Italy": {
+    "lat": 45.0677551,
+    "lon": 7.6824892
+  },
+  "Torquay, United Kingdom": {
+    "lat": 50.4652392,
+    "lon": -3.5211361
+  },
+  "Torrelodones, Spain": {
+    "lat": 40.5762809,
+    "lon": -3.928603
+  },
+  "Torsgatan 11, Sweden": {
+    "lat": 59.3424927,
+    "lon": 18.036614
+  },
+  "Toruń, Poland": {
+    "lat": 53.0102721,
+    "lon": 18.6048094
+  },
+  "Toulon, France": {
+    "lat": 43.1257311,
+    "lon": 5.9304919
+  },
+  "Toulouse, France": {
+    "lat": 43.6044638,
+    "lon": 1.4442433
+  },
+  "Tourcoing, France": {
+    "lat": 50.7235038,
+    "lon": 3.1605714
+  },
+  "Tours, France": {
+    "lat": 47.3900474,
+    "lon": 0.6889268
+  },
+  "Tramore, Ireland": {
+    "lat": 51.8784283,
+    "lon": -8.4601285
+  },
+  "Traunstein, Germany": {
+    "lat": 47.8695272,
+    "lon": 12.6484621
+  },
+  "Trebrivan, France": {
+    "lat": 48.3083639,
+    "lon": -3.4749139
+  },
+  "Treviso, Italy": {
+    "lat": 45.8066913,
+    "lon": 12.2063158
+  },
+  "Trezzo sull'Adda, Italy": {
+    "lat": 45.6095134,
+    "lon": 9.5193394
+  },
+  "Trollhattan, Sweden": {
+    "lat": 58.2827931,
+    "lon": 12.2908612
+  },
+  "Tromsø, Norway": {
+    "lat": 69.6516345,
+    "lon": 18.9558585
+  },
+  "Trondheim, Norway": {
+    "lat": 63.4304475,
+    "lon": 10.3952118
+  },
+  "Trowbridge, United Kingdom": {
+    "lat": 51.3161569,
+    "lon": -2.2024324
+  },
+  "Tržič, Slovenia": {
+    "lat": 46.3797527,
+    "lon": 14.3325113
+  },
+  "Turin, Italy": {
+    "lat": 45.0677551,
+    "lon": 7.6824892
+  },
+  "Turku, Finland": {
+    "lat": 60.4515932,
+    "lon": 22.2669991
+  },
+  "Tørring, Denmark": {
+    "lat": 55.8499627,
+    "lon": 9.483801
+  },
+  "Türkiye, Turkiye": {
+    "lat": 39.294076,
+    "lon": 35.2316631
+  },
+  "Uden, The Netherlands": {
+    "lat": 51.6691251,
+    "lon": 5.6123624
+  },
+  "Uithoorn, The Netherlands": {
+    "lat": 52.2411412,
+    "lon": 4.8251096
+  },
+  "Ulappasaarentie 1, Finland": {
+    "lat": 60.2104058,
+    "lon": 25.1381834
+  },
+  "Ulm, Germany": {
+    "lat": 48.3984968,
+    "lon": 9.9912458
+  },
+  "Umeå, Sweden": {
+    "lat": 63.8256568,
+    "lon": 20.2630745
+  },
+  "Uppsala, Sweden": {
+    "lat": 59.8586126,
+    "lon": 17.6387436
+  },
+  "Utrecht, The Netherlands": {
+    "lat": 52.0906195,
+    "lon": 5.1119709
+  },
+  "Uttoxeter, United Kingdom": {
+    "lat": 52.8980321,
+    "lon": -1.8649214
+  },
+  "Valenca, Spain": {
+    "lat": 42.0368601,
+    "lon": -8.6475241
+  },
+  "Valencia, Spain": {
+    "lat": 39.6819591,
+    "lon": -0.7654406
+  },
+  "Valletta, Malta": {
+    "lat": 35.8989979,
+    "lon": 14.5136607
+  },
+  "Vantaa, Finland": {
+    "lat": 60.2929883,
+    "lon": 25.0436744
+  },
+  "Varedo, Italy": {
+    "lat": 45.5973268,
+    "lon": 9.1565874
+  },
+  "Veen, The Netherlands": {
+    "lat": 52.0699296,
+    "lon": 4.2921942
+  },
+  "Veksoe, Denmark": {
+    "lat": 55.749917,
+    "lon": 12.2405908
+  },
+  "Velaux, France": {
+    "lat": 43.5217717,
+    "lon": 5.2540649
+  },
+  "Velilla De San Antonio, Spain": {
+    "lat": 40.3671767,
+    "lon": -3.4874809
+  },
+  "Venelles, France": {
+    "lat": 43.6003084,
+    "lon": 5.4804956
+  },
+  "Ventabren, France": {
+    "lat": 43.5385286,
+    "lon": 5.2926284
+  },
+  "Verona, Italy": {
+    "lat": 45.4424977,
+    "lon": 10.9857377
+  },
+  "Versailles, France": {
+    "lat": 48.8035403,
+    "lon": 2.1266886
+  },
+  "Versmiu 123, Lithuania": {
+    "lat": 54.6664997,
+    "lon": 25.3793606
+  },
+  "Vevey, Switzerland": {
+    "lat": 46.4602978,
+    "lon": 6.8418655
+  },
+  "Viborg, Denmark": {
+    "lat": 56.4469128,
+    "lon": 9.4059354
+  },
+  "Vic, Spain": {
+    "lat": 41.9302021,
+    "lon": 2.2545943
+  },
+  "Vienna, Austria": {
+    "lat": 48.2083537,
+    "lon": 16.3725042
+  },
+  "Viimsi, Estonia": {
+    "lat": 59.5161416,
+    "lon": 24.8620444
+  },
+  "Vila Nova De Gaia, Portugal": {
+    "lat": 41.1292264,
+    "lon": -8.6057396
+  },
+  "Villeurbanne, France": {
+    "lat": 45.7660581,
+    "lon": 4.8796267
+  },
+  "Vilnius, Lithuania": {
+    "lat": 54.6870458,
+    "lon": 25.2829111
+  },
+  "Vincennes, France": {
+    "lat": 48.8474508,
+    "lon": 2.4396714
+  },
+  "Viseu, Portugal": {
+    "lat": 40.6574713,
+    "lon": -7.9138664
+  },
+  "Visp, Switzerland": {
+    "lat": 46.2913113,
+    "lon": 7.8811918
+  },
+  "Vreeland, The Netherlands": {
+    "lat": 52.2347438,
+    "lon": 5.0500684
+  },
+  "Vukovar, Croatia": {
+    "lat": 45.3444094,
+    "lon": 19.002376
+  },
+  "Växjö, Sweden": {
+    "lat": 56.8787183,
+    "lon": 14.8094385
+  },
+  "Wambrechies, France": {
+    "lat": 50.6861944,
+    "lon": 3.0521806
+  },
+  "Warrington, United Kingdom": {
+    "lat": 53.3899497,
+    "lon": -2.5943178
+  },
+  "Warsaw, Poland": {
+    "lat": 52.2319581,
+    "lon": 21.0067249
+  },
+  "Warszawa, Poland": {
+    "lat": 52.2319581,
+    "lon": 21.0067249
+  },
+  "Watlington, United Kingdom": {
+    "lat": 51.6451586,
+    "lon": -1.0043458
+  },
+  "Weilheim, Germany": {
+    "lat": 47.6582006,
+    "lon": 8.2413047
+  },
+  "Wembley, United Kingdom": {
+    "lat": 51.5531547,
+    "lon": -0.2957562
+  },
+  "Westervoort, The Netherlands": {
+    "lat": 51.9597557,
+    "lon": 5.9682662
+  },
+  "Wien, Austria": {
+    "lat": 48.2083537,
+    "lon": 16.3725042
+  },
+  "Wiesbaden, Germany": {
+    "lat": 50.0820384,
+    "lon": 8.2416556
+  },
+  "Wiesenstrasse 10 A, Switzerland": {
+    "lat": 47.5130319,
+    "lon": 7.5462614
+  },
+  "Wiesloch, Germany": {
+    "lat": 49.2942599,
+    "lon": 8.698707
+  },
+  "Woerden, The Netherlands": {
+    "lat": 52.0803841,
+    "lon": 4.8896654
+  },
+  "Woking, United Kingdom": {
+    "lat": 51.3201891,
+    "lon": -0.5564726
+  },
+  "Wroclaw, Poland": {
+    "lat": 51.1089776,
+    "lon": 17.0326689
+  },
+  "Zagreb, Croatia": {
+    "lat": 45.8130967,
+    "lon": 15.9772795
+  },
+  "Zaltbommel, The Netherlands": {
+    "lat": 51.7970128,
+    "lon": 5.2595648
+  },
+  "Zaragoza, Spain": {
+    "lat": 41.6915847,
+    "lon": -0.9101268
+  },
+  "Zebbug, Malta": {
+    "lat": 35.8725956,
+    "lon": 14.4398593
+  },
+  "Zoetermeer, The Netherlands": {
+    "lat": 52.0625946,
+    "lon": 4.4032305
+  },
+  "Zollikofen, Switzerland": {
+    "lat": 46.9959463,
+    "lon": 7.4576417
+  },
+  "Zottegem, Belgium": {
+    "lat": 50.8642312,
+    "lon": 3.8102686
+  },
+  "Zurich, Switzerland": {
+    "lat": 47.3744489,
+    "lon": 8.5410422
+  },
+  "Zutphen, The Netherlands": {
+    "lat": 52.1394555,
+    "lon": 6.1977325
+  },
+  "Zürich, Switzerland": {
+    "lat": 47.3744489,
+    "lon": 8.5410422
+  },
+  "Ílhavo, Portugal": {
+    "lat": 40.6001108,
+    "lon": -8.6666667
+  },
+  "Òdena, Spain": {
+    "lat": 41.6068791,
+    "lon": 1.6422209
+  },
+  "Örebro, Sweden": {
+    "lat": 59.2747287,
+    "lon": 15.2151181
+  },
+  "İzmi̇r, Turkiye": {
+    "lat": 38.4192537,
+    "lon": 27.128469
+  },
+  "Carrer Pallars, 147 - 3A Planta, Spain": {
+    "lat": 41.398383,
+    "lon": 2.1939251
+  },
+  "Hodhasharon, Israel": {
+    "lat": 32.1561974,
+    "lon": 34.8930354
+  },
+  "Julian Camarillo Nº 47 3ª Planta, Germany": {
+    "lat": null,
+    "lon": null
+  },
+  "Panaromaplus Sites, No 2/A, Floor 16, Apartment 63, Turkiye": {
+    "lat": null,
+    "lon": null
+  }
+}
