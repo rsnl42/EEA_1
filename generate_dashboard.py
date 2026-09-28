@@ -2,17 +2,15 @@
 generate_dashboard.py
 Part of the WeMap data pipeline.
 
-Generates a standalone, responsive, aesthetic single-file HTML dashboard
-from a geocoded WeMap dataset.
-
-Features:
-  - 100% Free, reliable tile layer (ArcGIS Topo / OSM without 403 blocks)
-  - Smart outlier-filtered default zoom (focuses on primary geographic cluster)
-  - Focus View / Global View toggle buttons
-  - Marker clustering with clean count badges
-  - Minimalist popups (public_name and city_country only)
-  - Statistically sound charts (Top Countries & Company Scale / Employee Distribution)
-  - Dynamic Market Segment filter and searchable directory table
+Generates a single standalone HTML dashboard (index.html) containing:
+  - 100% self-contained single-file HTML & embedded dataset
+  - Okabe-Ito colorblind-friendly palette
+  - Interactive cross-filtering (Market Segments, Top Countries, Company Scale)
+  - Dynamic majority-colored cluster bubbles
+  - Non-intrusive Map Legend
+  - Slide-Over Company Profile Drawer (About, Products, Metadata, Social Links)
+  - Click table row / popup to zoom & locate pin on map
+  - Active filter chips bar
 """
 
 import json
@@ -44,7 +42,21 @@ def load_data(xlsx_path: Path, sheet_name: str = "WeMap_Live_Data") -> list:
     idx_segments = col_idx("market_segments")
     idx_biz = col_idx("business_model")
     idx_size = col_idx("employees_number_category")
+    idx_emp_num = col_idx("employees_number")
     idx_website = col_idx("website")
+    idx_desc = col_idx("org_desc")
+    idx_member = col_idx("member_association")
+    idx_lang = col_idx("product_language")
+    idx_target_aud = col_idx("target_audience")
+    idx_p1_name = col_idx("product_1_name")
+    idx_p1_desc = col_idx("product_1_desc")
+    idx_p2_name = col_idx("product_2_name")
+    idx_p2_desc = col_idx("product_2_desc")
+    idx_verified = col_idx("verified")
+    idx_linkedin = col_idx("socials_linkedin")
+    idx_x = col_idx("socials_x")
+    idx_insta = col_idx("socials_insta")
+    idx_fb = col_idx("facebook")
 
     valid_biz_models = {
         "Business to Business", "Business to Schools",
@@ -94,6 +106,7 @@ def load_data(xlsx_path: Path, sheet_name: str = "WeMap_Live_Data") -> list:
                 size_val = size_clean
 
         records.append({
+            "id": f"ORG_{len(records)+1}",
             "name": str(name).strip(),
             "cc": cc_val,
             "country": country_val,
@@ -102,7 +115,21 @@ def load_data(xlsx_path: Path, sheet_name: str = "WeMap_Live_Data") -> list:
             "segments": seg_list,
             "biz_models": biz_list,
             "size": size_val,
-            "website": web_val
+            "employees_num": str(r[idx_emp_num]).strip() if idx_emp_num is not None and r[idx_emp_num] else "",
+            "website": web_val,
+            "desc": str(r[idx_desc]).strip() if idx_desc is not None and r[idx_desc] else "",
+            "member": str(r[idx_member]).strip() if idx_member is not None and r[idx_member] else "",
+            "product_lang": str(r[idx_lang]).strip() if idx_lang is not None and r[idx_lang] else "",
+            "target_audience": str(r[idx_target_aud]).strip() if idx_target_aud is not None and r[idx_target_aud] else "",
+            "p1_name": str(r[idx_p1_name]).strip() if idx_p1_name is not None and r[idx_p1_name] else "",
+            "p1_desc": str(r[idx_p1_desc]).strip() if idx_p1_desc is not None and r[idx_p1_desc] else "",
+            "p2_name": str(r[idx_p2_name]).strip() if idx_p2_name is not None and r[idx_p2_name] else "",
+            "p2_desc": str(r[idx_p2_desc]).strip() if idx_p2_desc is not None and r[idx_p2_desc] else "",
+            "verified": str(r[idx_verified]).strip() if idx_verified is not None and r[idx_verified] else "",
+            "social_linkedin": str(r[idx_linkedin]).strip() if idx_linkedin is not None and r[idx_linkedin] else "",
+            "social_x": str(r[idx_x]).strip() if idx_x is not None and r[idx_x] else "",
+            "social_insta": str(r[idx_insta]).strip() if idx_insta is not None and r[idx_insta] else "",
+            "social_facebook": str(r[idx_fb]).strip() if idx_fb is not None and r[idx_fb] else ""
         })
 
     return records
@@ -111,11 +138,20 @@ def load_data(xlsx_path: Path, sheet_name: str = "WeMap_Live_Data") -> list:
 def build_html(records: list, title: str = "WeMap European EdTech Explorer") -> str:
     records_json = json.dumps(records, ensure_ascii=False)
 
+    compiled_css_path = Path(__file__).parent / "compiled_tailwind.css"
+    if compiled_css_path.exists():
+        tailwind_css = compiled_css_path.read_text(encoding="utf-8")
+    else:
+        tailwind_css = "/* Tailwind fallback */"
+
     html_template = f"""<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta http-equiv="Expires" content="0" />
   <title>{title}</title>
   
   <!-- Fonts -->
@@ -123,29 +159,10 @@ def build_html(records: list, title: str = "WeMap European EdTech Explorer") -> 
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
   
-  <!-- Tailwind CSS CDN -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {{
-      theme: {{
-        extend: {{
-          fontFamily: {{
-            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
-          }},
-          colors: {{
-            brand: {{
-              50: '#eef2ff',
-              100: '#e0e7ff',
-              500: '#6366f1',
-              600: '#4f46e5',
-              700: '#4338ca',
-              900: '#312e81',
-            }}
-          }}
-        }}
-      }}
-    }}
-  </script>
+  <!-- Compiled Tailwind CSS (No CDN warnings, production ready) -->
+  <style>
+{tailwind_css}
+  </style>
 
   <!-- Leaflet & MarkerCluster CSS/JS -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
@@ -163,13 +180,12 @@ def build_html(records: list, title: str = "WeMap European EdTech Explorer") -> 
       color: #0f172a;
     }}
     #map {{
-      height: 540px;
+      height: 520px;
       width: 100%;
       border-radius: 0.75rem;
       z-index: 1;
     }}
     .custom-cluster {{
-      background: rgba(79, 70, 229, 0.9);
       border: 2.5px solid #ffffff;
       color: #ffffff;
       font-weight: 700;
@@ -178,20 +194,73 @@ def build_html(records: list, title: str = "WeMap European EdTech Explorer") -> 
       display: flex;
       align-items: center;
       justify-content: center;
-      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.15), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+      transition: transform 0.15s ease-in-out;
+    }}
+    .custom-cluster:hover {{
+      transform: scale(1.1);
     }}
     .leaflet-popup-content-wrapper {{
       border-radius: 0.5rem;
       padding: 2px;
-      box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
+      box-shadow: 0 10px 15px -3px rgba(0,0,0,0.15);
     }}
     .leaflet-popup-content {{
       margin: 10px 14px;
       line-height: 1.4;
     }}
+    .map-legend-box {{
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(4px);
+      border: 1px solid #e2e8f0;
+      border-radius: 0.5rem;
+      padding: 8px 12px;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    }}
+    #drawerContainer {{
+      transition: visibility 0.3s ease-in-out;
+    }}
+    #drawerContainer.drawer-hidden {{
+      visibility: hidden;
+      pointer-events: none;
+    }}
+    #drawerContainer.drawer-visible {{
+      visibility: visible;
+      pointer-events: auto;
+    }}
+    .drawer-backdrop {{
+      transition: opacity 0.3s ease-in-out;
+    }}
+    .drawer-panel {{
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }}
+    .drawer-hidden .drawer-backdrop {{
+      opacity: 0;
+      pointer-events: none;
+    }}
+    .drawer-hidden .drawer-panel {{
+      transform: translateX(100%);
+    }}
+    .drawer-visible .drawer-backdrop {{
+      opacity: 1;
+      pointer-events: auto;
+    }}
+    .drawer-visible .drawer-panel {{
+      transform: translateX(0);
+    }}
+    .custom-scrollbar::-webkit-scrollbar {{
+      width: 6px;
+    }}
+    .custom-scrollbar::-webkit-scrollbar-track {{
+      background: #f1f5f9;
+    }}
+    .custom-scrollbar::-webkit-scrollbar-thumb {{
+      background: #cbd5e1;
+      border-radius: 3px;
+    }}
   </style>
 </head>
-<body class="min-h-screen flex flex-col font-sans antialiased selection:bg-brand-500 selection:text-white">
+<body class="min-h-screen flex flex-col font-sans antialiased selection:bg-brand-500 selection:text-white relative overflow-x-hidden">
 
   <!-- Header -->
   <header class="bg-white border-b border-slate-200 sticky top-0 z-20 shadow-sm">
@@ -203,10 +272,10 @@ def build_html(records: list, title: str = "WeMap European EdTech Explorer") -> 
             Ecosystem Directory
           </span>
         </div>
-        <p class="text-xs sm:text-sm text-slate-500 mt-0.5">Interactive geospatial map and ecosystem insights</p>
+        <p class="text-xs sm:text-sm text-slate-500 mt-0.5">Interactive geospatial map and cross-filtered analytics</p>
       </div>
 
-      <!-- Market Segments Filter -->
+      <!-- Market Segments Filter Dropdown -->
       <div class="flex items-center gap-2">
         <label for="segmentFilter" class="text-xs sm:text-sm font-semibold text-slate-700 whitespace-nowrap">Market Segment:</label>
         <select id="segmentFilter" class="bg-slate-50 border border-slate-300 text-slate-900 text-xs sm:text-sm rounded-lg focus:ring-brand-500 focus:border-brand-500 block p-2 pr-8 font-medium">
@@ -219,12 +288,20 @@ def build_html(records: list, title: str = "WeMap European EdTech Explorer") -> 
   <!-- Main Content -->
   <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 space-y-6">
 
+    <!-- Active Filters Bar -->
+    <div id="filterChipsBar" class="hidden bg-slate-100/80 border border-slate-200 p-3 rounded-xl flex items-center justify-between flex-wrap gap-2 text-xs">
+      <div class="flex items-center gap-2 flex-wrap" id="chipsContainer">
+        <!-- Chips inserted via JS -->
+      </div>
+      <button id="clearAllBtn" class="text-slate-500 hover:text-slate-800 font-semibold underline underline-offset-2 transition-colors">Clear All Filters</button>
+    </div>
+
     <!-- Geospatial Explorer Card -->
-    <div class="bg-white p-4 sm:p-5 rounded-xl border border-slate-200 shadow-sm">
+    <div class="bg-white p-4 sm:p-5 rounded-xl border border-slate-200 shadow-sm relative">
       <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-3">
         <div>
           <h2 class="text-base sm:text-lg font-bold text-slate-900">Geospatial Explorer</h2>
-          <p class="text-xs text-slate-500">Clustered by location. Click any pin or cluster to explore.</p>
+          <p class="text-xs text-slate-500">Clusters dynamically take the color of the <b>majority company scale</b> in that area. Click table rows to view full profile.</p>
         </div>
         
         <!-- View Controls & Count -->
@@ -237,7 +314,25 @@ def build_html(records: list, title: str = "WeMap European EdTech Explorer") -> 
         </div>
       </div>
 
-      <div id="map" class="shadow-inner border border-slate-100"></div>
+      <!-- Map Container -->
+      <div class="relative">
+        <div id="map" class="shadow-inner border border-slate-100"></div>
+
+        <!-- Non-intrusive Map Legend -->
+        <div class="absolute bottom-3 right-3 z-10 pointer-events-none">
+          <div class="map-legend-box pointer-events-auto text-[11px] text-slate-700 font-sans shadow-sm">
+            <div class="font-bold text-slate-900 uppercase text-[10px] tracking-wider mb-1">Company Scale Pins</div>
+            <div class="grid grid-cols-2 gap-x-3 gap-y-1">
+              <div class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full" style="background:#0072B2"></span> Micro</div>
+              <div class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full" style="background:#E69F00"></span> Small</div>
+              <div class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full" style="background:#009E73"></span> Medium</div>
+              <div class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full" style="background:#CC79A7"></span> Large</div>
+              <div class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full" style="background:#D55E00"></span> Solo</div>
+              <div class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full" style="background:#56B4E9"></span> Med/Large</div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
 
     <!-- Charts Section -->
@@ -245,9 +340,12 @@ def build_html(records: list, title: str = "WeMap European EdTech Explorer") -> 
       
       <!-- Top Countries -->
       <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm flex flex-col">
-        <div class="mb-4">
-          <h2 class="text-base font-bold text-slate-900">Top Countries</h2>
-          <p class="text-xs text-slate-500">Leading ecosystems in the active selection</p>
+        <div class="flex items-center justify-between mb-4">
+          <div>
+            <h2 class="text-base font-bold text-slate-900">Top Countries</h2>
+            <p class="text-xs text-slate-500">Click a bar to filter & zoom to that country</p>
+          </div>
+          <span id="countryFilterStatus" class="text-xs font-semibold text-brand-700 bg-brand-50 px-2 py-0.5 rounded-md border border-brand-100 hidden">Filtered</span>
         </div>
         <div class="flex-1 min-h-[260px]">
           <canvas id="countryChart"></canvas>
@@ -256,9 +354,12 @@ def build_html(records: list, title: str = "WeMap European EdTech Explorer") -> 
 
       <!-- Company Scale / Employee Size Distribution -->
       <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm flex flex-col">
-        <div class="mb-4">
-          <h2 class="text-base font-bold text-slate-900">Company Scale (Employee Size)</h2>
-          <p class="text-xs text-slate-500">Distribution of company maturity and team size</p>
+        <div class="flex items-center justify-between mb-4">
+          <div>
+            <h2 class="text-base font-bold text-slate-900">Company Scale (Employee Size)</h2>
+            <p class="text-xs text-slate-500">Click a slice to filter by team size</p>
+          </div>
+          <span id="sizeFilterStatus" class="text-xs font-semibold text-brand-700 bg-brand-50 px-2 py-0.5 rounded-md border border-brand-100 hidden">Filtered</span>
         </div>
         <div class="flex-1 min-h-[260px] flex items-center justify-center">
           <canvas id="sizeChart"></canvas>
@@ -272,7 +373,7 @@ def build_html(records: list, title: str = "WeMap European EdTech Explorer") -> 
       <div class="p-5 border-b border-slate-200 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
         <div>
           <h2 class="text-base font-bold text-slate-900">Organization Directory</h2>
-          <p class="text-xs text-slate-500">Searchable list of organizations matching current selection</p>
+          <p class="text-xs text-slate-500">Click any row to open full company profile, products & map location</p>
         </div>
         <div class="relative w-full sm:w-72">
           <input type="text" id="searchInput" placeholder="Search by name, city, country..." class="w-full bg-slate-50 border border-slate-300 text-slate-900 text-xs sm:text-sm rounded-lg focus:ring-brand-500 focus:border-brand-500 pl-3 pr-8 py-2">
@@ -310,6 +411,20 @@ def build_html(records: list, title: str = "WeMap European EdTech Explorer") -> 
 
   </main>
 
+  <!-- Slide-Over Company Profile Drawer Container -->
+  <div id="drawerContainer" class="drawer-hidden fixed inset-0 z-50 overflow-hidden" role="dialog" aria-modal="true">
+    <div onclick="closeDrawer()" class="drawer-backdrop fixed inset-0 bg-slate-900/40 backdrop-blur-xs"></div>
+    <div class="fixed inset-y-0 right-0 max-w-full flex pl-10">
+      <div class="drawer-panel w-screen max-w-md bg-white shadow-2xl border-l border-slate-200 flex flex-col">
+        <div class="px-5 py-4 border-b border-slate-200 flex items-center justify-between bg-slate-50/80">
+          <span class="text-xs font-bold uppercase tracking-wider text-slate-500">Organization Profile</span>
+          <button onclick="closeDrawer()" class="p-1 rounded-lg text-slate-400 hover:text-slate-700 hover:bg-slate-200/60 transition-colors font-bold text-lg leading-none" title="Close Profile (Esc)">&times;</button>
+        </div>
+        <div id="drawerBody" class="p-6 overflow-y-auto custom-scrollbar flex-1 space-y-6"></div>
+      </div>
+    </div>
+  </div>
+
   <!-- Footer -->
   <footer class="bg-white border-t border-slate-200 py-4 mt-8">
     <div class="max-w-7xl mx-auto px-4 text-center text-xs text-slate-400">
@@ -321,40 +436,89 @@ def build_html(records: list, title: str = "WeMap European EdTech Explorer") -> 
   <script>
     const RAW_DATA = {records_json};
 
+    // Colorblind-Friendly Okabe-Ito Palette
+    const OKABE_ITO = {{
+      blue: '#0072B2',
+      orange: '#E69F00',
+      green: '#009E73',
+      pink: '#CC79A7',
+      vermillion: '#D55E00',
+      skyBlue: '#56B4E9',
+      gray: '#999999',
+      lightGray: '#cbd5e1'
+    }};
+
+    const SIZE_COLOR_MAP = {{
+      'Micro': OKABE_ITO.blue,
+      'Small': OKABE_ITO.orange,
+      'Medium': OKABE_ITO.green,
+      'Large': OKABE_ITO.pink,
+      'Solo entrepreneur': OKABE_ITO.vermillion,
+      'Medium or Large (unspecified)': OKABE_ITO.skyBlue
+    }};
+
     let map, markerClusterGroup;
     let countryChartInstance = null;
     let sizeChartInstance = null;
 
+    let selectedSegment = 'ALL';
+    let selectedCountry = 'ALL';
+    let selectedSize = 'ALL';
+
     let filteredData = [...RAW_DATA];
     let currentPage = 1;
     const pageSize = 15;
-    let currentBoundsMode = 'focus'; // 'focus' or 'global'
+    let currentBoundsMode = 'focus';
+    let activeDrawerRecord = null;
 
-    // Initialize Map with 100% Free & Open High-Availability Tiles
     function initMap() {{
       map = L.map('map', {{
         zoomControl: true,
-        scrollWheelZoom: false
+        scrollWheelZoom: true
       }});
 
-      // High-reliability, open, high-resolution tile service
       L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{{z}}/{{y}}/{{x}}', {{
         attribution: 'Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ, TomTom, USGS, FAO, NPS, NRCAN, GeoBase, Kadaster NL, Ordnance Survey',
         maxZoom: 18
       }}).addTo(map);
 
-      // Custom marker cluster group
       markerClusterGroup = L.markerClusterGroup({{
         showCoverageOnHover: false,
         zoomToBoundsOnClick: true,
         spiderfyOnMaxZoom: true,
+        maxClusterRadius: function(zoom) {{
+          if (zoom >= 13) return 20;
+          if (zoom >= 10) return 35;
+          if (zoom >= 7) return 50;
+          return 65;
+        }},
         iconCreateFunction: function(cluster) {{
-          const count = cluster.getChildCount();
+          const children = cluster.getAllChildMarkers();
+          const count = children.length;
+
+          const sizeCounts = {{}};
+          children.forEach(m => {{
+            const sz = m.options.companySize || 'Unspecified';
+            sizeCounts[sz] = (sizeCounts[sz] || 0) + 1;
+          }});
+
+          let majoritySize = 'Unspecified';
+          let maxFreq = -1;
+          Object.entries(sizeCounts).forEach(([sz, freq]) => {{
+            if (freq > maxFreq) {{
+              maxFreq = freq;
+              majoritySize = sz;
+            }}
+          }});
+
+          const clusterBgColor = SIZE_COLOR_MAP[majoritySize] || OKABE_ITO.blue;
+
           let sizeClass = 'w-8 h-8 text-xs';
           if (count > 50) sizeClass = 'w-10 h-10 text-sm';
           if (count > 200) sizeClass = 'w-12 h-12 text-sm';
+
           return L.divIcon({{
-            html: `<div class="custom-cluster ${{sizeClass}}">${{count}}</div>`,
+            html: `<div class="custom-cluster ${{sizeClass}}" style="background-color: ${{clusterBgColor}};">${{count}}</div>`,
             className: '',
             iconSize: L.point(40, 40)
           }});
@@ -363,7 +527,6 @@ def build_html(records: list, title: str = "WeMap European EdTech Explorer") -> 
 
       map.addLayer(markerClusterGroup);
 
-      // View Toggle Buttons
       document.getElementById('btnFocusView').addEventListener('click', () => {{
         currentBoundsMode = 'focus';
         updateToggleButtons();
@@ -390,7 +553,6 @@ def build_html(records: list, title: str = "WeMap European EdTech Explorer") -> 
       }}
     }}
 
-    // Populate Segment Filter
     function populateSegmentFilter() {{
       const segmentSet = new Set();
       RAW_DATA.forEach(d => {{
@@ -409,6 +571,7 @@ def build_html(records: list, title: str = "WeMap European EdTech Explorer") -> 
       }});
 
       select.addEventListener('change', () => {{
+        selectedSegment = select.value;
         applyFilters();
       }});
 
@@ -416,29 +579,104 @@ def build_html(records: list, title: str = "WeMap European EdTech Explorer") -> 
         currentPage = 1;
         renderTable();
       }});
+
+      document.getElementById('clearAllBtn').addEventListener('click', () => {{
+        selectedSegment = 'ALL';
+        selectedCountry = 'ALL';
+        selectedSize = 'ALL';
+        document.getElementById('segmentFilter').value = 'ALL';
+        applyFilters();
+      }});
     }}
 
-    // Filter Logic
     function applyFilters() {{
-      const selectedSegment = document.getElementById('segmentFilter').value;
-
-      if (selectedSegment === 'ALL') {{
-        filteredData = [...RAW_DATA];
-      }} else {{
-        filteredData = RAW_DATA.filter(d => d.segments && d.segments.includes(selectedSegment));
-      }}
+      filteredData = RAW_DATA.filter(d => {{
+        const matchSeg = (selectedSegment === 'ALL') || (d.segments && d.segments.includes(selectedSegment));
+        const matchCountry = (selectedCountry === 'ALL') || (d.country === selectedCountry);
+        const matchSize = (selectedSize === 'ALL') || (d.size === selectedSize);
+        return matchSeg && matchCountry && matchSize;
+      }});
 
       currentPage = 1;
+      updateFilterChips();
       updateMap();
       updateCharts();
       renderTable();
     }}
 
-    // Compute Smart Bounds (Focus on core cluster / percentile vs. Global)
+    function updateFilterChips() {{
+      const bar = document.getElementById('filterChipsBar');
+      const container = document.getElementById('chipsContainer');
+      container.innerHTML = '';
+
+      let activeCount = 0;
+
+      if (selectedSegment !== 'ALL') {{
+        activeCount++;
+        container.appendChild(createChip(`Segment: ${{selectedSegment}}`, () => {{
+          selectedSegment = 'ALL';
+          document.getElementById('segmentFilter').value = 'ALL';
+          applyFilters();
+        }}));
+      }}
+
+      if (selectedCountry !== 'ALL') {{
+        activeCount++;
+        container.appendChild(createChip(`Country: ${{selectedCountry}}`, () => {{
+          selectedCountry = 'ALL';
+          applyFilters();
+        }}));
+      }}
+
+      if (selectedSize !== 'ALL') {{
+        activeCount++;
+        container.appendChild(createChip(`Scale: ${{selectedSize}}`, () => {{
+          selectedSize = 'ALL';
+          applyFilters();
+        }}));
+      }}
+
+      if (activeCount > 0) {{
+        bar.classList.remove('hidden');
+      }} else {{
+        bar.classList.add('hidden');
+      }}
+
+      const countryStatus = document.getElementById('countryFilterStatus');
+      if (selectedCountry !== 'ALL') {{
+        countryStatus.textContent = `Filtered: ${{selectedCountry}}`;
+        countryStatus.classList.remove('hidden');
+      }} else {{
+        countryStatus.classList.add('hidden');
+      }}
+
+      const sizeStatus = document.getElementById('sizeFilterStatus');
+      if (selectedSize !== 'ALL') {{
+        sizeStatus.textContent = `Filtered: ${{selectedSize}}`;
+        sizeStatus.classList.remove('hidden');
+      }} else {{
+        sizeStatus.classList.add('hidden');
+      }}
+    }}
+
+    function createChip(text, onRemove) {{
+      const chip = document.createElement('span');
+      chip.className = 'inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-xs font-semibold bg-white border border-slate-300 text-slate-800 shadow-2xs';
+      chip.innerHTML = `<span>${{text}}</span><button class="hover:text-red-600 transition-colors font-bold text-sm leading-none ml-1">&times;</button>`;
+      chip.querySelector('button').addEventListener('click', onRemove);
+      return chip;
+    }}
+
     function fitMapBounds() {{
       const validPoints = filteredData.filter(d => d.lat !== null && d.lon !== null && !isNaN(d.lat) && !isNaN(d.lon));
       if (validPoints.length === 0) {{
         map.setView([50.0, 10.0], 4);
+        return;
+      }}
+
+      if (selectedCountry !== 'ALL') {{
+        const countryPoints = validPoints.map(d => [d.lat, d.lon]);
+        map.fitBounds(countryPoints, {{ padding: [40, 40], maxZoom: 12 }});
         return;
       }}
 
@@ -448,7 +686,6 @@ def build_html(records: list, title: str = "WeMap European EdTech Explorer") -> 
         return;
       }}
 
-      // Focus Mode: Exclude isolated outliers (e.g., Australia, Singapore) using 3rd-97th percentile
       const lats = validPoints.map(d => d.lat).sort((a, b) => a - b);
       const lons = validPoints.map(d => d.lon).sort((a, b) => a - b);
 
@@ -463,45 +700,102 @@ def build_html(records: list, title: str = "WeMap European EdTech Explorer") -> 
       map.fitBounds([[minLat, minLon], [maxLat, maxLon]], {{ padding: [30, 30], maxZoom: 13 }});
     }}
 
-    // Update Map Markers
     function updateMap() {{
       markerClusterGroup.clearLayers();
       let count = 0;
 
+      // Group records with identical coordinates so co-located pins uncluster when zooming
+      const coordGroups = {{}};
       filteredData.forEach(d => {{
         if (d.lat !== null && d.lon !== null && !isNaN(d.lat) && !isNaN(d.lon)) {{
-          count++;
+          const key = `${{d.lat.toFixed(5)}},${{d.lon.toFixed(5)}}`;
+          if (!coordGroups[key]) coordGroups[key] = [];
+          coordGroups[key].push(d);
+        }}
+      }});
 
-          const marker = L.circleMarker([d.lat, d.lon], {{
+      Object.values(coordGroups).forEach(group => {{
+        const total = group.length;
+        group.forEach((d, idx) => {{
+          count++;
+          let mLat = d.lat;
+          let mLon = d.lon;
+
+          if (total > 1 && idx > 0) {{
+            // Golden spiral dispersal: at high zoom, points group into the city bubble;
+            // as user zooms in, they separate into individual regional/city pins
+            const goldenAngle = 2.3999632;
+            const r = 0.0016 * Math.sqrt(idx);
+            const theta = idx * goldenAngle;
+            const cosLat = Math.cos(d.lat * Math.PI / 180) || 1;
+            mLat = d.lat + r * Math.cos(theta);
+            mLon = d.lon + (r * Math.sin(theta)) / cosLat;
+          }}
+
+          const markerColor = SIZE_COLOR_MAP[d.size] || OKABE_ITO.gray;
+
+          const marker = L.circleMarker([mLat, mLon], {{
             radius: 6,
-            fillColor: '#4f46e5',
+            fillColor: markerColor,
             color: '#ffffff',
             weight: 2,
             opacity: 1,
-            fillOpacity: 0.85
+            fillOpacity: 0.9,
+            companySize: d.size,
+            record: d
           }});
 
-          // Minimalist popup: public_name & city_country only
+          const sizeBadge = d.size ? `<span class="inline-block mt-1 px-1.5 py-0.5 text-[10px] font-semibold rounded text-white" style="background-color: ${{markerColor}}">${{d.size}}</span>` : '';
+
           const popupContent = `
             <div class="font-sans">
               <div class="font-bold text-slate-900 text-sm">${{d.name}}</div>
               <div class="text-xs text-slate-500 mt-0.5">${{d.cc || d.country || 'Location unspecified'}}</div>
+              ${{sizeBadge}}
+              <div class="mt-2 pt-1.5 border-t border-slate-100 flex items-center justify-between gap-2">
+                <button onclick="openDrawerById('${{d.id}}')" class="text-[11px] font-bold text-brand-600 hover:text-brand-800 transition-colors flex items-center gap-1">
+                  <span>View Full Profile</span> &rarr;
+                </button>
+              </div>
             </div>
           `;
           marker.bindPopup(popupContent);
           markerClusterGroup.addLayer(marker);
-        }}
+        }});
       }});
 
       document.getElementById('mapCount').textContent = count.toLocaleString();
       fitMapBounds();
     }}
 
-    // Update Charts (Top Countries & Company Scale)
+    function locateRecordOnMap(d) {{
+      if (d && d.lat !== null && d.lon !== null && !isNaN(d.lat) && !isNaN(d.lon)) {{
+        const layers = markerClusterGroup.getLayers();
+        const targetMarker = layers.find(m => m.options.record && m.options.record.id === d.id);
+
+        if (targetMarker) {{
+          const latLng = targetMarker.getLatLng();
+          map.flyTo(latLng, 14, {{ duration: 1.0 }});
+          markerClusterGroup.zoomToShowLayer(targetMarker, () => {{
+            targetMarker.openPopup();
+          }});
+        }} else {{
+          map.flyTo([d.lat, d.lon], 14, {{ duration: 1.0 }});
+        }}
+
+        document.getElementById('map').scrollIntoView({{ behavior: 'smooth', block: 'center' }});
+      }}
+    }}
+
     function updateCharts() {{
-      // 1. Top Countries (Horizontal Bar)
       const countryCounts = {{}};
-      filteredData.forEach(d => {{
+      const baseForCountries = RAW_DATA.filter(d => {{
+        const matchSeg = (selectedSegment === 'ALL') || (d.segments && d.segments.includes(selectedSegment));
+        const matchSize = (selectedSize === 'ALL') || (d.size === selectedSize);
+        return matchSeg && matchSize;
+      }});
+
+      baseForCountries.forEach(d => {{
         const c = d.country || 'Unknown';
         countryCounts[c] = (countryCounts[c] || 0) + 1;
       }});
@@ -513,6 +807,8 @@ def build_html(records: list, title: str = "WeMap European EdTech Explorer") -> 
       const countryLabels = sortedCountries.map(e => e[0]);
       const countryValues = sortedCountries.map(e => e[1]);
 
+      const barColors = countryLabels.map(c => (selectedCountry === c) ? OKABE_ITO.vermillion : OKABE_ITO.blue);
+
       if (countryChartInstance) countryChartInstance.destroy();
       const ctxC = document.getElementById('countryChart').getContext('2d');
       countryChartInstance = new Chart(ctxC, {{
@@ -522,8 +818,9 @@ def build_html(records: list, title: str = "WeMap European EdTech Explorer") -> 
           datasets: [{{
             label: 'Organizations',
             data: countryValues,
-            backgroundColor: '#6366f1',
+            backgroundColor: barColors,
             borderRadius: 6,
+            hoverBackgroundColor: OKABE_ITO.vermillion
           }}]
         }},
         options: {{
@@ -537,19 +834,34 @@ def build_html(records: list, title: str = "WeMap European EdTech Explorer") -> 
           scales: {{
             x: {{ grid: {{ display: false }} }},
             y: {{ grid: {{ display: false }} }}
+          }},
+          onHover: (evt, elements) => {{
+            evt.native.target.style.cursor = elements.length ? 'pointer' : 'default';
+          }},
+          onClick: (evt, elements) => {{
+            if (elements.length > 0) {{
+              const idx = elements[0].index;
+              const clickedCountry = countryLabels[idx];
+              selectedCountry = (selectedCountry === clickedCountry) ? 'ALL' : clickedCountry;
+              applyFilters();
+            }}
           }}
         }}
       }});
 
-      // 2. Company Scale (Mutually exclusive single-category distribution)
       const sizeCounts = {{}};
-      filteredData.forEach(d => {{
+      const baseForSizes = RAW_DATA.filter(d => {{
+        const matchSeg = (selectedSegment === 'ALL') || (d.segments && d.segments.includes(selectedSegment));
+        const matchCountry = (selectedCountry === 'ALL') || (d.country === selectedCountry);
+        return matchSeg && matchCountry;
+      }});
+
+      baseForSizes.forEach(d => {{
         if (d.size) {{
           sizeCounts[d.size] = (sizeCounts[d.size] || 0) + 1;
         }}
       }});
 
-      // Order by company scale
       const preferredOrder = ['Micro', 'Small', 'Medium', 'Large', 'Solo entrepreneur', 'Medium or Large (unspecified)'];
       const sizeLabels = [];
       const sizeValues = [];
@@ -561,7 +873,6 @@ def build_html(records: list, title: str = "WeMap European EdTech Explorer") -> 
         }}
       }});
 
-      // Catch any other keys
       Object.entries(sizeCounts).forEach(([k, v]) => {{
         if (!preferredOrder.includes(k)) {{
           sizeLabels.push(k);
@@ -569,7 +880,12 @@ def build_html(records: list, title: str = "WeMap European EdTech Explorer") -> 
         }}
       }});
 
-      const colors = ['#6366f1', '#3b82f6', '#06b6d4', '#10b981', '#f59e0b', '#94a3b8'];
+      const donutColors = sizeLabels.map(lbl => {{
+        if (selectedSize !== 'ALL' && selectedSize !== lbl) {{
+          return OKABE_ITO.lightGray;
+        }}
+        return SIZE_COLOR_MAP[lbl] || OKABE_ITO.gray;
+      }});
 
       if (sizeChartInstance) sizeChartInstance.destroy();
       const ctxS = document.getElementById('sizeChart').getContext('2d');
@@ -579,7 +895,7 @@ def build_html(records: list, title: str = "WeMap European EdTech Explorer") -> 
           labels: sizeLabels.length ? sizeLabels : ['Unspecified'],
           datasets: [{{
             data: sizeValues.length ? sizeValues : [1],
-            backgroundColor: sizeValues.length ? colors.slice(0, sizeLabels.length) : ['#cbd5e1'],
+            backgroundColor: sizeValues.length ? donutColors : [OKABE_ITO.lightGray],
             borderWidth: 2,
             borderColor: '#ffffff'
           }}]
@@ -594,12 +910,22 @@ def build_html(records: list, title: str = "WeMap European EdTech Explorer") -> 
             }},
             tooltip: {{ padding: 10, cornerRadius: 8 }}
           }},
-          cutout: '65%'
+          cutout: '65%',
+          onHover: (evt, elements) => {{
+            evt.native.target.style.cursor = elements.length ? 'pointer' : 'default';
+          }},
+          onClick: (evt, elements) => {{
+            if (elements.length > 0) {{
+              const idx = elements[0].index;
+              const clickedSize = sizeLabels[idx];
+              selectedSize = (selectedSize === clickedSize) ? 'ALL' : clickedSize;
+              applyFilters();
+            }}
+          }}
         }}
       }});
     }}
 
-    // Render Table & Pagination
     function renderTable() {{
       const query = document.getElementById('searchInput').value.toLowerCase().trim();
       let tableData = filteredData;
@@ -624,22 +950,53 @@ def build_html(records: list, title: str = "WeMap European EdTech Explorer") -> 
       tbody.innerHTML = '';
 
       if (pageSlice.length === 0) {{
-        tbody.innerHTML = `<tr><td colspan="4" class="px-5 py-6 text-center text-slate-400">No organizations found</td></tr>`;
+        tbody.innerHTML = `<tr><td colspan="4" class="px-5 py-6 text-center text-slate-400">No organizations found matching current filters</td></tr>`;
       }} else {{
         pageSlice.forEach(d => {{
           const tr = document.createElement('tr');
-          tr.className = 'hover:bg-slate-50 transition-colors';
-          
-          const segBadges = d.segments && d.segments.length > 0 
-            ? d.segments.slice(0, 3).map(s => `<span class="inline-block px-2 py-0.5 mr-1 mb-1 text-[11px] font-medium bg-slate-100 text-slate-700 rounded-md border border-slate-200">${{s}}</span>`).join('')
-            : '<span class="text-slate-400 text-xs">-</span>';
+          const hasCoords = d.lat !== null && d.lon !== null && !isNaN(d.lat) && !isNaN(d.lon);
+          tr.className = `hover:bg-slate-100/80 transition-colors cursor-pointer ${{hasCoords ? '' : 'opacity-75'}}`;
+          tr.title = 'Click to view full company profile & locate on map';
+
+          let displaySegs = d.segments || [];
+          if (selectedSegment !== 'ALL' && displaySegs.includes(selectedSegment)) {{
+            displaySegs = [selectedSegment, ...displaySegs.filter(s => s !== selectedSegment)];
+          }}
+
+          let segBadges = '';
+          if (displaySegs.length > 0) {{
+            const visible = displaySegs.slice(0, 3);
+            const extraCount = displaySegs.length - visible.length;
+            segBadges = visible.map(s => {{
+              const isMatch = (selectedSegment !== 'ALL' && s === selectedSegment);
+              const badgeStyle = isMatch 
+                ? 'bg-brand-50 text-brand-700 border-brand-200 font-semibold shadow-2xs' 
+                : 'bg-slate-100 text-slate-700 border-slate-200';
+              return `<span class="inline-block px-2 py-0.5 mr-1 mb-1 text-[11px] ${{badgeStyle}} rounded-md border">${{s}}</span>`;
+            }}).join('');
+            
+            if (extraCount > 0) {{
+              const extraTooltip = displaySegs.slice(3).join(', ');
+              segBadges += `<span class="inline-block px-1.5 py-0.5 text-[11px] font-medium bg-slate-50 text-slate-500 rounded-md border border-slate-200 cursor-help" title="${{extraTooltip}}">+${{extraCount}} more</span>`;
+            }}
+          }} else {{
+            segBadges = '<span class="text-slate-400 text-xs">-</span>';
+          }}
 
           tr.innerHTML = `
-            <td class="px-5 py-3 font-semibold text-slate-900">${{d.name}}</td>
+            <td class="px-5 py-3 font-semibold text-slate-900 group-hover:text-brand-600 flex items-center gap-1.5">
+              <span>${{d.name}}</span>
+              ${{hasCoords ? '<svg class="w-3.5 h-3.5 text-slate-400 opacity-60" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>' : ''}}
+            </td>
             <td class="px-5 py-3 text-slate-600">${{d.cc || '-'}}</td>
             <td class="px-5 py-3 text-slate-600">${{d.country || '-'}}</td>
             <td class="px-5 py-3">${{segBadges}}</td>
           `;
+
+          tr.addEventListener('click', () => {{
+            openDrawer(d);
+          }});
+
           tbody.appendChild(tr);
         }});
       }}
@@ -649,7 +1006,259 @@ def build_html(records: list, title: str = "WeMap European EdTech Explorer") -> 
       document.getElementById('nextBtn').disabled = currentPage >= totalPages;
     }}
 
-    // Pagination Event Listeners
+    function sanitizeSocialUrl(raw, fallbackPlat) {{
+      if (!raw) return null;
+      let val = String(raw).trim();
+      const lower = val.toLowerCase();
+      if (!val || ['none', 'n/a', '-', 'no', 'null', 'undefined', 'in progress'].includes(lower)) {{
+        return null;
+      }}
+      if (val.startsWith('@')) {{
+        const handle = val.replace(/^@+/, '').trim();
+        if (!handle) return null;
+        if (fallbackPlat === 'x') return `https://x.com/${{handle}}`;
+        if (fallbackPlat === 'insta') return `https://www.instagram.com/${{handle}}`;
+        if (fallbackPlat === 'facebook') return `https://www.facebook.com/${{handle}}`;
+        if (fallbackPlat === 'linkedin') return `https://www.linkedin.com/company/${{handle}}`;
+      }}
+      if (val.includes(' ') && !val.includes('/') && !val.includes('.')) {{
+        return null;
+      }}
+      if (!val.startsWith('http://') && !val.startsWith('https://')) {{
+        if (val.includes('.') && !val.includes(' ')) {{
+          val = 'https://' + val.replace(/^\\/+/, '');
+        }} else {{
+          return null;
+        }}
+      }}
+      if (!/^https?:\\/\\/[a-zA-Z0-9.-]+\\.[a-zA-Z]{{2,}}/i.test(val)) {{
+        return null;
+      }}
+      return val;
+    }}
+
+    function detectSocialPlatform(url) {{
+      const u = url.toLowerCase();
+      if (u.includes('linkedin.com')) return 'linkedin';
+      if (u.includes('twitter.com') || u.includes('x.com')) return 'x';
+      if (u.includes('instagram.com')) return 'insta';
+      if (u.includes('facebook.com') || u.includes('fb.me') || u.includes('fb.com')) return 'facebook';
+      if (u.includes('youtube.com') || u.includes('youtu.be')) return 'youtube';
+      return 'other';
+    }}
+
+    function buildSocialLinksHtml(record) {{
+      const rawEntries = [
+        {{ raw: record.social_linkedin, plat: 'linkedin' }},
+        {{ raw: record.social_x, plat: 'x' }},
+        {{ raw: record.social_insta, plat: 'insta' }},
+        {{ raw: record.social_facebook, plat: 'facebook' }}
+      ];
+
+      const platformConfig = {{
+        linkedin: {{ label: 'LinkedIn', style: 'bg-blue-50 text-blue-700 border-blue-200 hover:bg-blue-100' }},
+        x: {{ label: 'X / Twitter', style: 'bg-slate-100 text-slate-800 border-slate-300 hover:bg-slate-200' }},
+        insta: {{ label: 'Instagram', style: 'bg-pink-50 text-pink-700 border-pink-200 hover:bg-pink-100' }},
+        facebook: {{ label: 'Facebook', style: 'bg-indigo-50 text-indigo-700 border-indigo-200 hover:bg-indigo-100' }},
+        youtube: {{ label: 'YouTube', style: 'bg-red-50 text-red-700 border-red-200 hover:bg-red-100' }},
+        other: {{ label: 'Social Profile', style: 'bg-slate-50 text-slate-700 border-slate-200 hover:bg-slate-100' }}
+      }};
+
+      const seenUrls = new Set();
+      const seenPlatforms = new Set();
+      const badges = [];
+
+      rawEntries.forEach(entry => {{
+        const cleanUrl = sanitizeSocialUrl(entry.raw, entry.plat);
+        if (!cleanUrl) return;
+
+        const normKey = cleanUrl.toLowerCase().replace(/\\/+$/, '');
+        if (seenUrls.has(normKey)) return;
+        seenUrls.add(normKey);
+
+        const realPlat = detectSocialPlatform(cleanUrl);
+        if (seenPlatforms.has(realPlat) && realPlat !== 'other') return;
+        seenPlatforms.add(realPlat);
+
+        const cfg = platformConfig[realPlat] || platformConfig.other;
+        badges.push(
+          `<a href="${{cleanUrl}}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3 py-1.5 ${{cfg.style}} rounded-lg text-xs font-semibold border transition-colors shadow-2xs"><span>${{cfg.label}}</span> &nearr;</a>`
+        );
+      }});
+
+      if (badges.length === 0) {{
+        return '<span class="text-xs text-slate-400 italic">No verified social profiles linked.</span>';
+      }}
+      return badges.join('');
+    }}
+
+    function renderProductBlock(pName, pDesc, defaultTitle) {{
+      if (!pName && !pDesc) return '';
+
+      const isNameUrl = pName && String(pName).trim().startsWith('http');
+      const isDescUrl = pDesc && String(pDesc).trim().startsWith('http');
+
+      const title = (!isNameUrl && pName) ? pName : (isNameUrl ? 'Product Resource' : defaultTitle);
+
+      let contentHtml = '';
+      if (isNameUrl && isDescUrl && pName.trim() === pDesc.trim()) {{
+        contentHtml = `<a href="${{pName.trim()}}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 text-xs font-semibold text-brand-600 hover:text-brand-800 underline break-all"><span>View Linked Document / Resource</span> &nearr;</a>`;
+      }} else if (isNameUrl) {{
+        contentHtml = `<a href="${{pName.trim()}}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 text-xs font-semibold text-brand-600 hover:text-brand-800 underline break-all"><span>View Resource</span> &nearr;</a>`;
+        if (pDesc) {{
+          contentHtml += `<p class="text-xs text-slate-600 leading-relaxed mt-1">${{pDesc}}</p>`;
+        }}
+      }} else if (isDescUrl) {{
+        contentHtml = `<a href="${{pDesc.trim()}}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 text-xs font-semibold text-brand-600 hover:text-brand-800 underline break-all"><span>View Product Documentation / Asset</span> &nearr;</a>`;
+      }} else {{
+        contentHtml = `<p class="text-xs text-slate-600 leading-relaxed">${{pDesc || 'No detailed description available.'}}</p>`;
+      }}
+
+      return `
+        <div class="bg-slate-50 p-3.5 rounded-xl border border-slate-200 space-y-1">
+          <div class="font-bold text-slate-900 text-xs sm:text-sm flex items-center gap-2">
+            <span>📦 ${{title}}</span>
+          </div>
+          ${{contentHtml}}
+        </div>
+      `;
+    }}
+
+    function openDrawer(record) {{
+      if (!record) return;
+      activeDrawerRecord = record;
+
+      const container = document.getElementById('drawerContainer');
+      const body = document.getElementById('drawerBody');
+
+      let webUrl = record.website ? String(record.website).trim() : '';
+      if (webUrl && !webUrl.startsWith('http://') && !webUrl.startsWith('https://')) {{
+        if (webUrl.includes('.') && !webUrl.includes(' ')) {{
+          webUrl = 'https://' + webUrl.replace(/^\\/+/, '');
+        }} else {{
+          webUrl = '';
+        }}
+      }}
+
+      const isVerified = record.verified && record.verified.toLowerCase().includes('verified') && !record.verified.toLowerCase().includes('unverified');
+      const verifiedBadge = isVerified 
+        ? `<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200">✓ Verified</span>`
+        : `<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-medium bg-slate-100 text-slate-600 border border-slate-200">Unverified</span>`;
+
+      const segBadges = (record.segments && record.segments.length > 0)
+        ? record.segments.map(s => `<span class="inline-block px-2.5 py-1 text-xs font-semibold bg-brand-50 text-brand-700 rounded-md border border-brand-100 mr-1 mb-1">${{s}}</span>`).join('')
+        : '<span class="text-slate-400 text-xs">Unspecified</span>';
+
+      let productsHtml = '';
+      const p1Html = renderProductBlock(record.p1_name, record.p1_desc, 'Product 1');
+      const p2Html = renderProductBlock(record.p2_name, record.p2_desc, 'Product 2');
+      if (p1Html) productsHtml += p1Html;
+      if (p2Html) productsHtml += p2Html;
+      if (!productsHtml) {{
+        productsHtml = '<p class="text-xs text-slate-400 italic">No specific products documented for this entry.</p>';
+      }}
+
+      const socialsHtml = buildSocialLinksHtml(record);
+
+      const hasCoords = record.lat !== null && record.lon !== null && !isNaN(record.lat) && !isNaN(record.lon);
+
+      body.innerHTML = `
+        <div class="space-y-3 border-b border-slate-200 pb-5">
+          <div class="flex items-start justify-between gap-3">
+            <div>
+              <h2 class="text-xl font-bold text-slate-900 tracking-tight leading-snug">${{record.name}}</h2>
+              <div class="text-xs font-medium text-slate-500 mt-1 flex items-center gap-2">
+                <span>📍 ${{record.cc || record.country || 'Location Unspecified'}}</span>
+              </div>
+            </div>
+            ${{verifiedBadge}}
+          </div>
+
+          <div class="flex items-center gap-2 flex-wrap pt-1">
+            ${{webUrl ? `<a href="${{webUrl}}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3.5 py-1.5 bg-brand-500 hover:bg-brand-600 text-white rounded-lg text-xs font-bold shadow-xs transition-colors"><span>Visit Website</span> &nearr;</a>` : ''}}
+            ${{hasCoords ? `<button onclick="closeDrawer(); locateRecordOnMap(activeDrawerRecord);" class="inline-flex items-center gap-1.5 px-3.5 py-1.5 bg-white border border-slate-300 hover:bg-slate-50 text-slate-700 rounded-lg text-xs font-bold transition-colors shadow-2xs"><span>📍 Locate on Map</span></button>` : ''}}
+          </div>
+        </div>
+
+        <div class="space-y-2">
+          <h3 class="text-xs font-bold uppercase tracking-wider text-slate-400">About Organization</h3>
+          <p class="text-xs sm:text-sm text-slate-700 leading-relaxed bg-slate-50 p-4 rounded-xl border border-slate-200">
+            ${{record.desc || 'No detailed organization description available in dataset.'}}
+          </p>
+        </div>
+
+        <div class="space-y-2">
+          <h3 class="text-xs font-bold uppercase tracking-wider text-slate-400">Key Intelligence</h3>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+            
+            <div class="bg-slate-50 p-3 rounded-lg border border-slate-200">
+              <span class="text-slate-400 block text-[11px] font-semibold uppercase">Company Scale</span>
+              <span class="font-bold text-slate-800">${{record.size || 'Unspecified'}} ${{record.employees_num ? `(${{record.employees_num}} employees)` : ''}}</span>
+            </div>
+
+            <div class="bg-slate-50 p-3 rounded-lg border border-slate-200">
+              <span class="text-slate-400 block text-[11px] font-semibold uppercase">Business Model</span>
+              <span class="font-bold text-slate-800">${{record.biz_models && record.biz_models.length ? record.biz_models.join(', ') : 'Unspecified'}}</span>
+            </div>
+
+            <div class="bg-slate-50 p-3 rounded-lg border border-slate-200">
+              <span class="text-slate-400 block text-[11px] font-semibold uppercase">Target Audience</span>
+              <span class="font-bold text-slate-800">${{record.target_audience || 'Unspecified'}}</span>
+            </div>
+
+            <div class="bg-slate-50 p-3 rounded-lg border border-slate-200">
+              <span class="text-slate-400 block text-[11px] font-semibold uppercase">Product Languages</span>
+              <span class="font-bold text-slate-800">${{record.product_lang || 'Unspecified'}}</span>
+            </div>
+
+            ${{record.member ? `
+            <div class="bg-slate-50 p-3 rounded-lg border border-slate-200 sm:col-span-2">
+              <span class="text-slate-400 block text-[11px] font-semibold uppercase">Member Association</span>
+              <span class="font-bold text-slate-800">${{record.member}}</span>
+            </div>` : ''}}
+
+          </div>
+        </div>
+
+        <div class="space-y-2">
+          <h3 class="text-xs font-bold uppercase tracking-wider text-slate-400">Market Segments</h3>
+          <div>${{segBadges}}</div>
+        </div>
+
+        <div class="space-y-3">
+          <h3 class="text-xs font-bold uppercase tracking-wider text-slate-400">Products & Offerings</h3>
+          ${{productsHtml}}
+        </div>
+
+        <div class="space-y-2 pt-2 border-t border-slate-200">
+          <h3 class="text-xs font-bold uppercase tracking-wider text-slate-400">Social Profiles & Presence</h3>
+          <div class="flex items-center gap-2 flex-wrap">${{socialsHtml}}</div>
+        </div>
+      `;
+
+      container.classList.remove('drawer-hidden');
+      container.classList.add('drawer-visible');
+    }}
+
+    function openDrawerById(id) {{
+      const record = RAW_DATA.find(d => d.id === id);
+      if (record) {{
+        openDrawer(record);
+      }}
+    }}
+
+    function closeDrawer() {{
+      const container = document.getElementById('drawerContainer');
+      if (container) {{
+        container.classList.remove('drawer-visible');
+        container.classList.add('drawer-hidden');
+      }}
+    }}
+
+    window.addEventListener('keydown', (e) => {{
+      if (e.key === 'Escape') closeDrawer();
+    }});
+
     document.getElementById('prevBtn').addEventListener('click', () => {{
       if (currentPage > 1) {{
         currentPage--;
@@ -662,12 +1271,17 @@ def build_html(records: list, title: str = "WeMap European EdTech Explorer") -> 
       renderTable();
     }});
 
-    // Boot
-    window.addEventListener('DOMContentLoaded', () => {{
+    function boot() {{
       initMap();
       populateSegmentFilter();
       applyFilters();
-    }});
+    }}
+
+    if (document.readyState === 'loading') {{
+      document.addEventListener('DOMContentLoaded', boot);
+    }} else {{
+      boot();
+    }}
   </script>
 </body>
 </html>"""
@@ -675,7 +1289,7 @@ def build_html(records: list, title: str = "WeMap European EdTech Explorer") -> 
 
 
 def main():
-    parser = argparse.ArgumentParser(description="Generate standalone HTML dashboard from geocoded WeMap dataset.")
+    parser = argparse.ArgumentParser(description="Generate single standalone HTML dashboard from geocoded WeMap dataset.")
     parser.add_argument("--data", default="202507_dataset_WeMap_LIVE_202607281022_CLEAN_geocoded.xlsx",
                         help="Path to geocoded xlsx file")
     parser.add_argument("--sheet", default="WeMap_Live_Data", help="Sheet name (default: WeMap_Live_Data)")
@@ -692,12 +1306,12 @@ def main():
     records = load_data(data_path, args.sheet)
     print(f"Extracted {len(records)} organization records.")
 
-    print("Building dashboard HTML...")
+    print("Building standalone index.html...")
     html_content = build_html(records, title=args.title)
 
     out_path = Path(args.out)
     out_path.write_text(html_content, encoding="utf-8")
-    print(f"Successfully generated dashboard: {out_path.resolve()}")
+    print(f"Successfully generated standalone dashboard: {out_path.resolve()}")
 
 
 if __name__ == "__main__":

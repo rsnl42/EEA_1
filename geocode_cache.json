@@ -108,8 +108,8 @@
     "lon": 25.0424158
   },
   "Apfelbaumstrasse 50, Switzerland": {
-    "lat": 47.4075821,
-    "lon": 8.5568618
+    "lat": null,
+    "lon": null
   },
   "Aprilia, Italy": {
     "lat": 41.5942016,
@@ -148,12 +148,12 @@
     "lon": 23.7348324
   },
   "Avenue Des Hauts Grigneux À Bihorel, France": {
-    "lat": 49.4671251,
-    "lon": 1.1362795
+    "lat": null,
+    "lon": null
   },
   "Avenue Leon Jouhaux, France": {
-    "lat": 50.6370334,
-    "lon": 3.035116
+    "lat": null,
+    "lon": null
   },
   "Avignon, France": {
     "lat": 43.9492493,
@@ -344,8 +344,8 @@
     "lon": -2.2504329
   },
   "Brahegatan 10, Sweden": {
-    "lat": 59.3372452,
-    "lon": 18.0757496
+    "lat": null,
+    "lon": null
   },
   "Bratislava, Slovakia": {
     "lat": 48.1359085,
@@ -424,24 +424,24 @@
     "lon": 12.8608789
   },
   "C/ Almogavers, 165, Spain": {
-    "lat": 41.3995038,
-    "lon": 2.1931459
+    "lat": null,
+    "lon": null
   },
   "Calgary, Canada": {
     "lat": 51.0456064,
     "lon": -114.057541
   },
   "Calle De Juan De Mariana 15, Spain": {
-    "lat": 40.3983689,
-    "lon": -3.6862639
+    "lat": null,
+    "lon": null
   },
   "Calle Lluis Domenech I Muntaner, 6, Spain": {
-    "lat": 41.0824533,
-    "lon": 1.1228459
+    "lat": null,
+    "lon": null
   },
   "Calle Princesa 25, Spain": {
-    "lat": 40.3469854,
-    "lon": -3.8328167
+    "lat": null,
+    "lon": null
   },
   "Cambridge, United Kingdom": {
     "lat": 52.2055314,
@@ -476,8 +476,8 @@
     "lon": 6.1396839
   },
   "Carrer De Oristà 165, Spain": {
-    "lat": 41.4674061,
-    "lon": 2.1809706
+    "lat": null,
+    "lon": null
   },
   "Cartagena, Spain": {
     "lat": 37.6155018,
@@ -560,8 +560,8 @@
     "lon": 12.5700724
   },
   "Copenhagen V, Denmark": {
-    "lat": 43.893439,
-    "lon": -75.673828
+    "lat": 55.6702,
+    "lon": 12.5529
   },
   "Copenhagen, Denmark": {
     "lat": 55.6867243,
@@ -588,8 +588,8 @@
     "lon": 8.6150532
   },
   "Dalvagen 14, Sweden": {
-    "lat": 58.6307961,
-    "lon": 16.7939269
+    "lat": null,
+    "lon": null
   },
   "Danderyd, Sweden": {
     "lat": 59.4043647,
@@ -692,8 +692,8 @@
     "lon": -3.1883749
   },
   "Edvard Griegs Vei 1, Norway": {
-    "lat": 59.8106361,
-    "lon": 10.7964423
+    "lat": null,
+    "lon": null
   },
   "Egtved, Denmark": {
     "lat": 55.6157026,
@@ -772,8 +772,8 @@
     "lon": 8.2899457
   },
   "Floor 4, Sector 2, Romania": {
-    "lat": 28.6063158,
-    "lon": 77.432198
+    "lat": null,
+    "lon": null
   },
   "Florence, Italy": {
     "lat": 43.7697955,
@@ -796,8 +796,8 @@
     "lon": 2.4749347
   },
   "Framtidsvägen 12 B, Sweden": {
-    "lat": 56.7045881,
-    "lon": 16.339638
+    "lat": null,
+    "lon": null
   },
   "Frankfurt Am Main, Germany": {
     "lat": 50.1106444,
@@ -1012,8 +1012,8 @@
     "lon": -0.472528
   },
   "Herengracht 162, The Netherlands": {
-    "lat": 52.3744066,
-    "lon": 4.887185
+    "lat": null,
+    "lon": null
   },
   "Herlev, Denmark": {
     "lat": 55.7248173,
@@ -1136,8 +1136,8 @@
     "lon": 25.0876113
   },
   "Järvevana Tee 9, Estonia": {
-    "lat": 59.4030494,
-    "lon": 24.7342328
+    "lat": null,
+    "lon": null
   },
   "Jönköping, Sweden": {
     "lat": 57.7825634,
@@ -1356,8 +1356,8 @@
     "lon": -1.5437941
   },
   "Leenakuja 2, Finland": {
-    "lat": 37.5711853,
-    "lon": 126.9780093
+    "lat": null,
+    "lon": null
   },
   "Leganés, Spain": {
     "lat": 40.3281942,
@@ -1376,8 +1376,8 @@
     "lon": 12.3747329
   },
   "Lerchenfeldstrasse 3, Switzerland": {
-    "lat": 47.4121901,
-    "lon": 9.3410372
+    "lat": null,
+    "lon": null
   },
   "Les Loges-En-Josas, France": {
     "lat": 48.7645251,
@@ -1416,8 +1416,8 @@
     "lon": 18.1317263
   },
   "Liechtensteinstraße 111-115, Austria": {
-    "lat": 48.2284121,
-    "lon": 16.3559374
+    "lat": null,
+    "lon": null
   },
   "Lieshout, The Netherlands": {
     "lat": 51.4378922,
@@ -1588,8 +1588,8 @@
     "lon": 2.8773541
   },
   "Medborgarplatsen 25, Sweden": {
-    "lat": 59.3155604,
-    "lon": 18.0710795
+    "lat": null,
+    "lon": null
   },
   "Melhus, Norway": {
     "lat": 63.1814333,
@@ -1712,16 +1712,16 @@
     "lon": 18.1677049
   },
   "Nad Královskou Oborou 33, Czech Republic": {
-    "lat": 50.1029371,
-    "lon": 14.4181513
+    "lat": null,
+    "lon": null
   },
   "Nailloux, France": {
     "lat": 43.3558921,
     "lon": 1.6233628
   },
   "Nannasvej 16, Denmark": {
-    "lat": 56.154452,
-    "lon": 10.178603
+    "lat": null,
+    "lon": null
   },
   "Nantes, France": {
     "lat": 47.2186371,
@@ -1904,8 +1904,8 @@
     "lon": 2.3483915
   },
   "Paseo De La Chopera 14, Spain": {
-    "lat": 40.3920606,
-    "lon": -3.6978319
+    "lat": null,
+    "lon": null
   },
   "Paterna, Spain": {
     "lat": 39.5039227,
@@ -1936,8 +1936,8 @@
     "lon": -4.1424451
   },
   "Pollargatan 16, Sweden": {
-    "lat": 59.3102165,
-    "lon": 18.1037473
+    "lat": null,
+    "lon": null
   },
   "Pordenone, Italy": {
     "lat": 45.9562503,
@@ -2064,8 +2064,8 @@
     "lon": 2.1802832
   },
   "Runeberginkatu 14-16, Finland": {
-    "lat": 60.1715974,
-    "lon": 24.9229883
+    "lat": null,
+    "lon": null
   },
   "Rusko, Finland": {
     "lat": 61.4519534,
@@ -2208,8 +2208,8 @@
     "lon": 103.8194992
   },
   "Singel 542, The Netherlands": {
-    "lat": 52.36659,
-    "lon": 4.8925289
+    "lat": null,
+    "lon": null
   },
   "Sint-Niklaas, Belgium": {
     "lat": 51.1646685,
@@ -2224,8 +2224,8 @@
     "lon": 0.7342319
   },
   "Skattetorpsvägen, Sweden": {
-    "lat": 59.9092945,
-    "lon": 17.7350064
+    "lat": null,
+    "lon": null
   },
   "Skellefteå, Sweden": {
     "lat": 64.7520185,
@@ -2256,8 +2256,8 @@
     "lon": 4.2066593
   },
   "St. 23 Serpnia, 71, Ukraine": {
-    "lat": 50.5960425,
-    "lon": 29.796655
+    "lat": null,
+    "lon": null
   },
   "St. Gallen, Switzerland": {
     "lat": 47.425618,
@@ -2300,8 +2300,8 @@
     "lon": 2.2255727
   },
   "Surrey Technology Park, United Kingdom": {
-    "lat": 51.3679004,
-    "lon": -0.3995757
+    "lat": null,
+    "lon": null
   },
   "Svendborg, Denmark": {
     "lat": 55.0636625,
@@ -2344,8 +2344,8 @@
     "lon": 26.7290023
   },
   "Teleportboulevard 130, The Netherlands": {
-    "lat": 52.3875071,
-    "lon": 4.8417939
+    "lat": null,
+    "lon": null
   },
   "Telford, United Kingdom": {
     "lat": 52.6780532,
@@ -2388,8 +2388,8 @@
     "lon": -3.928603
   },
   "Torsgatan 11, Sweden": {
-    "lat": 59.3424927,
-    "lon": 18.036614
+    "lat": null,
+    "lon": null
   },
   "Toruń, Poland": {
     "lat": 53.0102721,
@@ -2476,8 +2476,8 @@
     "lon": 4.8251096
   },
   "Ulappasaarentie 1, Finland": {
-    "lat": 60.2104058,
-    "lon": 25.1381834
+    "lat": null,
+    "lon": null
   },
   "Ulm, Germany": {
     "lat": 48.3984968,
@@ -2552,8 +2552,8 @@
     "lon": 2.1266886
   },
   "Versmiu 123, Lithuania": {
-    "lat": 54.6664997,
-    "lon": 25.3793606
+    "lat": null,
+    "lon": null
   },
   "Vevey, Switzerland": {
     "lat": 46.4602978,
@@ -2652,8 +2652,8 @@
     "lon": 8.2416556
   },
   "Wiesenstrasse 10 A, Switzerland": {
-    "lat": 47.5130319,
-    "lon": 7.5462614
+    "lat": null,
+    "lon": null
   },
   "Wiesloch, Germany": {
     "lat": 49.2942599,
@@ -2728,8 +2728,8 @@
     "lon": 27.128469
   },
   "Carrer Pallars, 147 - 3A Planta, Spain": {
-    "lat": 41.398383,
-    "lon": 2.1939251
+    "lat": null,
+    "lon": null
   },
   "Hodhasharon, Israel": {
     "lat": 32.1561974,
