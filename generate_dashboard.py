@@ -1306,30 +1306,75 @@ def build_html(records: list, title: str = "WeMap European EdTech Explorer") -> 
     return html_template
 
 
+def _find_xlsx(description: str, pattern_geocoded: str = "*_geocoded.xlsx", pattern_any: str = "*.xlsx") -> Path:
+    """Auto-detect an xlsx file in the current directory, preferring geocoded variants."""
+    candidates = sorted(Path(".").glob(pattern_geocoded))
+    if candidates:
+        return candidates[0]
+    candidates = sorted(Path(".").glob(pattern_any))
+    if candidates:
+        print(f"  Note: no *_geocoded.xlsx found; falling back to {candidates[0].name}")
+        return candidates[0]
+    print(
+        f"Error: could not find a {description} xlsx file in the current directory.\n"
+        f"  Pass the path explicitly with --data path/to/file.xlsx\n"
+        f"  Or run geocode_cities.py first to produce a geocoded xlsx."
+    )
+    return None
+
+
 def main():
-    parser = argparse.ArgumentParser(description="Generate single standalone HTML dashboard from geocoded WeMap dataset.")
-    parser.add_argument("--data", default="202507_dataset_WeMap_LIVE_202607281022_CLEAN_geocoded.xlsx",
-                        help="Path to geocoded xlsx file")
-    parser.add_argument("--sheet", default="WeMap_Live_Data", help="Sheet name (default: WeMap_Live_Data)")
-    parser.add_argument("--out", default="index.html", help="Output HTML file path (default: index.html)")
-    parser.add_argument("--title", default="WeMap European EdTech Explorer", help="Dashboard title")
+    parser = argparse.ArgumentParser(
+        description="Generate a standalone HTML dashboard from a geocoded WeMap xlsx dataset.",
+        formatter_class=argparse.RawDescriptionHelpFormatter,
+        epilog=(
+            "Examples:\n"
+            "  python generate_dashboard.py                         # auto-detects *_geocoded.xlsx in CWD\n"
+            "  python generate_dashboard.py --data my_data.xlsx\n"
+            "  python generate_dashboard.py --data my_data.xlsx --title 'My EdTech Map' --out dashboard.html\n"
+        ),
+    )
+    parser.add_argument(
+        "--data",
+        default=None,
+        help=(
+            "Path to geocoded xlsx file. "
+            "If omitted, auto-detects *_geocoded.xlsx (then any *.xlsx) in the current directory."
+        ),
+    )
+    parser.add_argument("--sheet", default="WeMap_Live_Data",
+                        help="Sheet name to read (default: WeMap_Live_Data; falls back to first sheet if not found)")
+    parser.add_argument("--out", default="index.html",
+                        help="Output HTML file path (default: index.html)")
+    parser.add_argument("--title", default="WeMap European EdTech Explorer",
+                        help="Dashboard title shown in the header (default: WeMap European EdTech Explorer)")
     args = parser.parse_args()
 
-    data_path = Path(args.data)
-    if not data_path.exists():
-        print(f"Error: file not found: {data_path}")
-        return
+    # --- Resolve data file ---
+    if args.data:
+        data_path = Path(args.data)
+        if not data_path.exists():
+            print(
+                f"Error: file not found: {data_path}\n"
+                f"  Check the path, or omit --data to auto-detect an xlsx in the current directory."
+            )
+            return
+    else:
+        data_path = _find_xlsx("geocoded")
+        if data_path is None:
+            return
+        print(f"Auto-detected dataset: {data_path}")
 
     print(f"Reading {data_path} (sheet: {args.sheet})...")
     records = load_data(data_path, args.sheet)
     print(f"Extracted {len(records)} organization records.")
 
-    print("Building standalone index.html...")
+    print(f"Building standalone dashboard → {args.out} ...")
     html_content = build_html(records, title=args.title)
 
     out_path = Path(args.out)
     out_path.write_text(html_content, encoding="utf-8")
-    print(f"Successfully generated standalone dashboard: {out_path.resolve()}")
+    print(f"Done. Dashboard written to: {out_path.resolve()}")
 
 
 if __name__ == "__main__":
