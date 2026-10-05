@@ -19,7 +19,7 @@ from pathlib import Path
 import openpyxl
 
 
-def load_data(xlsx_path: Path, sheet_name: str = "WeMap_Live_Data") -> list:
+def load_data(xlsx_path: Path, sheet_name: str = "WeMap_Live_Data", logos_dir: Path = None) -> list:
     wb = openpyxl.load_workbook(xlsx_path, read_only=True)
     if sheet_name not in wb.sheetnames:
         sheet_name = wb.sheetnames[0]
@@ -34,6 +34,7 @@ def load_data(xlsx_path: Path, sheet_name: str = "WeMap_Live_Data") -> list:
         except ValueError:
             return None
 
+    idx_org_id = col_idx("org_id")
     idx_name = col_idx("public_name")
     idx_cc = col_idx("city_country")
     idx_country = col_idx("country")
@@ -105,9 +106,22 @@ def load_data(xlsx_path: Path, sheet_name: str = "WeMap_Live_Data") -> list:
             if not size_clean.startswith("http"):
                 size_val = size_clean
 
+        raw_org_id = str(r[idx_org_id]).strip() if idx_org_id is not None and r[idx_org_id] else ""
+        org_id = raw_org_id if raw_org_id else f"ORG_{len(records)+1}"
+
+        # Resolve logo: check logos_dir for {org_id}.png / .jpg / .gif / .webp
+        logo_path = ""
+        if logos_dir and logos_dir.is_dir():
+            for ext in (".png", ".jpg", ".jpeg", ".gif", ".webp"):
+                candidate = logos_dir / f"{org_id}{ext}"
+                if candidate.exists():
+                    logo_path = f"logos/{org_id}{ext}"
+                    break
+
         records.append({
-            "id": f"ORG_{len(records)+1}",
+            "id": org_id,
             "name": str(name).strip(),
+            "logo": logo_path,
             "cc": cc_val,
             "country": country_val,
             "lat": lat,
@@ -765,8 +779,13 @@ def build_html(records: list, title: str = "WeMap European EdTech Explorer") -> 
 
           const sizeBadge = d.size ? `<span class="inline-block mt-1 px-1.5 py-0.5 text-[10px] font-semibold rounded text-white" style="background-color: ${{markerColor}}">${{d.size}}</span>` : '';
 
+          const logoHtml = d.logo
+            ? `<img src="${{d.logo}}" alt="${{d.name}} logo" class="h-8 w-auto max-w-[80px] object-contain rounded mb-1" onerror="this.style.display='none'">`
+            : '';
+
           const popupContent = `
             <div class="font-sans">
+              ${{logoHtml}}
               <div class="font-bold text-slate-900 text-sm">${{d.name}}</div>
               <div class="text-xs text-slate-500 mt-0.5">${{d.cc || d.country || 'Location unspecified'}}</div>
               ${{sizeBadge}}
@@ -1183,10 +1202,13 @@ def build_html(records: list, title: str = "WeMap European EdTech Explorer") -> 
       body.innerHTML = `
         <div class="space-y-3 border-b border-slate-200 pb-5">
           <div class="flex items-start justify-between gap-3">
-            <div>
-              <h2 class="text-xl font-bold text-slate-900 tracking-tight leading-snug">${{record.name}}</h2>
-              <div class="text-xs font-medium text-slate-500 mt-1 flex items-center gap-2">
-                <span>📍 ${{record.cc || record.country || 'Location Unspecified'}}</span>
+            <div class="flex items-center gap-3">
+              ${{record.logo ? `<img src="${{record.logo}}" alt="${{record.name}} logo" class="h-12 w-12 object-contain rounded-lg border border-slate-100 bg-white p-0.5 shrink-0" onerror="this.style.display='none'">` : ''}}
+              <div>
+                <h2 class="text-xl font-bold text-slate-900 tracking-tight leading-snug">${{record.name}}</h2>
+                <div class="text-xs font-medium text-slate-500 mt-1 flex items-center gap-2">
+                  <span>📍 ${{record.cc || record.country || 'Location Unspecified'}}</span>
+                </div>
               </div>
             </div>
             ${{verifiedBadge}}
@@ -1366,7 +1388,12 @@ def main():
         print(f"Auto-detected dataset: {data_path}")
 
     print(f"Reading {data_path} (sheet: {args.sheet})...")
-    records = load_data(data_path, args.sheet)
+    logos_dir = data_path.parent / "logos"
+    if logos_dir.is_dir():
+        print(f"Logo directory found: {logos_dir} ({len(list(logos_dir.iterdir()))} files)")
+    else:
+        print("No logos/ directory found next to data file — logos will be omitted (run download_logos.py to add them).")
+    records = load_data(data_path, args.sheet, logos_dir=logos_dir)
     print(f"Extracted {len(records)} organization records.")
 
     print(f"Building standalone dashboard → {args.out} ...")
