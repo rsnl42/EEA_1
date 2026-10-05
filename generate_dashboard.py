@@ -152,6 +152,12 @@ def load_data(xlsx_path: Path, sheet_name: str = "WeMap_Live_Data", logos_dir: P
 def build_html(records: list, title: str = "WeMap European EdTech Explorer") -> str:
     records_json = json.dumps(records, ensure_ascii=False)
 
+    geojson_path = Path(__file__).parent / "world_countries.geojson"
+    if geojson_path.exists():
+        countries_geojson_str = geojson_path.read_text(encoding="utf-8")
+    else:
+        countries_geojson_str = '{"type":"FeatureCollection","features":[]}'
+
     compiled_css_path = Path(__file__).parent / "compiled_tailwind.css"
     if compiled_css_path.exists():
         tailwind_css = compiled_css_path.read_text(encoding="utf-8")
@@ -319,11 +325,19 @@ def build_html(records: list, title: str = "WeMap European EdTech Explorer") -> 
         </div>
         
         <!-- View Controls & Count -->
-        <div class="flex items-center gap-3">
+        <div class="flex items-center gap-2.5 flex-wrap">
+          <!-- Viewport Toggle -->
           <div class="inline-flex rounded-lg border border-slate-200 bg-slate-50 p-0.5 text-xs font-medium text-slate-600">
             <button id="btnFocusView" class="px-2.5 py-1 rounded-md bg-white text-slate-900 shadow-sm font-semibold transition-all">🎯 Focus View</button>
             <button id="btnGlobalView" class="px-2.5 py-1 rounded-md text-slate-600 hover:text-slate-900 transition-all">🌐 Global View</button>
           </div>
+
+          <!-- Mode Toggle: Pin vs Choropleth -->
+          <div class="inline-flex rounded-lg border border-slate-200 bg-slate-50 p-0.5 text-xs font-medium text-slate-600">
+            <button id="btnPinMode" class="px-2.5 py-1 rounded-md bg-white text-slate-900 shadow-sm font-semibold transition-all">📍 Pin View</button>
+            <button id="btnChoroplethMode" class="px-2.5 py-1 rounded-md text-slate-600 hover:text-slate-900 transition-all">🗺️ Choropleth View</button>
+          </div>
+
           <span class="text-xs text-slate-500 whitespace-nowrap"><span id="mapCount" class="font-bold text-slate-800">0</span> mapped</span>
         </div>
       </div>
@@ -332,9 +346,41 @@ def build_html(records: list, title: str = "WeMap European EdTech Explorer") -> 
       <div class="relative">
         <div id="map" class="shadow-inner border border-slate-100"></div>
 
+        <!-- Floating Country Stats Card (shown on choropleth click) -->
+        <div id="countryStatsCard" class="hidden absolute top-3 right-3 z-[900] w-64 bg-white/95 backdrop-blur-sm rounded-xl shadow-xl border border-slate-200 overflow-hidden" style="pointer-events:auto">
+          <div class="flex items-center justify-between px-3.5 py-2.5 bg-slate-50 border-b border-slate-200">
+            <div class="flex items-center gap-2 min-w-0">
+              <span id="cscFlag" class="text-lg leading-none shrink-0"></span>
+              <span id="cscName" class="font-bold text-slate-900 text-sm truncate"></span>
+            </div>
+            <button onclick="closeCountryStatsCard()" class="ml-2 shrink-0 text-slate-400 hover:text-slate-700 text-lg leading-none font-bold transition-colors">&times;</button>
+          </div>
+          <div class="px-3.5 py-3 space-y-3">
+            <!-- Org count -->
+            <div class="flex items-center justify-between">
+              <span class="text-xs text-slate-500">Organizations</span>
+              <span id="cscCount" class="text-sm font-bold text-slate-900"></span>
+            </div>
+            <!-- Size breakdown -->
+            <div>
+              <div class="text-[11px] font-semibold uppercase tracking-wide text-slate-400 mb-1.5">Company Scale</div>
+              <div id="cscSizeBars" class="space-y-1.5"></div>
+            </div>
+            <!-- Top segments -->
+            <div>
+              <div class="text-[11px] font-semibold uppercase tracking-wide text-slate-400 mb-1.5">Top Market Segments</div>
+              <div id="cscSegments" class="flex flex-wrap gap-1"></div>
+            </div>
+          </div>
+          <div class="px-3.5 pb-3 pt-0.5 flex gap-2">
+            <button id="cscFilterBtn" onclick="applyCountryStatsFilter()" class="flex-1 text-xs font-semibold bg-brand-600 hover:bg-brand-700 text-white rounded-lg py-1.5 transition-colors">Filter to this country →</button>
+          </div>
+        </div>
+
         <!-- Non-intrusive Map Legend -->
         <div class="absolute bottom-3 right-3 z-10 pointer-events-none">
-          <div class="map-legend-box pointer-events-auto text-[11px] text-slate-700 font-sans shadow-sm">
+          <!-- Pin Legend -->
+          <div id="pinLegend" class="map-legend-box pointer-events-auto text-[11px] text-slate-700 font-sans shadow-sm">
             <div class="font-bold text-slate-900 uppercase text-[10px] tracking-wider mb-1">Company Scale Pins</div>
             <div class="grid grid-cols-2 gap-x-3 gap-y-1">
               <div class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full" style="background:#0072B2"></span> Micro</div>
@@ -343,6 +389,28 @@ def build_html(records: list, title: str = "WeMap European EdTech Explorer") -> 
               <div class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full" style="background:#CC79A7"></span> Large</div>
               <div class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full" style="background:#D55E00"></span> Solo</div>
               <div class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full" style="background:#56B4E9"></span> Med/Large</div>
+            </div>
+          </div>
+
+          <!-- Choropleth Legend -->
+          <div id="choroplethLegend" class="hidden map-legend-box pointer-events-auto text-[11px] text-slate-700 font-sans shadow-sm flex flex-col gap-1.5">
+            <div class="font-bold text-slate-900 uppercase text-[10px] tracking-wider">Organization Density</div>
+            <div class="text-[10px] text-slate-500">Click any country to view stats & filter</div>
+            <div class="flex items-center gap-1 mt-1">
+              <span class="w-4 h-3 rounded" style="background:#f8fafc; border:1px solid #cbd5e1" title="0 orgs"></span>
+              <span class="w-4 h-3 rounded" style="background:#ffffcc" title="1-5 orgs"></span>
+              <span class="w-4 h-3 rounded" style="background:#c7e9b4" title="6-15 orgs"></span>
+              <span class="w-4 h-3 rounded" style="background:#7fcdbb" title="16-35 orgs"></span>
+              <span class="w-4 h-3 rounded" style="background:#1d91c0" title="36-75 orgs"></span>
+              <span class="w-4 h-3 rounded" style="background:#0c2c84" title="75+ orgs"></span>
+            </div>
+            <div class="flex justify-between text-[9px] text-slate-400 font-mono">
+              <span>0</span>
+              <span>1-5</span>
+              <span>6-15</span>
+              <span>16-35</span>
+              <span>36-75</span>
+              <span>75+</span>
             </div>
           </div>
         </div>
@@ -489,7 +557,137 @@ def build_html(records: list, title: str = "WeMap European EdTech Explorer") -> 
       return '-';
     }}
 
-    let map, markerClusterGroup;
+    const COUNTRY_GEOJSON = {countries_geojson_str};
+
+    const COUNTRY_ALIASES = {{
+      'the netherlands': 'netherlands',
+      'turkiye': 'turkey',
+      'scotland': 'united kingdom',
+      'hong kong sar': 'china',
+      'hong kong': 'china',
+      'united states of america': 'united states',
+      'usa': 'united states',
+      'uk': 'united kingdom',
+      'czech republic': 'czechia',
+      'cz': 'czechia',
+      'republic of czechia': 'czechia',
+      'republic of serbia': 'serbia'
+    }};
+
+    function getCanonicalCountry(name) {{
+      if (!name) return '';
+      const clean = String(name).trim().toLowerCase();
+      return COUNTRY_ALIASES[clean] || clean;
+    }}
+
+    // ISO2 -> flag emoji helper
+    function countryFlag(iso2) {{
+      if (!iso2 || iso2.length !== 2) return '🌐';
+      const base = 0x1F1E6 - 'A'.charCodeAt(0);
+      return String.fromCodePoint(base + iso2.toUpperCase().charCodeAt(0))
+           + String.fromCodePoint(base + iso2.toUpperCase().charCodeAt(1));
+    }}
+
+    // ── Country Stats Card ─────────────────────────────────────────────────────
+    let _cscPinnedCountry = null; // {{canon, displayName, iso2}}
+
+    function openCountryStatsCard(canon, displayName, iso2, countsByCanon) {{
+      _cscPinnedCountry = {{ canon, displayName }};
+
+      const card = document.getElementById('countryStatsCard');
+      document.getElementById('cscFlag').textContent = countryFlag(iso2);
+      document.getElementById('cscName').textContent = displayName;
+
+      // Org count for this country from current filteredData
+      const orgsHere = filteredData.filter(d => getCanonicalCountry(d.country) === canon);
+      document.getElementById('cscCount').textContent = orgsHere.length.toLocaleString();
+
+      // Size breakdown bars
+      const sizeBarsEl = document.getElementById('cscSizeBars');
+      sizeBarsEl.innerHTML = '';
+      const sizeOrder = ['Micro','Small','Medium','Large','Solo entrepreneur','Medium or Large (unspecified)','Unspecified'];
+      const sizeCounts = {{}};
+      orgsHere.forEach(d => {{
+        const sz = d.size || 'Unspecified';
+        sizeCounts[sz] = (sizeCounts[sz] || 0) + 1;
+      }});
+      const total = orgsHere.length || 1;
+      const presentSizes = sizeOrder.filter(s => sizeCounts[s] > 0);
+      presentSizes.forEach(sz => {{
+        const cnt = sizeCounts[sz];
+        const pct = Math.round(cnt / total * 100);
+        const color = SIZE_COLOR_MAP[sz] || OKABE_ITO.gray;
+        const label = sz || 'Unspecified';
+        sizeBarsEl.innerHTML += `
+          <div>
+            <div class="flex justify-between items-center text-[11px] mb-0.5">
+              <span class="text-slate-700 font-medium">${{label}}</span>
+              <span class="text-slate-500">${{cnt}} <span class="text-slate-400">(${{pct}}%)</span></span>
+            </div>
+            <div class="h-1.5 rounded-full bg-slate-100 overflow-hidden">
+              <div class="h-full rounded-full transition-all" style="width:${{pct}}%;background:${{color}}"></div>
+            </div>
+          </div>`;
+      }});
+      if (presentSizes.length === 0) {{
+        sizeBarsEl.innerHTML = '<span class="text-xs text-slate-400 italic">No size data</span>';
+      }}
+
+      // Top 5 market segments
+      const segEl = document.getElementById('cscSegments');
+      segEl.innerHTML = '';
+      const segCounts = {{}};
+      orgsHere.forEach(d => {{
+        if (d.segments) d.segments.forEach(s => {{ segCounts[s] = (segCounts[s] || 0) + 1; }});
+      }});
+      const topSegs = Object.entries(segCounts).sort((a,b) => b[1]-a[1]).slice(0,5);
+      if (topSegs.length > 0) {{
+        topSegs.forEach(([seg, cnt]) => {{
+          segEl.innerHTML += `<span class="inline-flex items-center gap-1 text-[10px] bg-slate-100 text-slate-700 rounded-full px-2 py-0.5 font-medium">
+            ${{seg}} <span class="text-slate-400">${{cnt}}</span>
+          </span>`;
+        }});
+      }} else {{
+        segEl.innerHTML = '<span class="text-xs text-slate-400 italic">No segment data</span>';
+      }}
+
+      // Update filter button label
+      const isAlreadyFiltered = (selectedCountry !== 'ALL' && getCanonicalCountry(selectedCountry) === canon);
+      const btn = document.getElementById('cscFilterBtn');
+      btn.textContent = isAlreadyFiltered ? '✓ Filtered — click to clear' : 'Filter to this country →';
+      btn.className = isAlreadyFiltered
+        ? 'flex-1 text-xs font-semibold bg-slate-200 hover:bg-slate-300 text-slate-700 rounded-lg py-1.5 transition-colors'
+        : 'flex-1 text-xs font-semibold bg-brand-600 hover:bg-brand-700 text-white rounded-lg py-1.5 transition-colors';
+
+      card.classList.remove('hidden');
+    }}
+
+    function closeCountryStatsCard() {{
+      const card = document.getElementById('countryStatsCard');
+      if (card) card.classList.add('hidden');
+      _cscPinnedCountry = null;
+    }}
+
+    function applyCountryStatsFilter() {{
+      if (!_cscPinnedCountry) return;
+      const {{ canon, displayName }} = _cscPinnedCountry;
+      if (selectedCountry !== 'ALL' && getCanonicalCountry(selectedCountry) === canon) {{
+        selectedCountry = 'ALL';
+      }} else {{
+        selectedCountry = displayName;
+      }}
+      applyFilters();
+      const btn = document.getElementById('cscFilterBtn');
+      const isNowFiltered = (selectedCountry !== 'ALL' && getCanonicalCountry(selectedCountry) === canon);
+      btn.textContent = isNowFiltered ? '✓ Filtered — click to clear' : 'Filter to this country →';
+      btn.className = isNowFiltered
+        ? 'flex-1 text-xs font-semibold bg-slate-200 hover:bg-slate-300 text-slate-700 rounded-lg py-1.5 transition-colors'
+        : 'flex-1 text-xs font-semibold bg-brand-600 hover:bg-brand-700 text-white rounded-lg py-1.5 transition-colors';
+    }}
+    // ── End Country Stats Card ─────────────────────────────────────────────────
+
+    let map, markerClusterGroup, choroplethLayer = null;
+    let currentMapMode = 'pin'; // 'pin' or 'choropleth'
     let countryChartInstance = null;
     let sizeChartInstance = null;
 
@@ -570,6 +768,18 @@ def build_html(records: list, title: str = "WeMap European EdTech Explorer") -> 
         updateToggleButtons();
         fitMapBounds();
       }});
+
+      document.getElementById('btnPinMode').addEventListener('click', () => {{
+        currentMapMode = 'pin';
+        updateToggleButtons();
+        updateMap();
+      }});
+
+      document.getElementById('btnChoroplethMode').addEventListener('click', () => {{
+        currentMapMode = 'choropleth';
+        updateToggleButtons();
+        updateMap();
+      }});
     }}
 
     function updateToggleButtons() {{
@@ -582,6 +792,17 @@ def build_html(records: list, title: str = "WeMap European EdTech Explorer") -> 
       }} else {{
         btnGlobal.className = 'px-2.5 py-1 rounded-md bg-white text-slate-900 shadow-sm font-semibold transition-all';
         btnFocus.className = 'px-2.5 py-1 rounded-md text-slate-600 hover:text-slate-900 transition-all';
+      }}
+
+      const btnPin = document.getElementById('btnPinMode');
+      const btnChoropleth = document.getElementById('btnChoroplethMode');
+
+      if (currentMapMode === 'pin') {{
+        btnPin.className = 'px-2.5 py-1 rounded-md bg-white text-slate-900 shadow-sm font-semibold transition-all';
+        btnChoropleth.className = 'px-2.5 py-1 rounded-md text-slate-600 hover:text-slate-900 transition-all';
+      }} else {{
+        btnChoropleth.className = 'px-2.5 py-1 rounded-md bg-white text-slate-900 shadow-sm font-semibold transition-all';
+        btnPin.className = 'px-2.5 py-1 rounded-md text-slate-600 hover:text-slate-900 transition-all';
       }}
     }}
 
@@ -617,6 +838,7 @@ def build_html(records: list, title: str = "WeMap European EdTech Explorer") -> 
         selectedCountry = 'ALL';
         selectedSize = 'ALL';
         document.getElementById('segmentFilter').value = 'ALL';
+        closeCountryStatsCard();
         applyFilters();
       }});
     }}
@@ -656,6 +878,7 @@ def build_html(records: list, title: str = "WeMap European EdTech Explorer") -> 
         activeCount++;
         container.appendChild(createChip(`Country: ${{selectedCountry}}`, () => {{
           selectedCountry = 'ALL';
+          closeCountryStatsCard();
           applyFilters();
         }}));
       }}
@@ -732,77 +955,176 @@ def build_html(records: list, title: str = "WeMap European EdTech Explorer") -> 
       map.fitBounds([[minLat, minLon], [maxLat, maxLon]], {{ padding: [30, 30], maxZoom: 13 }});
     }}
 
+    function getChoroplethColor(cCount) {{
+      if (!cCount || cCount === 0) return '#f8fafc';
+      if (cCount <= 5) return '#ffffcc';
+      if (cCount <= 15) return '#c7e9b4';
+      if (cCount <= 35) return '#7fcdbb';
+      if (cCount <= 75) return '#1d91c0';
+      return '#0c2c84';
+    }}
+
     function updateMap() {{
-      markerClusterGroup.clearLayers();
-      let count = 0;
+      const pinLegend = document.getElementById('pinLegend');
+      const choroplethLegend = document.getElementById('choroplethLegend');
 
-      // Group records with identical coordinates so co-located pins uncluster when zooming
-      const coordGroups = {{}};
-      filteredData.forEach(d => {{
-        if (d.lat !== null && d.lon !== null && !isNaN(d.lat) && !isNaN(d.lon)) {{
-          const key = `${{d.lat.toFixed(5)}},${{d.lon.toFixed(5)}}`;
-          if (!coordGroups[key]) coordGroups[key] = [];
-          coordGroups[key].push(d);
+      if (currentMapMode === 'pin') {{
+        if (pinLegend) pinLegend.classList.remove('hidden');
+        if (choroplethLegend) choroplethLegend.classList.add('hidden');
+        closeCountryStatsCard();
+
+        if (choroplethLayer && map.hasLayer(choroplethLayer)) {{
+          map.removeLayer(choroplethLayer);
         }}
-      }});
+        if (!map.hasLayer(markerClusterGroup)) {{
+          map.addLayer(markerClusterGroup);
+        }}
 
-      Object.values(coordGroups).forEach(group => {{
-        const total = group.length;
-        group.forEach((d, idx) => {{
-          count++;
-          let mLat = d.lat;
-          let mLon = d.lon;
+        markerClusterGroup.clearLayers();
+        let count = 0;
 
-          if (total > 1 && idx > 0) {{
-            // Golden spiral dispersal: at high zoom, points group into the city bubble;
-            // as user zooms in, they separate into individual regional/city pins
-            const goldenAngle = 2.3999632;
-            const r = 0.0016 * Math.sqrt(idx);
-            const theta = idx * goldenAngle;
-            const cosLat = Math.cos(d.lat * Math.PI / 180) || 1;
-            mLat = d.lat + r * Math.cos(theta);
-            mLon = d.lon + (r * Math.sin(theta)) / cosLat;
+        const coordGroups = {{}};
+        filteredData.forEach(d => {{
+          if (d.lat !== null && d.lon !== null && !isNaN(d.lat) && !isNaN(d.lon)) {{
+            const key = `${{d.lat.toFixed(5)}},${{d.lon.toFixed(5)}}`;
+            if (!coordGroups[key]) coordGroups[key] = [];
+            coordGroups[key].push(d);
           }}
-
-          const markerColor = SIZE_COLOR_MAP[d.size] || OKABE_ITO.gray;
-
-          const marker = L.circleMarker([mLat, mLon], {{
-            radius: 6,
-            fillColor: markerColor,
-            color: '#ffffff',
-            weight: 2,
-            opacity: 1,
-            fillOpacity: 0.9,
-            companySize: d.size,
-            record: d
-          }});
-
-          const sizeBadge = d.size ? `<span class="inline-block mt-1 px-1.5 py-0.5 text-[10px] font-semibold rounded text-white" style="background-color: ${{markerColor}}">${{d.size}}</span>` : '';
-
-          const logoHtml = d.logo
-            ? `<img src="${{d.logo}}" alt="${{d.name}} logo" class="h-8 w-auto max-w-[80px] object-contain rounded mb-1" onerror="this.style.display='none'">`
-            : '';
-
-          const popupContent = `
-            <div class="font-sans">
-              ${{logoHtml}}
-              <div class="font-bold text-slate-900 text-sm">${{d.name}}</div>
-              <div class="text-xs text-slate-500 mt-0.5">${{d.cc || d.country || 'Location unspecified'}}</div>
-              ${{sizeBadge}}
-              <div class="mt-2 pt-1.5 border-t border-slate-100 flex items-center justify-between gap-2">
-                <button onclick="openDrawerById('${{d.id}}')" class="text-[11px] font-bold text-brand-600 hover:text-brand-800 transition-colors flex items-center gap-1">
-                  <span>View Full Profile</span> &rarr;
-                </button>
-              </div>
-            </div>
-          `;
-          marker.bindPopup(popupContent);
-          markerClusterGroup.addLayer(marker);
         }});
-      }});
 
-      document.getElementById('mapCount').textContent = count.toLocaleString();
-      fitMapBounds();
+        Object.values(coordGroups).forEach(group => {{
+          const total = group.length;
+          group.forEach((d, idx) => {{
+            count++;
+            let mLat = d.lat;
+            let mLon = d.lon;
+
+            if (total > 1 && idx > 0) {{
+              const goldenAngle = 2.3999632;
+              const r = 0.0016 * Math.sqrt(idx);
+              const theta = idx * goldenAngle;
+              const cosLat = Math.cos(d.lat * Math.PI / 180) || 1;
+              mLat = d.lat + r * Math.cos(theta);
+              mLon = d.lon + (r * Math.sin(theta)) / cosLat;
+            }}
+
+            const markerColor = SIZE_COLOR_MAP[d.size] || OKABE_ITO.gray;
+
+            const marker = L.circleMarker([mLat, mLon], {{
+              radius: 6,
+              fillColor: markerColor,
+              color: '#ffffff',
+              weight: 2,
+              opacity: 1,
+              fillOpacity: 0.9,
+              companySize: d.size,
+              record: d
+            }});
+
+            const sizeBadge = d.size ? `<span class="inline-block mt-1 px-1.5 py-0.5 text-[10px] font-semibold rounded text-white" style="background-color: ${{markerColor}}">${{d.size}}</span>` : '';
+
+            const logoHtml = d.logo
+              ? `<img src="${{d.logo}}" alt="${{d.name}} logo" class="h-8 w-auto max-w-[80px] object-contain rounded mb-1" onerror="this.style.display='none'">`
+              : '';
+
+            const popupContent = `
+              <div class="font-sans">
+                ${{logoHtml}}
+                <div class="font-bold text-slate-900 text-sm">${{d.name}}</div>
+                <div class="text-xs text-slate-500 mt-0.5">${{d.cc || d.country || 'Location unspecified'}}</div>
+                ${{sizeBadge}}
+                <div class="mt-2 pt-1.5 border-t border-slate-100 flex items-center justify-between gap-2">
+                  <button onclick="openDrawerById('${{d.id}}')" class="text-[11px] font-bold text-brand-600 hover:text-brand-800 transition-colors flex items-center gap-1">
+                    <span>View Full Profile</span> &rarr;
+                  </button>
+                </div>
+              </div>
+            `;
+            marker.bindPopup(popupContent);
+            markerClusterGroup.addLayer(marker);
+          }});
+        }});
+
+        document.getElementById('mapCount').textContent = count.toLocaleString();
+        fitMapBounds();
+      }} else {{
+        // Choropleth Mode
+        if (choroplethLegend) choroplethLegend.classList.remove('hidden');
+        if (pinLegend) pinLegend.classList.add('hidden');
+
+        if (map.hasLayer(markerClusterGroup)) {{
+          map.removeLayer(markerClusterGroup);
+        }}
+        if (choroplethLayer && map.hasLayer(choroplethLayer)) {{
+          map.removeLayer(choroplethLayer);
+        }}
+
+        const countsByCanon = {{}};
+        filteredData.forEach(d => {{
+          const c = d.country ? getCanonicalCountry(d.country) : '';
+          if (c) {{
+            countsByCanon[c] = (countsByCanon[c] || 0) + 1;
+          }}
+        }});
+
+        choroplethLayer = L.geoJSON(COUNTRY_GEOJSON, {{
+          style: function(feature) {{
+            const p = feature.properties;
+            const name = p.name || p.name_long || '';
+            const canon = getCanonicalCountry(name);
+            const cCount = countsByCanon[canon] || 0;
+            const isSelected = (selectedCountry !== 'ALL' && getCanonicalCountry(selectedCountry) === canon);
+
+            return {{
+              fillColor: getChoroplethColor(cCount),
+              weight: isSelected ? 3.5 : (cCount > 0 ? 1.5 : 0.8),
+              opacity: 0.9,
+              color: isSelected ? '#d97706' : (cCount > 0 ? '#1d91c0' : '#cbd5e1'),
+              fillOpacity: cCount > 0 ? (isSelected ? 0.95 : 0.8) : 0.15
+            }};
+          }},
+          onEachFeature: function(feature, layer) {{
+            const p = feature.properties;
+            const displayName = p.name || p.name_long || 'Unknown';
+            const canon = getCanonicalCountry(displayName);
+            const cCount = countsByCanon[canon] || 0;
+
+            layer.bindTooltip(`
+              <div class="px-2 py-1 font-sans text-xs">
+                <div class="font-bold text-slate-900">${{displayName}}</div>
+                <div class="text-slate-600 mt-0.5">${{cCount}} ${{cCount === 1 ? 'organization' : 'organizations'}}</div>
+                ${{cCount > 0 ? '<div class="text-[10px] text-brand-600 font-semibold mt-1">Click for country details →</div>' : ''}}
+              </div>
+            `, {{ sticky: true }});
+
+            layer.on({{
+              mouseover: function(e) {{
+                const l = e.target;
+                l.setStyle({{
+                  weight: 2.5,
+                  color: '#0f172a',
+                  fillOpacity: 0.9
+                }});
+                if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {{
+                  l.bringToFront();
+                }}
+              }},
+              mouseout: function(e) {{
+                if (choroplethLayer) choroplethLayer.resetStyle(e.target);
+              }},
+              click: function() {{
+                if (cCount > 0) {{
+                  const iso2 = p.iso2 || '';
+                  openCountryStatsCard(canon, displayName, iso2, countsByCanon);
+                }}
+              }}
+            }});
+          }}
+        }}).addTo(map);
+
+        document.getElementById('mapCount').textContent = filteredData.length.toLocaleString();
+        fitMapBounds();
+      }}
     }}
 
     function locateRecordOnMap(d) {{
