@@ -2,3 +2,8 @@ node_modules/
 __pycache__/
 *.pyc
 .DS_Store
+
+# Generated/runtime artifacts — regenerate locally with the pipeline scripts
+logos/
+geocode_cache.json
+*.bak

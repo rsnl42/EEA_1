@@ -457,6 +457,24 @@ def build_html(records: list, title: str = "WeMap European EdTech Explorer") -> 
       'Medium or Large (unspecified)': OKABE_ITO.skyBlue
     }};
 
+    function getCityOnly(d) {{
+      if (d.city && d.city.trim()) {{
+        const c = d.city.trim();
+        if (d.country && c.toLowerCase() === d.country.trim().toLowerCase()) return '-';
+        return c;
+      }}
+      if (d.cc && d.cc.includes(',')) {{
+        const parts = d.cc.split(',');
+        const cityPart = parts[0].trim();
+        if (d.country && cityPart.toLowerCase() === d.country.trim().toLowerCase()) return '-';
+        return cityPart;
+      }}
+      if (d.cc && d.country && d.cc.trim().toLowerCase() !== d.country.trim().toLowerCase()) {{
+        return d.cc.trim();
+      }}
+      return '-';
+    }}
+
     let map, markerClusterGroup;
     let countryChartInstance = null;
     let sizeChartInstance = null;
@@ -988,7 +1006,7 @@ def build_html(records: list, title: str = "WeMap European EdTech Explorer") -> 
               <span>${{d.name}}</span>
               ${{hasCoords ? '<svg class="w-3.5 h-3.5 text-slate-400 opacity-60" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>' : ''}}
             </td>
-            <td class="px-5 py-3 text-slate-600">${{d.cc || '-'}}</td>
+            <td class="px-5 py-3 text-slate-600">${{getCityOnly(d)}}</td>
             <td class="px-5 py-3 text-slate-600">${{d.country || '-'}}</td>
             <td class="px-5 py-3">${{segBadges}}</td>
           `;
