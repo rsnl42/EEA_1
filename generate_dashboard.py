@@ -355,33 +355,34 @@ def build_html(records: list, title: str = "WeMap European EdTech Explorer") -> 
         </div>
       </div>
 
-      <!-- Sleek Country Intelligence Header Strip (shown on country selection) -->
+      <!-- Sleek Country Intelligence Card (shown on country selection) -->
       <div id="countryStatsCard" class="hidden mb-3 bg-white rounded-xl shadow-xs border border-slate-200 overflow-hidden transition-all">
-        <div class="flex items-center justify-between px-4 py-2 bg-slate-50/90 border-b border-slate-200 flex-wrap gap-2 sm:gap-3">
+        <!-- Top bar: Header & Action buttons -->
+        <div class="flex items-center justify-between px-4 py-2.5 bg-slate-50 border-b border-slate-200 flex-wrap gap-2 sm:gap-3">
           <!-- Left: Flag + Country Name + Org Count Badge -->
           <div class="flex items-center gap-2.5 sm:gap-3 min-w-0">
             <span id="cscFlag" class="shrink-0 flex items-center justify-center"></span>
-            <h3 id="cscName" class="font-bold text-slate-900 text-sm sm:text-base truncate"></h3>
+            <h3 id="cscName" class="font-bold text-slate-900 text-base sm:text-lg truncate"></h3>
             <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-brand-50 text-brand-700 border border-brand-200 shadow-2xs">
               <span id="cscCount" class="font-bold mr-1">0</span> Orgs
             </span>
           </div>
 
-          <!-- Middle: 4 Ultra-Compact Inline KPI Pills -->
-          <div class="flex items-center gap-1.5 sm:gap-2 flex-wrap text-xs">
-            <div id="cscTopCities" class="inline-flex items-center"></div>
-            <div id="cscBizMix" class="inline-flex items-center"></div>
-            <div id="cscSegmentSynergy" class="inline-flex items-center"></div>
-            <div id="cscProductExpansion" class="inline-flex items-center"></div>
-          </div>
-
           <!-- Right: Filter Button & Close Button -->
-          <div class="flex items-center gap-1.5 shrink-0 ml-auto sm:ml-0">
-            <button id="cscFilterBtn" onclick="applyCountryStatsFilter()" class="px-2.5 py-1 text-xs font-semibold bg-brand-600 hover:bg-brand-700 text-white rounded-md transition-colors shadow-2xs">
-              ✓ Filtered
+          <div class="flex items-center gap-2 shrink-0 ml-auto sm:ml-0">
+            <button id="cscFilterBtn" onclick="applyCountryStatsFilter()" class="px-3 py-1.5 text-xs font-semibold bg-brand-600 hover:bg-brand-700 text-white rounded-lg transition-colors shadow-2xs">
+              Filter to this country →
             </button>
-            <button onclick="closeCountryStatsCard()" class="text-slate-400 hover:text-slate-700 text-lg leading-none font-bold p-1 rounded-md transition-colors" title="Close stats card">&times;</button>
+            <button onclick="closeCountryStatsCard()" class="text-slate-400 hover:text-slate-700 text-lg leading-none font-bold p-1.5 rounded-lg transition-colors" title="Close stats card">&times;</button>
           </div>
+        </div>
+
+        <!-- Responsive 4-Card Intelligence Grid -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 p-3.5 bg-slate-50/80 border-t border-slate-200">
+          <div id="cscTopCities" class="bg-white rounded-xl border border-slate-200 p-3.5 shadow-xs hover:border-slate-300 transition-all flex flex-col justify-between"></div>
+          <div id="cscBizMix" class="bg-white rounded-xl border border-slate-200 p-3.5 shadow-xs hover:border-slate-300 transition-all flex flex-col justify-between"></div>
+          <div id="cscSegmentSynergy" class="bg-white rounded-xl border border-slate-200 p-3.5 shadow-xs hover:border-slate-300 transition-all flex flex-col justify-between"></div>
+          <div id="cscProductExpansion" class="bg-white rounded-xl border border-slate-200 p-3.5 shadow-xs hover:border-slate-300 transition-all flex flex-col justify-between"></div>
         </div>
       </div>
 
@@ -687,7 +688,7 @@ def build_html(records: list, title: str = "WeMap European EdTech Explorer") -> 
       const totalOrgs = orgsHere.length || 1;
       document.getElementById('cscCount').textContent = orgsHere.length.toLocaleString();
 
-      // 1. Top Hubs (inline pill)
+      // 1. Top Hubs
       const citiesEl = document.getElementById('cscTopCities');
       if (citiesEl) {{
         const cityCounts = {{}};
@@ -697,20 +698,37 @@ def build_html(records: list, title: str = "WeMap European EdTech Explorer") -> 
             cityCounts[c] = (cityCounts[c] || 0) + 1;
           }}
         }});
-        const topCities = Object.entries(cityCounts).sort((a, b) => b[1] - a[1]).slice(0, 2);
+        const topCities = Object.entries(cityCounts).sort((a, b) => b[1] - a[1]).slice(0, 3);
         if (topCities.length > 0) {{
-          const cityTags = topCities.map(([cityName, cnt]) => `${{cityName}} (${{cnt}})`).join(', ');
+          const cityTags = topCities.map(([cityName, cnt]) => `<span class="inline-flex items-center px-2 py-0.5 rounded-md bg-slate-100 font-semibold text-slate-800 text-xs">${{cityName}} <b class="text-brand-700 ml-1">${{cnt}}</b></span>`).join(' ');
           citiesEl.innerHTML = `
-            <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg text-xs font-medium bg-white text-slate-700 border border-slate-200 shadow-2xs" title="Top Hubs in ${{displayName}}">
-              <span class="font-bold text-slate-900">🏙️ Hubs:</span>
-              <span class="font-semibold text-slate-800">${{cityTags}}</span>
-            </span>`;
+            <div>
+              <div class="flex items-center justify-between mb-2">
+                <span class="text-xs font-bold text-slate-700 uppercase tracking-wider flex items-center gap-1.5">
+                  <span>🏙️</span> Top Innovation Hubs
+                </span>
+                <span class="text-xs font-bold text-brand-700 bg-brand-50 border border-brand-200 px-2 py-0.5 rounded-full">${{topCities.length}} Hubs</span>
+              </div>
+              <div class="flex flex-wrap gap-1.5 my-1">
+                ${{cityTags}}
+              </div>
+              <p class="text-xs text-slate-500 mt-2 leading-tight">Key ecosystem hubs in ${{displayName}}</p>
+            </div>`;
         }} else {{
-          citiesEl.innerHTML = '';
+          citiesEl.innerHTML = `
+            <div>
+              <div class="flex items-center justify-between mb-2">
+                <span class="text-xs font-bold text-slate-700 uppercase tracking-wider flex items-center gap-1.5">
+                  <span>🏙️</span> Top Innovation Hubs
+                </span>
+              </div>
+              <div class="text-xs text-slate-500 italic my-1">Nationwide hubs</div>
+              <p class="text-xs text-slate-500 mt-2 leading-tight">City distribution across ${{displayName}}</p>
+            </div>`;
         }}
       }}
 
-      // 2. Business Model Mix (inline pill: dominant model + full breakdown hover tooltip)
+      // 2. Business Model Mix
       const bizEl = document.getElementById('cscBizMix');
       if (bizEl) {{
         const bmCounts = {{ 'B2B': 0, 'B2S': 0, 'B2C': 0, 'B2G': 0 }};
@@ -728,44 +746,97 @@ def build_html(records: list, title: str = "WeMap European EdTech Explorer") -> 
         const sortedModels = Object.entries(bmCounts).sort((a, b) => b[1] - a[1]);
         const topModel = sortedModels[0];
         const topPct = topModel && totalOrgs > 0 ? Math.round((topModel[1] / totalOrgs) * 100) : 0;
-
-        const breakdownTooltip = Object.entries(bmCounts)
-          .map(([k, cnt]) => `${{k}}: ${{Math.round((cnt / totalOrgs) * 100)}}%`)
-          .join(' | ');
+        const b2bPct = Math.round((bmCounts['B2B'] / totalOrgs) * 100);
+        const b2cPct = Math.round((bmCounts['B2C'] / totalOrgs) * 100);
+        const b2sPct = Math.round((bmCounts['B2S'] / totalOrgs) * 100);
+        const b2gPct = Math.round((bmCounts['B2G'] / totalOrgs) * 100);
 
         if (topModel && topModel[1] > 0) {{
           bizEl.innerHTML = `
-            <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg text-xs font-medium bg-white text-slate-700 border border-slate-200 shadow-2xs" title="Business Model Mix: ${{breakdownTooltip}}">
-              <span class="font-bold text-slate-900">💼 Top Model:</span>
-              <span class="font-bold text-brand-700">${{topModel[0]}} (${{topPct}}%)</span>
-            </span>`;
+            <div>
+              <div class="flex items-center justify-between mb-2">
+                <span class="text-xs font-bold text-slate-700 uppercase tracking-wider flex items-center gap-1.5">
+                  <span>💼</span> Business Model Mix
+                </span>
+                <span class="text-xs font-bold text-brand-700 bg-brand-50 border border-brand-200 px-2 py-0.5 rounded-full">Top: ${{topModel[0]}} (${{topPct}}%)</span>
+              </div>
+              <div class="space-y-1.5 my-1">
+                <div class="w-full bg-slate-100 h-2 rounded-full overflow-hidden flex shadow-inner">
+                  <div class="h-full" style="width: ${{b2bPct}}%; background-color: #0072B2;" title="B2B ${{b2bPct}}%"></div>
+                  <div class="h-full" style="width: ${{b2cPct}}%; background-color: #E69F00;" title="B2C ${{b2cPct}}%"></div>
+                  <div class="h-full" style="width: ${{b2sPct}}%; background-color: #009E73;" title="B2S ${{b2sPct}}%"></div>
+                  <div class="h-full" style="width: ${{b2gPct}}%; background-color: #CC79A7;" title="B2G ${{b2gPct}}%"></div>
+                </div>
+                <div class="flex items-center justify-between text-xs font-semibold text-slate-600 gap-1 flex-wrap">
+                  <span class="inline-flex items-center gap-1"><span class="w-2 h-2 rounded-full inline-block" style="background-color: #0072B2;"></span> B2B: ${{b2bPct}}%</span>
+                  <span class="inline-flex items-center gap-1"><span class="w-2 h-2 rounded-full inline-block" style="background-color: #E69F00;"></span> B2C: ${{b2cPct}}%</span>
+                  <span class="inline-flex items-center gap-1"><span class="w-2 h-2 rounded-full inline-block" style="background-color: #009E73;"></span> B2S: ${{b2sPct}}%</span>
+                </div>
+              </div>
+              <p class="text-xs text-slate-500 mt-2 leading-tight">Commercial model share across orgs</p>
+            </div>`;
         }} else {{
-          bizEl.innerHTML = '';
+          bizEl.innerHTML = `
+            <div>
+              <div class="flex items-center justify-between mb-2">
+                <span class="text-xs font-bold text-slate-700 uppercase tracking-wider flex items-center gap-1.5">
+                  <span>💼</span> Business Model Mix
+                </span>
+              </div>
+              <div class="text-xs text-slate-400 italic my-1">Data pending</div>
+              <p class="text-xs text-slate-500 mt-2 leading-tight">Commercial model breakdown</p>
+            </div>`;
         }}
       }}
 
-      // 3. Multi-Segment Synergy (inline pill)
+      // 3. Multi-Segment Reach
       const synergyEl = document.getElementById('cscSegmentSynergy');
       if (synergyEl) {{
         const multiSegOrgs = orgsHere.filter(d => d.segments && Array.isArray(d.segments) && d.segments.length > 1).length;
         const multiSegPct = Math.round((multiSegOrgs / totalOrgs) * 100);
         synergyEl.innerHTML = `
-          <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg text-xs font-medium bg-white text-slate-700 border border-slate-200 shadow-2xs" title="${{multiSegOrgs}} of ${{totalOrgs}} orgs operate across 2+ market segments">
-            <span class="font-bold text-slate-900">🔀 Multi-Segment:</span>
-            <span class="font-bold text-brand-700">${{multiSegPct}}%</span>
-          </span>`;
+          <div>
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-xs font-bold text-slate-700 uppercase tracking-wider flex items-center gap-1.5">
+                <span>🔀</span> Multi-Segment Reach
+              </span>
+              <span class="text-xs font-extrabold text-brand-700 bg-brand-50 border border-brand-200 px-2 py-0.5 rounded-full">${{multiSegPct}}%</span>
+            </div>
+            <div class="space-y-1.5 my-1">
+              <div class="w-full bg-slate-100 h-2 rounded-full overflow-hidden shadow-inner">
+                <div class="h-full rounded-full" style="width: ${{multiSegPct}}%; background-color: #0072B2;"></div>
+              </div>
+              <div class="text-xs font-semibold text-slate-800">
+                <span class="font-bold text-slate-900">${{multiSegOrgs}}</span> of ${{totalOrgs}} orgs serve 2+ sectors
+              </div>
+            </div>
+            <p class="text-xs text-slate-500 mt-2 leading-tight">Companies active across multiple sectors</p>
+          </div>`;
       }}
 
-      // 4. Product Portfolio Expansion Density (inline pill)
+      // 4. Multi-Product Portfolio
       const productEl = document.getElementById('cscProductExpansion');
       if (productEl) {{
         const multiProductOrgs = orgsHere.filter(d => d.p1_name && d.p2_name).length;
         const multiProductPct = Math.round((multiProductOrgs / totalOrgs) * 100);
         productEl.innerHTML = `
-          <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg text-xs font-medium bg-white text-slate-700 border border-slate-200 shadow-2xs" title="${{multiProductOrgs}} orgs have 2+ documented products">
-            <span class="font-bold text-slate-900">📦 Multi-Product:</span>
-            <span class="font-bold text-amber-700">${{multiProductPct}}%</span>
-          </span>`;
+          <div>
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-xs font-bold text-slate-700 uppercase tracking-wider flex items-center gap-1.5">
+                <span>📦</span> Multi-Product Portfolio
+              </span>
+              <span class="text-xs font-extrabold text-amber-700 bg-amber-50 border border-amber-200 px-2 py-0.5 rounded-full">${{multiProductPct}}%</span>
+            </div>
+            <div class="space-y-1.5 my-1">
+              <div class="w-full bg-slate-100 h-2 rounded-full overflow-hidden shadow-inner">
+                <div class="h-full rounded-full" style="width: ${{multiProductPct}}%; background-color: #E69F00;"></div>
+              </div>
+              <div class="text-xs font-semibold text-slate-800">
+                <span class="font-bold text-slate-900">${{multiProductOrgs}}</span> of ${{totalOrgs}} orgs offer 2+ products
+              </div>
+            </div>
+            <p class="text-xs text-slate-500 mt-2 leading-tight">Companies with multi-product catalog</p>
+          </div>`;
       }}
 
       // Update filter button label
