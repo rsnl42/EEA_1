@@ -1,0 +1,223 @@
+{
+  "dataset_source": "202507_dataset_WeMap_LIVE_202607281022_CLEAN.xlsx",
+  "survey_title": "European EdTech Ecosystem Directory & Map (WeMap Survey)",
+  "questions": [
+    {
+      "column": "public_name",
+      "question": "Organization Public Name",
+      "type": "short_answer",
+      "required": true
+    },
+    {
+      "column": "website",
+      "question": "Official Website URL",
+      "type": "short_answer",
+      "example": "www.company.com",
+      "required": true
+    },
+    {
+      "column": "org_desc",
+      "question": "Organization Description",
+      "type": "paragraph",
+      "required": true
+    },
+    {
+      "column": "member_association",
+      "question": "EdTech Member Association(s)",
+      "type": "checkboxes",
+      "allow_other": true,
+      "other_clarification_field": "If you selected 'Other' for Member Association, please state its full name",
+      "required": false
+    },
+    {
+      "column": "city",
+      "question": "Headquarters City",
+      "type": "short_answer",
+      "required": true
+    },
+    {
+      "column": "country",
+      "question": "Headquarters Country",
+      "type": "dropdown",
+      "required": true
+    },
+    {
+      "column": "sell_countries",
+      "question": "Countries of Operation / Sales",
+      "type": "paragraph",
+      "required": true
+    },
+    {
+      "column": "employees_number",
+      "question": "Company Scale / Team Size (FTE)",
+      "type": "multiple_choice",
+      "options": [
+        "Solo entrepreneur (1 employee/Self)",
+        "Micro (1-9 FTE employees)",
+        "Small (10-49 FTE employees)",
+        "Medium (50-250 FTE employees)",
+        "Large (250+ FTE employees)"
+      ],
+      "required": true
+    },
+    {
+      "column": "profit_status",
+      "question": "Legal / Profit Status",
+      "type": "multiple_choice",
+      "options": [
+        "For-profit company",
+        "Non-profit organisation",
+        "Public institution",
+        "University / Academic spin-off"
+      ],
+      "allow_other": true,
+      "description": "Academic spin-offs refer to commercial companies founded to commercialize research, IP, or tools originally developed within a university or research institute.",
+      "required": false
+    },
+    {
+      "column": "business_model",
+      "question": "Business Model(s)",
+      "type": "checkboxes",
+      "options": [
+        "Business to Business (B2B)",
+        "Business to Schools / Institutions (B2S)",
+        "Business to Consumer (B2C)",
+        "Business to Government (B2G)"
+      ],
+      "allow_other": true,
+      "other_clarification_field": "If you selected 'Other' for Business Model, please specify",
+      "required": true
+    },
+    {
+      "column": "market_segments",
+      "question": "Market Segment(s)",
+      "type": "checkboxes",
+      "options": [
+        "Early childhood development (0-5 years)",
+        "Primary Education",
+        "Secondary Education",
+        "Higher Education",
+        "Vocational Education and Training (VET)",
+        "Corporate Training",
+        "Lifelong learning/Adult education",
+        "Special Education"
+      ],
+      "allow_other": true,
+      "other_clarification_field": "If you selected 'Other' for Market Segment, please specify",
+      "required": true
+    },
+    {
+      "column": "target_audience",
+      "question": "Target Audience / End User Interface",
+      "type": "checkboxes",
+      "options": [
+        "Student interfacing",
+        "Teacher interfacing",
+        "System/Administrative"
+      ],
+      "allow_other": true,
+      "other_clarification_field": "If you selected 'Other' for Target Audience, please specify",
+      "required": true
+    },
+    {
+      "column": "edu_settings",
+      "question": "Does your solution serve physical, in-person educational settings?",
+      "type": "multiple_choice",
+      "options": ["Yes", "No"],
+      "required": false
+    },
+    {
+      "column": "edu_content",
+      "question": "Do you directly create or license educational curriculum / learning content?",
+      "type": "multiple_choice",
+      "options": ["Yes", "No"],
+      "required": false
+    },
+    {
+      "column": "product_language",
+      "question": "Supported Product Languages",
+      "type": "checkboxes",
+      "allow_other": true,
+      "required": false
+    },
+    {
+      "column": "product_1_name",
+      "question": "Primary Product 1 — Name",
+      "type": "short_answer",
+      "required": false
+    },
+    {
+      "column": "product_1_desc",
+      "question": "Primary Product 1 — Description / Link",
+      "type": "paragraph",
+      "required": false
+    },
+    {
+      "column": "product_2_name",
+      "question": "Product 2 — Name",
+      "type": "short_answer",
+      "required": false
+    },
+    {
+      "column": "product_2_desc",
+      "question": "Product 2 — Description / Link",
+      "type": "paragraph",
+      "required": false
+    },
+    {
+      "column": "WeMap_URL",
+      "question": "Company Logo Upload",
+      "type": "file_upload",
+      "required": true
+    },
+    {
+      "column": "socials_linkedin",
+      "question": "LinkedIn Company Page URL",
+      "type": "short_answer",
+      "required": false
+    },
+    {
+      "column": "socials_x",
+      "question": "X / Twitter Profile URL",
+      "type": "short_answer",
+      "required": false
+    },
+    {
+      "column": "socials_insta",
+      "question": "Instagram Profile URL",
+      "type": "short_answer",
+      "required": false
+    },
+    {
+      "column": "facebook",
+      "question": "Facebook Page URL",
+      "type": "short_answer",
+      "required": false
+    },
+    {
+      "column": "partnerships",
+      "question": "Partnership & Collaboration Interests",
+      "type": "checkboxes",
+      "allow_other": true,
+      "required": false
+    }
+  ],
+  "system_pipeline_columns": [
+    {
+      "column": "last_update_date",
+      "description": "Form submission timestamp (recorded automatically by Google Forms)"
+    },
+    {
+      "column": "org_id",
+      "description": "Auto-incremented internal identifier (ORG_1001, ORG_1002, ...)"
+    },
+    {
+      "column": "is_current",
+      "description": "Lifecycle / active organization boolean flag (TRUE)"
+    },
+    {
+      "column": "verified",
+      "description": "Editorial verification status (Verified / Unverified)"
+    }
+  ]
+}
