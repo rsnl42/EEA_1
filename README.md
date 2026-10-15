@@ -8,12 +8,12 @@ An interactive geospatial dashboard for exploring the WeMap EdTech ecosystem —
 
 ## Pipeline Overview
 
-The project has a 3-step data pipeline that transforms a raw dataset into a fully standalone HTML dashboard.
+The project has a 4-step data pipeline that transforms a raw dataset into a fully standalone HTML dashboard.
 
 ```
 raw xlsx  ──▶  geocode_cities.py  ──▶  geocoded xlsx  ──▶  generate_dashboard.py  ──▶  index.html
                                                   ╲
-                                          download_logos.py  ──▶  logos/  (optional)
+                                          download_logos.py ──▶ optimize_logos.py ──▶ logos/
 ```
 
 ---
@@ -23,11 +23,11 @@ raw xlsx  ──▶  geocode_cities.py  ──▶  geocoded xlsx  ──▶  gen
 Install Python dependencies once:
 
 ```bash
-pip install openpyxl requests
+pip install openpyxl requests Pillow
 ```
 
 > [!NOTE]
-> All scripts require only standard libraries plus `openpyxl` and `requests`. No API keys are needed.
+> All scripts require only standard libraries plus `openpyxl`, `requests`, and `Pillow` (for logo thumbnail optimization). No API keys are needed.
 
 ---
 
@@ -57,12 +57,12 @@ python geocode_cities.py path/to/clean_dataset.xlsx \
 
 ---
 
-## Step 2 — (Optional) Download Logos
+## Step 2 — Download & Optimize Logos
 
-Downloads org logo images from the dataset into a local `logos/` directory for offline serving alongside the dashboard.
+Downloads org logo images from the dataset into `logos/` and automatically optimizes them for lightweight web delivery.
 
 ```bash
-# Auto-detects *_geocoded.xlsx in CWD
+# Auto-detects *_geocoded.xlsx in CWD, downloads and auto-compresses logos to ~25 MB
 python download_logos.py
 
 # Or specify explicitly
@@ -71,11 +71,22 @@ python download_logos.py path/to/geocoded_dataset.xlsx
 # Optional flags
 python download_logos.py path/to/geocoded_dataset.xlsx \
   --logos-dir path/to/logos \
-  --workers 20               # parallel download threads (default: 15)
+  --workers 20 \             # parallel download threads (default: 15)
+  --no-optimize              # skip automatic compression step
+```
+
+You can also run or re-run the standalone logo optimizer anytime:
+
+```bash
+# Compress/resize existing logos in-place (max 256px, high-quality Lanczos, JPEG quality 85)
+python optimize_logos.py
+
+# Optional optimizer flags
+python optimize_logos.py --logos-dir logos --max-size 256 --quality 85 --workers 8
 ```
 
 > [!NOTE]
-> `logos/` is excluded from version control (`.gitignore`). Re-run this script to repopulate on a new machine.
+> The optimization script downsamples high-resolution print images to high-density 256px web thumbnails using Lanczos resampling. This reduces total logo storage by ~87% (from ~190 MB to ~25 MB for >1,500 companies) without loss of clarity on Retina/mobile displays, enabling `logos/` to be safely tracked in Git and served directly via GitHub Pages and iframe embeds.
 
 ---
 
@@ -145,13 +156,14 @@ Then re-run `python generate_dashboard.py` to embed the updated styles.
 EEA_1/
 ├── generate_dashboard.py     # Step 3: xlsx → index.html
 ├── geocode_cities.py         # Step 1: add lat/lon to xlsx
-├── download_logos.py         # Step 2 (optional): cache org logos locally
+├── download_logos.py         # Step 2a: download org logos from dataset
+├── optimize_logos.py         # Step 2b: resize & compress logos to web thumbnails
 ├── serve_dashboard.py        # Dev server for index.html
 ├── compiled_tailwind.css     # Pre-built Tailwind CSS (inlined into HTML)
 ├── input.css                 # Tailwind source (rebuild if styles change)
 ├── tailwind.config.js        # Tailwind config
 ├── package.json              # npm config for Tailwind
 ├── index.html                # Generated dashboard (do not edit by hand)
-├── logos/                    # Downloaded logos (gitignored, regenerate locally)
+├── logos/                    # Optimized company logos (~25 MB total, tracked in git)
 └── geocode_cache.json        # Geocoding cache (gitignored, regenerate locally)
 ```

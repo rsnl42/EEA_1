@@ -109,6 +109,11 @@ def main():
         default=15,
         help="Number of parallel download workers (default: 15)",
     )
+    parser.add_argument(
+        "--no-optimize",
+        action="store_true",
+        help="Skip automatic optimization/compression after download (default: False)",
+    )
     args = parser.parse_args()
 
     # --- Resolve xlsx path ---
@@ -175,6 +180,14 @@ def main():
                 )
 
     print("Finished logo caching!")
+
+    if not args.no_optimize:
+        try:
+            from optimize_logos import optimize_directory
+            print("\nAuto-optimizing downloaded logos...")
+            optimize_directory(logos_dir)
+        except ImportError:
+            print("Note: Install Pillow ('pip install Pillow') to enable automatic logo compression.")
 
 
 if __name__ == "__main__":

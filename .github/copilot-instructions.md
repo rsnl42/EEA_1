@@ -12,7 +12,9 @@
 - To geocode a workbook before generating the dashboard:
   `python geocode_cities.py path/to/clean.xlsx --provider photon --out path/to/geocoded.xlsx`
   Geocoding contacts a shared public service and is rate-limited; cached results are stored in `geocode_cache.json`.
-- There are no configured automated tests or lint commands. The root `npm test` script is a placeholder that exits with an error; there is no single-test command. For a Python syntax check, run `python -m py_compile generate_dashboard.py geocode_cities.py serve_dashboard.py`.
+- To download and compress company logos:
+  `python download_logos.py` (downloads and optimizes) or `python optimize_logos.py` (optimizes existing `logos/` in-place).
+- There are no configured automated tests or lint commands. The root `npm test` script is a placeholder that exits with an error; there is no single-test command. For a Python syntax check, run `python -m py_compile generate_dashboard.py geocode_cities.py serve_dashboard.py download_logos.py optimize_logos.py`.
 
 ## Architecture
 

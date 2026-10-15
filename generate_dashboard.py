@@ -113,10 +113,10 @@ def load_data(xlsx_path: Path, sheet_name: str = "WeMap_Live_Data", logos_dir: P
         raw_org_id = str(r[idx_org_id]).strip() if idx_org_id is not None and r[idx_org_id] else ""
         org_id = raw_org_id if raw_org_id else f"ORG_{len(records)+1}"
 
-        # Resolve logo: check logos_dir for {org_id}.png / .jpg / .gif / .webp
+        # Resolve logo: check logos_dir for {org_id}.png / .jpg / .gif / .webp / .svg
         logo_path = ""
         if logos_dir and logos_dir.is_dir():
-            for ext in (".png", ".jpg", ".jpeg", ".gif", ".webp"):
+            for ext in (".svg", ".png", ".jpg", ".jpeg", ".gif", ".webp"):
                 candidate = logos_dir / f"{org_id}{ext}"
                 if candidate.exists():
                     logo_path = f"logos/{org_id}{ext}"
